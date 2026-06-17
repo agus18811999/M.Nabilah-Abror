@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Portal | Authentication</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: { brand: { light: '#a5b4fc', DEFAULT: '#6366f1', accent: '#f472b6' } }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* ==========================================
+           1. BACKGROUND GRADASI PREMIUM (TANPA PUTIH/HITAM)
+           ========================================== */
+        body {
+            background: linear-gradient(-45deg, #e0c3fc, #8ec5fc, #ffc3a0, #ffafbd);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            overflow: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Ornamen Cahaya Melayang */
+        .orb-1 { position: absolute; top: -10%; left: -10%; width: 400px; height: 400px; background: rgba(255, 255, 255, 0.4); border-radius: 50%; filter: blur(80px); animation: float 10s infinite ease-in-out; }
+        .orb-2 { position: absolute; bottom: -10%; right: -10%; width: 500px; height: 500px; background: rgba(165, 180, 252, 0.4); border-radius: 50%; filter: blur(100px); animation: float 12s infinite ease-in-out reverse; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-30px) scale(1.1); }
+        }
+
+        /* ==========================================
+           2. EFEK GLASSMORPHISM SUPER MEWAH
+           ========================================== */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 25px 50px -12px rgba(31, 38, 135, 0.15);
+            border-radius: 2rem;
+            overflow: hidden;
+        }
+
+        .glass-input {
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            color: #1e293b;
+            transition: all 0.3s ease;
+        }
+        .glass-input:focus {
+            background: rgba(255, 255, 255, 0.7);
+            border-color: #6366f1;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+            outline: none;
+        }
+        .glass-input::placeholder { color: #64748b; font-weight: 400; }
+
+        /* SweetAlert Premium Fix */
+        .swal2-popup { border-radius: 24px !important; background: rgba(255, 255, 255, 0.95) !important; backdrop-filter: blur(20px) !important; border: 1px solid rgba(255,255,255,0.8) !important; }
+        .swal2-icon { box-sizing: content-box !important; }
+    </style>
+</head>
+<body x-data="authApp()">
+<!-- HEADER LOGIN STYLE SHOPEE -->
+<!-- HEADER LOGIN / PORTFOLIO ACCESS -->
+<header class="fixed top-0 left-0 w-full z-50 px-5 md:px-10 py-4">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+        
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-2xl bg-white/35 backdrop-blur-xl border border-white/60 shadow-lg flex items-center justify-center">
+                <span class="font-serif font-bold text-xl text-slate-800">
+                    M<span class="text-brand-accent">.</span>
+                </span>
+            </div>
+
+            <div class="leading-tight">
+                <h1 class="text-lg md:text-xl font-serif font-bold text-slate-800 tracking-wide">
+                    MNA Portfolio
+                </h1>
+                <p class="hidden sm:block text-xs font-semibold text-slate-600 tracking-wide">
+                    Website Portfolio & CV
+                </p>
+            </div>
+        </a>
+
+        <!-- Menu Kanan -->
+        <div class="flex items-center gap-2 md:gap-3">
+            
+            <button 
+                type="button"
+                @click="showLoginInfo()"
+                class="px-4 py-2 rounded-full bg-white/35 hover:bg-white/60 backdrop-blur-xl border border-white/60 text-slate-700 text-xs md:text-sm font-bold transition-all shadow-sm flex items-center gap-2">
+                <i class="fa-solid fa-circle-info text-brand"></i>
+                <span class="hidden sm:inline">Informasi</span>
+            </button>
+
+            <button 
+                type="button"
+                @click="openWhatsAppContact()"
+                class="px-4 py-2 rounded-full bg-gradient-to-r from-brand to-brand-accent text-white text-xs md:text-sm font-bold transition-all shadow-lg hover:shadow-[0_8px_25px_rgba(99,102,241,0.35)] hover:-translate-y-0.5 flex items-center gap-2">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>Contact</span>
+            </button>
+
+        </div>
+    </div>
+</header>
+    
+    <div class="orb-1"></div>
+    <div class="orb-2"></div>
+
+    <main class="glass-panel w-full max-w-5xl flex flex-col md:flex-row relative z-10 min-h-[600px] shadow-2xl">
+        
+        <div class="hidden md:flex md:w-1/2 relative p-12 flex-col justify-between overflow-hidden bg-gradient-to-br from-brand/20 to-brand-accent/20">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay opacity-40"></div>
+            
+            <div class="relative z-10">
+                <a href="#" class="text-3xl font-serif font-bold text-slate-800 tracking-wider">
+                    MNA<span class="text-brand-accent">.</span>
+                </a>
+            </div>
+
+            <div class="relative z-10 space-y-4">
+            <h1 class="text-4xl font-serif font-bold text-slate-800 leading-snug">
+    Welcome to <br> 
+    <span class="text-brand">M. Nabilah Abror Portfolio.</span>
+</h1>
+
+<p class="text-slate-600 font-medium leading-relaxed">
+    Sebuah ruang digital untuk menampilkan perjalanan, karya, pengalaman, dan pencapaian profesional dalam bidang business strategy, product management, dan digital innovation.
+</p>    
+            </div>
+            
+            <div class="absolute -bottom-20 -left-20 w-64 h-64 border border-white/30 rounded-full animate-[spin_20s_linear_infinite]"></div>
+        </div>
+
+        <div class="w-full md:w-1/2 p-8 md:p-12 relative flex items-center justify-center">
+            
+            <div class="w-full max-w-sm relative">
+
+                <div x-show="view === 'login'" 
+                     x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-x-8" x-transition:enter-end="opacity-100 translate-x-0"
+                     x-transition:leave="transition ease-in duration-300 absolute inset-0" x-transition:leave-start="opacity-100 translate-x-0" x-transition:leave-end="opacity-0 -translate-x-8">
+                    
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl font-serif font-bold text-slate-800 mb-2">Welcome Back</h2>
+                        <p class="text-sm text-slate-600 font-medium">Silakan masuk ke akun Anda.</p>
+                    </div>
+
+                    <form @submit.prevent="submitForm('login', $event)" class="space-y-5">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2 ml-1">Alamat Email</label>
+                            <div class="relative">
+                                <i class="fa-regular fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"></i>
+                                <input type="email" name="email" required class="w-full glass-input rounded-2xl pl-11 pr-4 py-3.5 font-medium" placeholder="mail@domain.com">
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-center mb-2 px-1">
+                                <label class="text-xs font-bold text-slate-700 uppercase tracking-wider">Password</label>
+                                <button type="button" @click="view = 'forgot'" class="text-xs font-bold text-brand hover:text-brand-accent transition-colors">Lupa Password?</button>
+                            </div>
+                            <div class="relative">
+                                <i class="fa-solid fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"></i>
+                                <input type="password" name="password" required class="w-full glass-input rounded-2xl pl-11 pr-4 py-3.5 font-medium tracking-widest" placeholder="••••••••">
+                            </div>
+                        </div>
+
+                        <button type="submit" :disabled="isLoading" class="w-full mt-4 bg-gradient-to-r from-brand to-brand-accent hover:shadow-[0_10px_25px_rgba(99,102,241,0.4)] text-white font-bold py-4 rounded-2xl transition-all transform hover:-translate-y-1 flex justify-center items-center gap-2">
+                            <span x-text="isLoading ? 'Memverifikasi...' : 'Sign In'"></span>
+                            <i class="fa-solid fa-arrow-right" x-show="!isLoading"></i>
+                            <i class="fa-solid fa-circle-notch fa-spin" x-show="isLoading" style="display: none;"></i>
+                        </button>
+                    </form>
+
+                    <p class="text-center mt-8 text-sm text-slate-600 font-medium">
+                        Belum punya akun? <button @click="view = 'register'" class="font-bold text-brand hover:underline">Daftar Sekarang</button>
+                    </p>
+                </div>
+
+                <div x-show="view === 'register'" style="display: none;"
+                     x-transition:enter="transition ease-out duration-500 delay-150" x-transition:enter-start="opacity-0 translate-x-8" x-transition:enter-end="opacity-100 translate-x-0"
+                     x-transition:leave="transition ease-in duration-300 absolute inset-0" x-transition:leave-start="opacity-100 translate-x-0" x-transition:leave-end="opacity-0 -translate-x-8">
+                    
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl font-serif font-bold text-slate-800 mb-2">Create Account</h2>
+                        <p class="text-sm text-slate-600 font-medium">Bergabunglah dalam komunitas eksklusif.</p>
+                    </div>
+
+                    <form @submit.prevent="submitForm('register', $event)" class="space-y-5">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2 ml-1">Nama Lengkap</label>
+                            <div class="relative">
+                                <i class="fa-regular fa-user absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"></i>
+                                <input type="text" name="nama" required class="w-full glass-input rounded-2xl pl-11 pr-4 py-3.5 font-medium" placeholder="Mohmmad Nabilah Abror">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2 ml-1">Alamat Email</label>
+                            <div class="relative">
+                                <i class="fa-regular fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"></i>
+                                <input type="email" name="email" required class="w-full glass-input rounded-2xl pl-11 pr-4 py-3.5 font-medium" placeholder="mail@domain.com">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2 ml-1">Buat Password</label>
+                            <div class="relative">
+                                <i class="fa-solid fa-shield-halved absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"></i>
+                                <input type="password" name="password" required class="w-full glass-input rounded-2xl pl-11 pr-4 py-3.5 font-medium tracking-widest" placeholder="••••••••">
+                            </div>
+                        </div>
+
+                        <button type="submit" :disabled="isLoading" class="w-full mt-4 bg-slate-800 hover:bg-slate-900 text-white shadow-xl font-bold py-4 rounded-2xl transition-all transform hover:-translate-y-1 flex justify-center items-center gap-2">
+                            <span x-text="isLoading ? 'Memproses...' : 'Sign Up'"></span>
+                            <i class="fa-solid fa-user-plus" x-show="!isLoading"></i>
+                        </button>
+                    </form>
+
+                    <p class="text-center mt-8 text-sm text-slate-600 font-medium">
+                        Sudah punya akun? <button @click="view = 'login'" class="font-bold text-brand hover:underline">Kembali Login</button>
+                    </p>
+                </div>
+
+               <div x-show="view === 'forgot'" style="display: none;"
+     x-transition:enter="transition ease-out duration-500 delay-150" 
+     x-transition:enter-start="opacity-0 translate-x-8" 
+     x-transition:enter-end="opacity-100 translate-x-0"
+     x-transition:leave="transition ease-in duration-300 absolute inset-0" 
+     x-transition:leave-start="opacity-100 translate-x-0" 
+     x-transition:leave-end="opacity-0 -translate-x-8">
+    
+    <div class="w-full max-w-sm mx-auto">
+        
+        <!-- Back Button -->
+        <button 
+            type="button"
+            @click="view = 'login'" 
+            class="w-11 h-11 mb-6 rounded-2xl bg-white/35 hover:bg-white/60 backdrop-blur-xl border border-white/60 flex justify-center items-center text-slate-600 hover:text-brand transition-all shadow-sm hover:-translate-x-1">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+        <!-- Header -->
+        <div class="mb-7">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand/10 border border-brand/20 text-brand text-[10px] font-bold tracking-widest uppercase mb-4">
+                <i class="fa-solid fa-shield-halved"></i>
+                Account Recovery
+            </div>
+
+            <h2 class="text-3xl md:text-4xl font-serif font-bold text-slate-800 mb-3">
+                Lupa Password?
+            </h2>
+
+            <p class="text-sm text-slate-600 font-medium leading-relaxed">
+                Masukkan email yang terdaftar. Sistem akan membantu menampilkan kembali data akses akun portfolio Anda.
+            </p>
+        </div>
+
+        <!-- Info Box -->
+        <div class="mb-6 rounded-2xl bg-white/30 backdrop-blur-xl border border-white/50 p-4 shadow-sm">
+            <div class="flex items-start gap-3">
+                <div class="w-9 h-9 rounded-xl bg-brand/10 flex items-center justify-center text-brand shrink-0">
+                    <i class="fa-solid fa-circle-info text-sm"></i>
+                </div>
+                <div>
+                    <p class="text-sm font-bold text-slate-700 mb-1">
+                        Pastikan email benar
+                    </p>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Gunakan email yang sama seperti saat melakukan registrasi akun.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form -->
+        <form @submit.prevent="submitForm('forgot', $event)" class="space-y-5">
+            
+            <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2 ml-1">
+                    Email Terdaftar
+                </label>
+
+                <div class="relative">
+                    <i class="fa-regular fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"></i>
+                    <input 
+                        type="email" 
+                        name="email" 
+                        required 
+                        autocomplete="email"
+                        class="w-full glass-input rounded-2xl pl-11 pr-4 py-4 font-semibold"
+                        placeholder="Masukkan email akun Anda">
+                </div>
+            </div>
+
+            <button 
+                type="submit" 
+                :disabled="isLoading" 
+                class="w-full bg-gradient-to-r from-brand to-brand-accent hover:shadow-[0_10px_25px_rgba(99,102,241,0.35)] text-white font-bold py-4 rounded-2xl transition-all transform hover:-translate-y-1 flex justify-center items-center gap-2">
+                
+                <span x-text="isLoading ? 'Mencari Data Akun...' : 'Pulihkan Password'"></span>
+                <i class="fa-solid fa-magnifying-glass" x-show="!isLoading"></i>
+                <i class="fa-solid fa-circle-notch fa-spin" x-show="isLoading" style="display: none;"></i>
+            </button>
+        </form>
+
+        <!-- Bottom Help -->
+        <p class="text-center mt-7 text-sm text-slate-600 font-medium leading-relaxed">
+            Ingat password akun?
+            <button 
+                type="button"
+                @click="view = 'login'" 
+                class="font-bold text-brand hover:text-brand-accent hover:underline transition-colors">
+                Kembali Login
+            </button>
+        </p>
+
+    </div>
+</div>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // MASUKKAN URL GOOGLE SCRIPT (DEPLOYMENT BARU) DI SINI:
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwuoPbxe5-W8fBSa11cq1bsTsCOzLmoYdgLPozbkoWxOZDkT1N7tgp7d-IBBEaelEXLLQ/exec';
+
+        function authApp() {
+            return {
+                view: 'login', // Default panel yang terbuka
+                isLoading: false,
+
+                openWhatsAppContact() {
+    // GANTI NOMOR INI DENGAN NOMOR WA KAMU
+    const phoneNumber = '6282311056167';
+
+    const message = `Halo M. Nabilah Abror, saya ingin bertanya terkait akses website portfolio dan CV Anda. Mohon bantuannya ya.`;
+
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+},
+
+showLoginInfo() {
+    Swal.fire({
+        title: 'Informasi Akses Portfolio',
+        html: `
+            <div style="text-align:left; color:#334155; font-size:14px; line-height:1.7;">
+                
+                <div style="
+                    background: linear-gradient(135deg, rgba(99,102,241,0.10), rgba(244,114,182,0.10));
+                    border: 1px solid rgba(99,102,241,0.18);
+                    border-radius: 18px;
+                    padding: 16px;
+                    margin-bottom: 18px;
+                ">
+                    <p style="margin:0; font-size:15px; color:#1e293b;">
+                        Selamat datang di halaman login 
+                        <b>Website Portfolio & CV M. Nabilah Abror</b>.
+                    </p>
+                    <p style="margin:8px 0 0; color:#64748b;">
+                        Halaman ini digunakan untuk mengakses profil, pengalaman, karya, penghargaan, dan informasi profesional secara digital.
+                    </p>
+                </div>
+
+                <div style="margin-bottom:14px;">
+                    <p style="
+                        margin:0 0 10px;
+                        font-size:12px;
+                        font-weight:700;
+                        letter-spacing:0.08em;
+                        text-transform:uppercase;
+                        color:#6366f1;
+                    ">
+                        Langkah Akses
+                    </p>
+
+                    <div style="display:flex; gap:12px; margin-bottom:12px;">
+                        <div style="
+                            width:28px; height:28px; min-width:28px;
+                            border-radius:50%;
+                            background:#6366f1;
+                            color:white;
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                            font-size:12px;
+                            font-weight:700;
+                        ">1</div>
+                        <div>
+                            <b style="color:#1e293b;">Login akun</b>
+                            <p style="margin:3px 0 0; color:#64748b;">
+                                Masukkan email dan password yang sudah terdaftar, lalu klik <b>Sign In</b>.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; gap:12px; margin-bottom:12px;">
+                        <div style="
+                            width:28px; height:28px; min-width:28px;
+                            border-radius:50%;
+                            background:#8b5cf6;
+                            color:white;
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                            font-size:12px;
+                            font-weight:700;
+                        ">2</div>
+                        <div>
+                            <b style="color:#1e293b;">Daftar akun baru</b>
+                            <p style="margin:3px 0 0; color:#64748b;">
+                                Jika belum memiliki akun, klik <b>Daftar Sekarang</b> untuk membuat akses baru.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; gap:12px; margin-bottom:12px;">
+                        <div style="
+                            width:28px; height:28px; min-width:28px;
+                            border-radius:50%;
+                            background:#ec4899;
+                            color:white;
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                            font-size:12px;
+                            font-weight:700;
+                        ">3</div>
+                        <div>
+                            <b style="color:#1e293b;">Lupa password</b>
+                            <p style="margin:3px 0 0; color:#64748b;">
+                                Klik <b>Lupa Password?</b>, lalu masukkan email terdaftar untuk mencari data akun.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="
+                    background:#f8fafc;
+                    border:1px solid #e2e8f0;
+                    border-radius:16px;
+                    padding:14px 16px;
+                    margin-top:16px;
+                ">
+                    <p style="margin:0; color:#475569;">
+                        <b style="color:#1e293b;">Catatan:</b> Setelah login berhasil, Anda akan diarahkan ke halaman utama yang berisi portfolio, CV, pengalaman profesional, project, penghargaan, dan kontak.
+                    </p>
+                </div>
+
+                <div style="
+                    margin-top:14px;
+                    padding:12px 14px;
+                    border-radius:14px;
+                    background:rgba(34,197,94,0.08);
+                    border:1px solid rgba(34,197,94,0.18);
+                    color:#166534;
+                    font-size:13px;
+                ">
+                    Jika mengalami kendala akses, klik tombol <b>Contact</b> di pojok kanan atas.
+                </div>
+            </div>
+        `,
+        icon: 'info',
+        confirmButtonText: 'Saya Mengerti',
+        confirmButtonColor: '#6366f1',
+        background: 'rgba(255, 255, 255, 0.98)',
+        backdrop: 'rgba(15, 23, 42, 0.35)',
+        width: 620,
+        padding: '2rem',
+        customClass: {
+            popup: 'rounded-3xl'
+        }
+    });
+},
+                async submitForm(actionType, event) {
+                    this.isLoading = true;
+                    const form = event.target;
+                    const formData = new URLSearchParams(new FormData(form));
+                    formData.append('action', actionType); // Memberi tahu backend apa yang harus dilakukan
+
+                    try {
+                        const response = await fetch(SCRIPT_URL, {
+                            method: 'POST',
+                            body: formData
+                        });
+                        const result = await response.json();
+
+                        // Penanganan Respons Berdasarkan Aksi
+                        if (result.status === 'success') {
+                            
+                           if (actionType === 'register') {
+    Swal.fire({
+        html: `
+            <div style="text-align:center; padding:8px 4px 0;">
+                
+                <div style="
+                    width:92px;
+                    height:92px;
+                    margin:0 auto 22px;
+                    border-radius:50%;
+                    background:linear-gradient(135deg, rgba(34,197,94,0.12), rgba(99,102,241,0.10));
+                    border:2px solid rgba(34,197,94,0.30);
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                    box-shadow:0 12px 30px rgba(34,197,94,0.12);
+                ">
+                    <div style="
+                        width:64px;
+                        height:64px;
+                        border-radius:50%;
+                        background:white;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        box-shadow:0 8px 20px rgba(15,23,42,0.08);
+                    ">
+                        <i class="fa-solid fa-check" style="
+                            font-size:34px;
+                            color:#22c55e;
+                            line-height:1;
+                        "></i>
+                    </div>
+                </div>
+
+                <h2 style="
+                    margin:0 0 10px;
+                    font-size:30px;
+                    font-weight:800;
+                    color:#1e293b;
+                    font-family:'Plus Jakarta Sans', sans-serif;
+                ">
+                    Registrasi Berhasil!
+                </h2>
+
+                <p style="
+                    margin:0 auto;
+                    max-width:420px;
+                    font-size:15px;
+                    line-height:1.7;
+                    color:#64748b;
+                ">
+                    Akun Anda berhasil dibuat. Silakan login untuk masuk ke halaman 
+                    <b style="color:#334155;">Portfolio & CV M. Nabilah Abror</b>.
+                </p>
+
+            </div>
+        `,
+        showConfirmButton: true,
+        confirmButtonText: 'Masuk Sekarang',
+        confirmButtonColor: '#6366f1',
+        background: 'rgba(255, 255, 255, 0.98)',
+        backdrop: 'rgba(15, 23, 42, 0.35)',
+        width: 520,
+        padding: '2rem',
+        customClass: {
+            popup: 'rounded-3xl'
+        }
+    }).then(() => {
+        form.reset();
+        this.view = 'login';
+    });
+}
+                            
+                         else if (actionType === 'login') {
+    // Simpan nama user ke localStorage untuk kebutuhan halaman portfolio
+    localStorage.setItem('loggedUser', result.nama);
+
+    Swal.fire({
+        html: `
+            <div style="text-align:center; padding:8px 4px 0;">
+                
+                <div style="
+                    width:92px;
+                    height:92px;
+                    margin:0 auto 22px;
+                    border-radius:50%;
+                    background:linear-gradient(135deg, rgba(34,197,94,0.12), rgba(99,102,241,0.10));
+                    border:2px solid rgba(34,197,94,0.30);
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                    box-shadow:0 12px 30px rgba(34,197,94,0.12);
+                ">
+                    <div style="
+                        width:64px;
+                        height:64px;
+                        border-radius:50%;
+                        background:white;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        box-shadow:0 8px 20px rgba(15,23,42,0.08);
+                    ">
+                        <i class="fa-solid fa-check" style="
+                            font-size:34px;
+                            color:#22c55e;
+                            line-height:1;
+                        "></i>
+                    </div>
+                </div>
+
+                <h2 style="
+                    margin:0 0 10px;
+                    font-size:30px;
+                    font-weight:800;
+                    color:#1e293b;
+                    font-family:'Plus Jakarta Sans', sans-serif;
+                ">
+                    Selamat Datang, ${result.nama}!
+                </h2>
+
+                <p style="
+                    margin:0 auto;
+                    max-width:420px;
+                    font-size:15px;
+                    line-height:1.7;
+                    color:#64748b;
+                ">
+                    Login berhasil. Anda akan diarahkan ke halaman 
+                    <b style="color:#334155;">Portfolio & CV M. Nabilah Abror</b>.
+                </p>
+
+            </div>
+        `,
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        background: 'rgba(255, 255, 255, 0.98)',
+        backdrop: 'rgba(15, 23, 42, 0.35)',
+        width: 520,
+        padding: '2rem',
+        customClass: {
+            popup: 'rounded-3xl'
+        }
+    }).then(() => {
+        window.location.href = "landing-page.html";
+    });
+}
+                            else if (actionType === 'forgot') {
+                                Swal.fire({
+                                    title: 'Data Ditemukan!',
+                                    html: `<p class="text-sm text-slate-600 mb-2">Password lama Anda adalah:</p>
+                                           <div class="bg-slate-100 p-4 rounded-xl border border-slate-200 font-mono font-bold tracking-widest text-lg text-brand-dark">${result.passwordAsli}</div>`,
+                                    icon: 'info',
+                                    confirmButtonText: 'Kembali Login'
+                                }).then(() => {
+                                    this.view = 'login';
+                                });
+                            }
+
+                        } else {
+                            // Jika ada Error (seperti email tidak ketemu, atau password salah)
+                            Swal.fire('Akses Ditolak', result.message, 'error');
+                        }
+
+                    } catch (error) {
+                        Swal.fire('Koneksi Gagal', 'Sistem tidak dapat terhubung ke server database.', 'error');
+                    } finally {
+                        this.isLoading = false;
+                    }
+                }
+            }
+        }
+   
+   </script>
+</body>
+</html>

@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Project | M. Nabilah Abror</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            light: '#a5b4fc',
+                            DEFAULT: '#6366f1',
+                            dark: '#312e81',
+                            accent: '#f472b6',
+                        }
+                    },
+                    animation: {
+                        blob: 'blob 7s infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        [x-cloak] { display: none !important; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1e1b4b; }
+        ::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #6366f1; }
+
+        .bg-gradient-premium {
+            background: linear-gradient(145deg, #0f172a 0%, #1e1b4b 48%, #2e1065 100%);
+        }
+
+        .glass {
+            background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255,255,255,0.10);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.28);
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #a5b4fc, #f472b6, #facc15, #a5b4fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 250% auto;
+            animation: gradientMove 4s linear infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% center; }
+            100% { background-position: 250% center; }
+        }
+
+        .social-row {
+            position: relative;
+            overflow: hidden;
+            border-radius: 2.2rem;
+            background:
+                linear-gradient(135deg, rgba(255,255,255,0.075), rgba(255,255,255,0.025)),
+                radial-gradient(circle at 92% 12%, rgba(16,185,129,0.16), transparent 34%),
+                radial-gradient(circle at 8% 86%, rgba(244,114,182,0.12), transparent 40%);
+            border: 1px solid rgba(255,255,255,0.10);
+            box-shadow: 0 18px 45px rgba(0,0,0,0.25);
+            transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .social-row:hover {
+            transform: translateY(-5px);
+            border-color: rgba(16,185,129,0.35);
+            box-shadow: 0 26px 70px rgba(16,185,129,0.13), 0 18px 55px rgba(0,0,0,0.36);
+        }
+
+        .social-row::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.075), transparent);
+            transform: translateX(-130%);
+            transition: transform 0.75s ease;
+            pointer-events: none;
+        }
+
+        .social-row:hover::before {
+            transform: translateX(130%);
+        }
+
+        .service-icon-box {
+            width: 82px;
+            height: 82px;
+            border-radius: 1.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.12);
+            box-shadow: inset 0 0 22px rgba(255,255,255,0.04);
+        }
+
+        .input-field {
+            width: 100%;
+            border-radius: 1rem;
+            background: rgba(255,255,255,0.055);
+            border: 1px solid rgba(255,255,255,0.10);
+            color: #ffffff;
+            padding: 0.85rem 1rem;
+            font-size: 0.82rem;
+            outline: none;
+            transition: border-color 0.25s ease, background 0.25s ease;
+        }
+
+        .input-field:focus {
+            border-color: rgba(165,180,252,0.55);
+            background: rgba(255,255,255,0.085);
+        }
+
+        .input-field::placeholder {
+            color: rgba(203,213,225,0.55);
+        }
+
+        .select-field option {
+            background: #0f172a;
+            color: #ffffff;
+        }
+
+        .service-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.42rem 0.75rem;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.10);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+
+<body 
+    class="bg-gradient-premium text-slate-300 font-sans antialiased relative overflow-x-hidden"
+    x-data="socialProjectPage()"
+    @scroll.window="scrolled = (window.pageYOffset > 50)">
+
+    <!-- BACKGROUND ORBS -->
+    <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-indigo-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-50 animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-fuchsia-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-50 animate-blob"></div>
+        <div class="absolute -bottom-32 left-1/2 w-96 h-96 bg-emerald-500/10 rounded-full mix-blend-screen filter blur-3xl opacity-50 animate-blob"></div>
+    </div>
+
+    <!-- HEADER -->
+    <nav 
+        :class="{ 'glass py-3': scrolled, 'bg-transparent py-5': !scrolled }"
+        class="fixed w-full z-50 transition-all duration-300">
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center">
+
+            <a href="landing-page.html" class="text-2xl font-serif font-bold text-white tracking-wider relative z-50">
+                MNA<span class="text-brand-accent">.</span>
+            </a>
+
+            <div class="hidden md:flex space-x-8 items-center text-sm font-medium">
+                <a href="landing-page.html" class="hover:text-brand-light transition">Home</a>
+                <a href="creative-lab.html" class="hover:text-brand-light transition">Creative Labs</a>
+                <a href="landing-page.html#expertise" class="hover:text-brand-light transition">Expertise</a>
+                <a href="landing-page.html#experience" class="hover:text-brand-light transition">Experience</a>
+                <a href="social-project.html"
+                   class="px-5 py-2 rounded-full bg-gradient-to-r from-emerald-500 to-brand-accent text-white font-bold shadow-[0_0_18px_rgba(16,185,129,0.30)]">
+                    Social Project
+                </a>
+                <a href="portfolio.html" class="hover:text-brand-light transition">Portfolio</a>
+                <a href="award.html" class="hover:text-brand-light transition">Awards</a>
+
+                
+
+                <a href="landing-page.html#contact"
+                   class="px-5 py-2 glass rounded-full text-white hover:bg-white/10 hover:border-brand-light/50 transition shadow-[0_0_15px_rgba(99,102,241,0.2)]">
+                    Contact Me
+                </a>
+            </div>
+
+            <button 
+                @click="mobileMenu = !mobileMenu"
+                class="md:hidden text-white focus:outline-none p-2 rounded-lg glass border border-white/10 hover:bg-white/10 transition relative z-50">
+                <i class="fas fa-bars text-xl" x-show="!mobileMenu"></i>
+                <i class="fas fa-times text-xl" x-show="mobileMenu" style="display:none;"></i>
+            </button>
+        </div>
+
+        <!-- MOBILE MENU -->
+        <div 
+            x-show="mobileMenu"
+            x-transition
+            class="md:hidden absolute top-full left-0 w-full border-t border-white/10 shadow-2xl"
+            style="display:none;">
+
+            <div class="flex flex-col px-6 py-6 space-y-2 bg-[#080B14]/95 backdrop-blur-2xl">
+                <a href="landing-page.html" @click="mobileMenu = false" class="text-slate-300 hover:text-white font-medium border-b border-white/5 pb-3 pt-2">Home</a>
+                <a href="creative-lab.html" @click="mobileMenu = false" class="text-slate-300 hover:text-white font-medium border-b border-white/5 pb-3 pt-2">Creative Labs</a>
+                <a href="landing-page.html#expertise" @click="mobileMenu = false" class="text-slate-300 hover:text-white font-medium border-b border-white/5 pb-3 pt-2">Expertise</a>
+                <a href="landing-page.html#experience" @click="mobileMenu = false" class="text-slate-300 hover:text-white font-medium border-b border-white/5 pb-3 pt-2">Experience</a>
+                   <a href="social-project.html" @click="mobileMenu = false" class="text-white font-bold border-b border-white/5 pb-3 pt-2">Social Project</a>
+           
+                <a href="portfolio.html" @click="mobileMenu = false" class="text-slate-300 hover:text-white font-medium border-b border-white/5 pb-3 pt-2">Portfolio</a>
+                <a href="award.html" @click="mobileMenu = false" class="text-slate-300 hover:text-white font-medium border-b border-white/5 pb-3 pt-2">Awards</a>
+              </div>
+        </div>
+    </nav>
+
+    <main class="relative z-10">
+
+        <!-- HERO -->
+        <section class="pt-36 pb-16 px-6 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto">
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+                    <div class="lg:col-span-7">
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-400/30 bg-emerald-500/10 text-emerald-300 text-[10px] font-bold tracking-widest uppercase mb-6">
+                            <i class="fa-solid fa-hands-holding-circle"></i>
+                            Social Project
+                        </div>
+
+                        <h1 class="text-5xl md:text-7xl font-serif font-bold text-white leading-[1.08] mb-6">
+                            Mentorship, <br>
+                            <span class="text-gradient">Consulting & Growth.</span>
+                        </h1>
+
+                        <p class="text-base md:text-lg text-slate-400 font-light leading-relaxed max-w-2xl">
+                            Halaman ini dibuat sebagai ruang kontribusi untuk membantu mahasiswa, fresh graduate, job seeker, dan pelaku bisnis kecil melalui mentorship lomba, beasiswa, karir, serta konsultasi bisnis.
+                        </p>
+
+                        <div class="flex flex-wrap gap-3 mt-8">
+                            <a href="#bcc-mentorship" class="px-4 py-2 rounded-full glass text-xs font-semibold text-slate-300 hover:text-white transition">BCC Mentorship</a>
+                            <a href="#bpc-mentorship" class="px-4 py-2 rounded-full glass text-xs font-semibold text-slate-300 hover:text-white transition">BPC Mentorship</a>
+                            <a href="#scholarship-mentorship" class="px-4 py-2 rounded-full glass text-xs font-semibold text-slate-300 hover:text-white transition">Scholarship</a>
+                            <a href="#career-mentorship" class="px-4 py-2 rounded-full glass text-xs font-semibold text-slate-300 hover:text-white transition">Career</a>
+                            <a href="#business-consulting" class="px-4 py-2 rounded-full glass text-xs font-semibold text-slate-300 hover:text-white transition">Business Consulting</a>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5">
+                        <div class="glass rounded-[2rem] p-8 md:p-10 relative overflow-hidden">
+                            <div class="absolute -top-20 -right-20 w-56 h-56 bg-emerald-400/20 rounded-full blur-3xl"></div>
+                            <div class="absolute -bottom-20 -left-20 w-56 h-56 bg-brand-accent/20 rounded-full blur-3xl"></div>
+
+                            <div class="relative z-10">
+                                <p class="text-xs font-bold tracking-widest text-emerald-300 uppercase mb-6">
+                                    Support Areas
+                                </p>
+
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="glass rounded-2xl p-5 text-center border border-emerald-400/20">
+                                        <h3 class="text-3xl font-bold text-white">5</h3>
+                                        <p class="text-[10px] uppercase tracking-widest text-slate-400 mt-1">Programs</p>
+                                    </div>
+
+                                    <div class="glass rounded-2xl p-5 text-center">
+                                        <h3 class="text-3xl font-bold text-white">2</h3>
+                                        <p class="text-[10px] uppercase tracking-widest text-slate-400 mt-1">Competition Tracks</p>
+                                    </div>
+
+                                    <div class="glass rounded-2xl p-5 text-center">
+                                        <h3 class="text-3xl font-bold text-white">1:1</h3>
+                                        <p class="text-[10px] uppercase tracking-widest text-slate-400 mt-1">Mentorship</p>
+                                    </div>
+
+                                    <div class="glass rounded-2xl p-5 text-center">
+                                        <h3 class="text-3xl font-bold text-white">WA</h3>
+                                        <p class="text-[10px] uppercase tracking-widest text-slate-400 mt-1">Form Submit</p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-6 pt-6 border-t border-white/10">
+                                    <p class="text-sm text-slate-400 leading-relaxed">
+                                        Setiap program memiliki form sendiri agar kebutuhan peserta bisa dipahami sejak awal sebelum sesi mentorship atau konsultasi.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+<!-- ABOUT SOCIAL PROJECT -->
+<section id="about-social-project" class="px-6 pb-20">
+    <div class="max-w-7xl mx-auto">
+
+        <div class="glass rounded-[2.5rem] p-6 md:p-10 border border-white/10 relative overflow-hidden">
+
+            <!-- Background Glow -->
+            <div class="absolute -top-24 -right-24 w-72 h-72 bg-emerald-400/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-brand-accent/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+
+                <!-- LEFT CONTENT -->
+                <div class="lg:col-span-5">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-400/30 bg-emerald-500/10 text-emerald-300 text-[10px] font-bold tracking-widest uppercase mb-6">
+                        <i class="fa-solid fa-circle-info"></i>
+                        About Social Project
+                    </div>
+
+                    <h2 class="text-4xl md:text-5xl font-serif font-bold text-white leading-tight mb-6">
+                        A Support Space for <br>
+                        <span class="text-gradient">Growth & Impact.</span>
+                    </h2>
+
+                    <p class="text-sm md:text-base text-slate-400 leading-relaxed mb-5">
+                        Social Project ini dibuat sebagai ruang kontribusi Nabil untuk membantu orang lain berkembang melalui mentorship, konsultasi, dan arahan praktis. Fokusnya bukan hanya memberi materi, tetapi membantu peserta memahami masalah, menyusun strategi, dan menentukan langkah eksekusi yang lebih jelas.
+                    </p>
+
+                    <p class="text-sm md:text-base text-slate-400 leading-relaxed">
+                        Program ini cocok untuk mahasiswa, fresh graduate, job seeker, scholarship hunter, peserta lomba business case/business plan, serta pelaku bisnis kecil yang membutuhkan sudut pandang strategis untuk memperbaiki arah, dokumen, ide, atau keputusan.
+                    </p>
+                </div>
+
+                <!-- RIGHT CARDS -->
+                <div class="lg:col-span-7">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+                        <!-- Purpose -->
+                        <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-400/20 flex items-center justify-center text-emerald-300 mb-5">
+                                <i class="fa-solid fa-bullseye text-xl"></i>
+                            </div>
+
+                            <h3 class="text-white font-serif font-bold text-2xl mb-3">
+                                Purpose
+                            </h3>
+
+                            <p class="text-sm text-slate-400 leading-relaxed">
+                                Membantu peserta mendapatkan arahan yang lebih terstruktur, mulai dari memahami masalah, membaca peluang, memperbaiki dokumen, sampai menyusun action plan.
+                            </p>
+                        </div>
+
+                        <!-- Approach -->
+                        <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+                            <div class="w-12 h-12 rounded-xl bg-brand/10 border border-brand-light/20 flex items-center justify-center text-brand-light mb-5">
+                                <i class="fa-solid fa-route text-xl"></i>
+                            </div>
+
+                            <h3 class="text-white font-serif font-bold text-2xl mb-3">
+                                Approach
+                            </h3>
+
+                            <p class="text-sm text-slate-400 leading-relaxed">
+                                Setiap sesi dimulai dari need assessment, lalu dilanjutkan dengan diagnosis, diskusi strategis, review dokumen, dan rekomendasi langkah berikutnya.
+                            </p>
+                        </div>
+
+                        <!-- Focus Area -->
+                        <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+                            <div class="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-400/20 flex items-center justify-center text-pink-300 mb-5">
+                                <i class="fa-solid fa-layer-group text-xl"></i>
+                            </div>
+
+                            <h3 class="text-white font-serif font-bold text-2xl mb-3">
+                                Focus Area
+                            </h3>
+
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-semibold text-slate-300">Business Case</span>
+                                <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-semibold text-slate-300">Business Plan</span>
+                                <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-semibold text-slate-300">Scholarship</span>
+                                <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-semibold text-slate-300">Career</span>
+                                <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-semibold text-slate-300">Business Consulting</span>
+                            </div>
+                        </div>
+
+                        <!-- Outcome -->
+                        <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+                            <div class="w-12 h-12 rounded-xl bg-yellow-400/10 border border-yellow-400/20 flex items-center justify-center text-yellow-300 mb-5">
+                                <i class="fa-solid fa-clipboard-check text-xl"></i>
+                            </div>
+
+                            <h3 class="text-white font-serif font-bold text-2xl mb-3">
+                                Expected Outcome
+                            </h3>
+
+                            <p class="text-sm text-slate-400 leading-relaxed">
+                                Peserta diharapkan pulang dengan pemahaman yang lebih jelas, dokumen yang lebih kuat, strategi yang lebih rapi, dan langkah eksekusi yang lebih realistis.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Flow -->
+            <div class="relative z-10 mt-10 pt-8 border-t border-white/10">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                        <p class="text-[10px] font-bold tracking-widest text-emerald-300 uppercase mb-2">
+                            Step 01
+                        </p>
+                        <h4 class="text-white font-bold mb-2">Isi Form</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Pilih program yang sesuai, lalu isi kebutuhan, target, dan kondisi saat ini.
+                        </p>
+                    </div>
+
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                        <p class="text-[10px] font-bold tracking-widest text-brand-light uppercase mb-2">
+                            Step 02
+                        </p>
+                        <h4 class="text-white font-bold mb-2">Submit WhatsApp</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Data akan otomatis dikirim melalui WhatsApp dengan format yang rapi.
+                        </p>
+                    </div>
+
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                        <p class="text-[10px] font-bold tracking-widest text-pink-300 uppercase mb-2">
+                            Step 03
+                        </p>
+                        <h4 class="text-white font-bold mb-2">Need Assessment</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Kebutuhan peserta akan dipahami terlebih dahulu sebelum sesi dimulai.
+                        </p>
+                    </div>
+
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                        <p class="text-[10px] font-bold tracking-widest text-yellow-300 uppercase mb-2">
+                            Step 04
+                        </p>
+                        <h4 class="text-white font-bold mb-2">Mentorship Session</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Sesi dilakukan secara terarah dengan output berupa insight, review, dan action plan.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+        <!-- SERVICE ROWS -->
+      <!-- SERVICE ROWS -->
+<section class="px-6 pb-24">
+    <div class="max-w-7xl mx-auto">
+
+        <div class="text-center mb-14">
+            <p class="text-xs font-bold tracking-widest text-brand-accent uppercase mb-2">
+                Choose Your Support
+            </p>
+
+            <h2 class="text-3xl md:text-5xl font-serif font-bold text-white mb-4">
+                Social Project <span class="text-gradient">Application Form</span>
+            </h2>
+
+            <p class="text-sm md:text-base text-slate-400 max-w-3xl mx-auto leading-relaxed">
+                Pilih salah satu kebutuhanmu, isi form pada section terkait, lalu sistem akan membuka WhatsApp dengan pesan terformat.
+            </p>
+        </div>
+
+        <div class="space-y-8">
+
+            <template x-for="service in services" :key="service.id">
+                <article :id="service.id" class="social-row p-6 md:p-8">
+
+                    <div class="grid grid-cols-1 xl:grid-cols-12 gap-7 relative z-10">
+
+                        <!-- LEFT: Service Identity + Program Detail -->
+                        <div class="xl:col-span-4 flex flex-col gap-5">
+
+                            <div>
+                                <div class="flex items-start gap-5 mb-6">
+                                    <div class="service-icon-box shrink-0" :class="service.iconColor">
+                                        <i :class="service.icon" class="text-2xl"></i>
+                                    </div>
+
+                                    <div>
+                                        <span class="service-pill mb-4" :class="service.badgeColor">
+                                            <i :class="service.icon"></i>
+                                            <span x-text="service.category"></span>
+                                        </span>
+
+                                        <h3 class="text-3xl md:text-4xl font-serif font-bold text-white leading-tight mt-3" x-text="service.title"></h3>
+                                    </div>
+                                </div>
+
+                                <p class="text-sm text-slate-400 leading-relaxed" x-text="service.desc"></p>
+                            </div>
+
+                            <!-- Format + Output -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                                    <p class="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">Format</p>
+                                    <p class="text-sm text-white font-semibold" x-text="service.format"></p>
+                                </div>
+
+                                <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                                    <p class="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">Output</p>
+                                    <p class="text-sm text-white font-semibold" x-text="service.output"></p>
+                                </div>
+                            </div>
+
+                            <!-- Program Roadmap: isi ruang kosong kiri -->
+                            <div class="rounded-[1.5rem] bg-white/5 border border-white/10 p-5 flex-1">
+                                <p class="text-[10px] font-bold tracking-widest text-cyan-300 uppercase mb-4">
+                                    Program Roadmap
+                                </p>
+
+                                <div class="space-y-3">
+                                    <template x-for="(step, index) in serviceRoadmap(service.id)" :key="step">
+                                        <div class="flex items-start gap-3">
+                                            <div class="w-7 h-7 rounded-lg bg-cyan-500/10 border border-cyan-400/20 text-cyan-200 flex items-center justify-center text-[10px] font-bold shrink-0">
+                                                <span x-text="index + 1"></span>
+                                            </div>
+
+                                            <div>
+                                                <p class="text-sm text-white font-semibold" x-text="step"></p>
+                                                <p class="text-xs text-slate-500 leading-relaxed" x-text="roadmapDesc(step)"></p>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- MIDDLE: Benefits + Best For + Session Flow -->
+                        <div class="xl:col-span-3 flex flex-col gap-5">
+
+                            <!-- What You Get -->
+                            <div class="rounded-[1.5rem] bg-white/5 border border-white/10 p-5">
+                                <p class="text-[10px] font-bold tracking-widest text-brand-light uppercase mb-4">
+                                    What You Get
+                                </p>
+
+                                <ul class="space-y-3 text-sm text-slate-300">
+                                    <template x-for="benefit in service.benefits" :key="benefit">
+                                        <li class="flex items-start gap-3">
+                                            <i class="fa-solid fa-check text-emerald-300 mt-1"></i>
+                                            <span x-text="benefit"></span>
+                                        </li>
+                                    </template>
+                                </ul>
+                            </div>
+
+                            <!-- Best For: isi ruang kosong tengah -->
+                            <div class="rounded-[1.5rem] bg-white/5 border border-white/10 p-5">
+                                <p class="text-[10px] font-bold tracking-widest text-emerald-300 uppercase mb-4">
+                                    Best For
+                                </p>
+
+                                <div class="flex flex-wrap gap-2">
+                                    <template x-for="audience in serviceAudience(service.id)" :key="audience">
+                                        <span class="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-400/20 text-emerald-100 text-[10px] font-semibold" x-text="audience"></span>
+                                    </template>
+                                </div>
+                            </div>
+
+                            <!-- Session Flow -->
+                            <div class="rounded-[1.5rem] bg-white/5 border border-white/10 p-5 flex-1">
+                                <p class="text-[10px] font-bold tracking-widest text-pink-300 uppercase mb-4">
+                                    Session Flow
+                                </p>
+
+                                <div class="space-y-3">
+                                    <template x-for="flow in sessionFlow(service.id)" :key="flow">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded-xl bg-pink-500/10 border border-pink-400/20 text-pink-200 flex items-center justify-center shrink-0">
+                                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                                            </div>
+
+                                            <p class="text-xs text-slate-300 leading-relaxed" x-text="flow"></p>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- RIGHT: Form -->
+                        <div class="xl:col-span-5">
+                            <form @submit.prevent="submitService(service)" class="rounded-[1.5rem] bg-white/5 border border-white/10 p-5 h-full flex flex-col">
+
+                                <div class="flex items-center justify-between gap-4 mb-5">
+                                    <div>
+                                        <p class="text-[10px] font-bold tracking-widest text-emerald-300 uppercase mb-1">
+                                            Application Form
+                                        </p>
+                                        <h4 class="text-xl font-serif font-bold text-white" x-text="service.formTitle"></h4>
+                                    </div>
+
+                                    <div class="w-11 h-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white/50">
+                                        <i class="fa-solid fa-clipboard-list text-lg"></i>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                                    <input 
+                                        type="text" 
+                                        class="input-field" 
+                                        placeholder="Nama lengkap"
+                                        x-model="service.form.name"
+                                        required>
+
+                                    <input 
+                                        type="text" 
+                                        class="input-field" 
+                                        placeholder="WhatsApp aktif"
+                                        x-model="service.form.whatsapp"
+                                        required>
+                                </div>
+
+                                <!-- Revisi: email tidak sendirian lagi -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                                    <input 
+                                        type="email" 
+                                        class="input-field" 
+                                        placeholder="Email"
+                                        x-model="service.form.email"
+                                        required>
+
+                                    <input 
+                                        type="text" 
+                                        class="input-field" 
+                                        placeholder="Instansi / kampus / bisnis"
+                                        x-model="service.form.institution"
+                                        required>
+                                </div>
+
+                                <!-- Revisi: status tidak sendirian lagi -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                                    <select 
+                                        class="input-field select-field"
+                                        x-model="service.form.status"
+                                        required>
+                                        <option value="">Status saat ini</option>
+                                        <option>Mahasiswa</option>
+                                        <option>Fresh Graduate</option>
+                                        <option>Job Seeker</option>
+                                        <option>Founder / Business Owner</option>
+                                        <option>Professional</option>
+                                        <option>Lainnya</option>
+                                    </select>
+
+                                    <input 
+                                        type="text" 
+                                        class="input-field" 
+                                        placeholder="Deadline / target waktu"
+                                        x-model="service.form.deadline"
+                                        required>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                                    <input 
+                                        type="text" 
+                                        class="input-field" 
+                                        :placeholder="service.goalPlaceholder"
+                                        x-model="service.form.goal"
+                                        required>
+
+                                    <select 
+                                        class="input-field select-field"
+                                        x-model="service.form.session"
+                                        required>
+                                        <option value="">Preferensi sesi</option>
+                                        <option>1x Consultation</option>
+                                        <option>Short Mentorship</option>
+                                        <option>Full Mentorship</option>
+                                        <option>Need Assessment Dulu</option>
+                                    </select>
+                                </div>
+
+                                <textarea 
+                                    rows="4"
+                                    class="input-field resize-none mb-4 flex-1 min-h-[135px]"
+                                    :placeholder="service.notePlaceholder"
+                                    x-model="service.form.note"
+                                    required></textarea>
+
+                                <!-- Quick Info: isi bagian bawah form agar tidak kosong -->
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+                                    <div class="rounded-xl bg-white/5 border border-white/10 p-3">
+                                        <p class="text-[9px] font-bold tracking-widest text-slate-500 uppercase mb-1">Response</p>
+                                        <p class="text-xs text-white font-semibold">Via WhatsApp</p>
+                                    </div>
+
+                                    <div class="rounded-xl bg-white/5 border border-white/10 p-3">
+                                        <p class="text-[9px] font-bold tracking-widest text-slate-500 uppercase mb-1">Step</p>
+                                        <p class="text-xs text-white font-semibold">Need Assessment</p>
+                                    </div>
+
+                                    <div class="rounded-xl bg-white/5 border border-white/10 p-3">
+                                        <p class="text-[9px] font-bold tracking-widest text-slate-500 uppercase mb-1">Mode</p>
+                                        <p class="text-xs text-white font-semibold">Online</p>
+                                    </div>
+                                </div>
+
+                                <button 
+                                    type="submit"
+                                    class="w-full px-6 py-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-brand-accent text-white text-xs font-bold tracking-widest uppercase hover:shadow-[0_10px_25px_rgba(16,185,129,0.28)] transition-all">
+                                    Submit via WhatsApp
+                                    <i class="fa-brands fa-whatsapp ml-2"></i>
+                                </button>
+
+                            </form>
+                        </div>
+
+                    </div>
+                </article>
+            </template>
+
+        </div>
+    </div>
+</section>
+
+    </main>
+<!-- WISDOM QUOTE SECTION -->
+<section id="wisdom-social-project" class="px-6 pb-24">
+    <div class="max-w-7xl mx-auto">
+
+        <div class="relative overflow-hidden rounded-[2.5rem] glass border border-white/10 p-8 md:p-12">
+
+            <!-- Background Glow -->
+            <div class="absolute -top-24 -left-24 w-80 h-80 bg-emerald-400/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -right-24 w-80 h-80 bg-brand-accent/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <!-- Decorative Quote Icon -->
+            <div class="absolute top-8 right-8 text-white/5 text-8xl md:text-9xl font-serif leading-none pointer-events-none">
+                “
+            </div>
+
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+
+                <!-- Left -->
+                <div class="lg:col-span-4">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-400/30 bg-emerald-500/10 text-emerald-300 text-[10px] font-bold tracking-widest uppercase mb-6">
+                        <i class="fa-solid fa-seedling"></i>
+                        Closing Thought
+                    </div>
+
+                    <h2 class="text-3xl md:text-5xl font-serif font-bold text-white leading-tight">
+                        A Small Support <br>
+                        Can Grow Into <br>
+                        <span class="text-gradient">A Big Impact.</span>
+                    </h2>
+                </div>
+
+                <!-- Right Quote -->
+                <div class="lg:col-span-8">
+                    <div class="rounded-[2rem] bg-white/5 border border-white/10 p-6 md:p-8">
+
+                        <p class="text-xl md:text-3xl font-serif font-semibold text-white leading-relaxed mb-6">
+                            “Ilmu akan lebih bernilai ketika tidak hanya disimpan untuk diri sendiri, tetapi juga dibagikan untuk membantu orang lain menemukan arah, memperbaiki langkah, dan berani memulai.”
+                        </p>
+
+                        <p class="text-sm md:text-base text-slate-400 leading-relaxed mb-8">
+                            Social Project ini bukan hanya tentang mentoring atau konsultasi, tetapi tentang membangun ruang yang membuat orang lain merasa didengar, diarahkan, dan didorong untuk bertumbuh dengan cara yang lebih terstruktur.
+                        </p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+                            <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-400/20 flex items-center justify-center text-emerald-300 mb-4">
+                                    <i class="fa-solid fa-hand-holding-heart"></i>
+                                </div>
+                                <h4 class="text-white font-bold mb-2">Help</h4>
+                                <p class="text-xs text-slate-400 leading-relaxed">
+                                    Membantu orang lain memahami masalah dan menemukan arah yang lebih jelas.
+                                </p>
+                            </div>
+
+                            <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                                <div class="w-10 h-10 rounded-xl bg-brand/10 border border-brand-light/20 flex items-center justify-center text-brand-light mb-4">
+                                    <i class="fa-solid fa-compass"></i>
+                                </div>
+                                <h4 class="text-white font-bold mb-2">Guide</h4>
+                                <p class="text-xs text-slate-400 leading-relaxed">
+                                    Memberikan arahan yang praktis, rasional, dan bisa dieksekusi.
+                                </p>
+                            </div>
+
+                            <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                                <div class="w-10 h-10 rounded-xl bg-pink-500/10 border border-pink-400/20 flex items-center justify-center text-pink-300 mb-4">
+                                    <i class="fa-solid fa-arrow-trend-up"></i>
+                                </div>
+                                <h4 class="text-white font-bold mb-2">Grow</h4>
+                                <p class="text-xs text-slate-400 leading-relaxed">
+                                    Mendorong peserta untuk berkembang melalui proses, bukan hanya hasil akhir.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="mt-8 pt-6 border-t border-white/10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                            <p class="text-xs text-slate-500 leading-relaxed">
+                                Built with purpose, shared with sincerity, and designed for meaningful growth.
+                            </p>
+
+                            <a 
+                                href="#bcc-mentorship"
+                                class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-brand-accent text-white text-xs font-bold tracking-widest uppercase hover:shadow-[0_10px_25px_rgba(16,185,129,0.25)] transition-all">
+                                Start Your Journey
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+    <!-- FOOTER -->
+    <footer id="contact" class="relative z-10 border-t border-white/10 bg-[#050814] px-6 py-16">
+        <div class="max-w-7xl mx-auto">
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+
+                <div class="md:col-span-2">
+                    <a href="landing-page.html" class="text-3xl font-serif font-bold text-white tracking-wider">
+                        MNA<span class="text-brand-accent">.</span>
+                    </a>
+
+                    <p class="mt-5 text-slate-400 max-w-md leading-relaxed text-sm">
+                        Personal professional website M. Nabilah Abror yang menampilkan CV digital,
+                        portfolio project, awards, creative lab, dan social project.
+                    </p>
+
+                    <div class="flex gap-3 mt-6">
+                        <a href="mailto:lobiianewar1234@gmail.com"
+                           class="w-10 h-10 rounded-full glass flex items-center justify-center text-slate-300 hover:text-brand-light hover:border-brand-light transition">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+
+                        <a href="social-project.html"
+                           class="w-10 h-10 rounded-full glass flex items-center justify-center text-slate-300 hover:text-emerald-300 hover:border-emerald-300 transition">
+                            <i class="fa-solid fa-hands-holding-circle"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-5">Explore</h4>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li><a href="landing-page.html" class="hover:text-brand-light transition">Home</a></li>
+                        <li><a href="creative-lab.html" class="hover:text-brand-light transition">Creative Labs</a></li>
+                        <li><a href="portfolio.html" class="hover:text-brand-light transition">Portfolio</a></li>
+                        <li><a href="award.html" class="hover:text-brand-light transition">Awards</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-5">Social Project</h4>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li><a href="#bcc-mentorship" class="hover:text-emerald-300 transition">BCC Mentorship</a></li>
+                        <li><a href="#bpc-mentorship" class="hover:text-emerald-300 transition">BPC Mentorship</a></li>
+                        <li><a href="#scholarship-mentorship" class="hover:text-emerald-300 transition">Scholarship</a></li>
+                        <li><a href="#career-mentorship" class="hover:text-emerald-300 transition">Career</a></li>
+                        <li><a href="#business-consulting" class="hover:text-emerald-300 transition">Business Consulting</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-xs text-slate-500">
+                    © 2026 M. Nabilah Abror. All rights reserved.
+                </p>
+
+                <button 
+                    onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+                    class="px-4 py-2 rounded-full glass text-xs font-bold text-slate-300 hover:text-white hover:border-brand-light/40 transition">
+                    Back to Top <i class="fa-solid fa-arrow-up ml-2"></i>
+                </button>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        function socialProjectPage() {
+            return {
+                mobileMenu: false,
+                scrolled: false,
+
+                // GANTI NOMOR INI DENGAN NOMOR WHATSAPP KAMU
+                 // Nomor WhatsApp Social Project
+        SOCIAL_PROJECT_WA: '6282311056167',
+
+
+                services: [
+                    {
+                        id: 'bcc-mentorship',
+                        title: 'Mentorship Lomba Business Case',
+                        category: 'Competition Mentorship',
+                        formTitle: 'Form Mentorship BCC',
+                        icon: 'fa-solid fa-chart-simple',
+                        iconColor: 'text-brand-light',
+                        badgeColor: 'text-brand-light',
+                        format: '1:1 / Group',
+                        output: 'Case Deck & Strategy',
+                        desc: 'Mentorship untuk peserta lomba Business Case Competition yang ingin membedah case, menyusun problem analysis, framework, recommendation, dan deck final yang lebih terstruktur.',
+                        benefits: [
+                            'Case reading dan problem framing',
+                            'Root cause analysis dan framework selection',
+                            'Strategic recommendation dan implementation plan',
+                            'Storyline deck dan pitching preparation'
+                        ],
+                        goalPlaceholder: 'Target lomba / nama kompetisi BCC',
+                        notePlaceholder: 'Ceritakan case/lomba yang ingin diikuti, deadline, posisi tim, dan kendala utama.',
+                    form: { 
+    name: '', 
+    whatsapp: '', 
+    email: '', 
+    institution: '',
+    status: '', 
+    deadline: '',
+    goal: '', 
+    session: '', 
+    note: '' 
+}  
+                    },
+                    {
+                        id: 'bpc-mentorship',
+                        title: 'Mentorship Lomba Business Plan',
+                        category: 'Competition Mentorship',
+                        formTitle: 'Form Mentorship BPC',
+                        icon: 'fa-solid fa-lightbulb',
+                        iconColor: 'text-yellow-300',
+                        badgeColor: 'text-yellow-300',
+                        format: '1:1 / Team',
+                        output: 'Proposal & Pitch Deck',
+                        desc: 'Mentorship untuk peserta Business Plan Competition yang membutuhkan bantuan menyusun ide bisnis, validasi pasar, business model, budgeting, financial projection, dan pitch deck.',
+                        benefits: [
+                            'Validasi ide dan problem-solution fit',
+                            'Business model dan value proposition',
+                            'Market analysis, competitor mapping, dan GTM',
+                            'Budgeting, financial projection, dan pitch deck'
+                        ],
+                        goalPlaceholder: 'Target lomba / nama kompetisi BPC',
+                        notePlaceholder: 'Ceritakan ide bisnis, tahap proposal, deadline lomba, dan bagian yang paling ingin dibantu.',
+                    form: { 
+    name: '', 
+    whatsapp: '', 
+    email: '', 
+    institution: '',
+    status: '', 
+    deadline: '',
+    goal: '', 
+    session: '', 
+    note: '' 
+}
+                    },
+                    {
+                        id: 'scholarship-mentorship',
+                        title: 'Mentorship Beasiswa',
+                        category: 'Scholarship Support',
+                        formTitle: 'Form Mentorship Beasiswa',
+                        icon: 'fa-solid fa-graduation-cap',
+                        iconColor: 'text-emerald-300',
+                        badgeColor: 'text-emerald-300',
+                        format: 'Review & Strategy',
+                        output: 'Application Direction',
+                        desc: 'Mentorship untuk membantu persiapan beasiswa, mulai dari pemetaan tujuan, CV, essay, personal branding, rencana studi, sampai strategi seleksi.',
+                        benefits: [
+                            'Mapping tujuan beasiswa dan profil kandidat',
+                            'Review CV, essay, dan motivation letter',
+                            'Personal branding dan achievement framing',
+                            'Preparation untuk interview atau seleksi lanjutan'
+                        ],
+                        goalPlaceholder: 'Nama beasiswa / tujuan kampus / program',
+                        notePlaceholder: 'Ceritakan target beasiswa, posisi persiapan saat ini, dokumen yang sudah ada, dan kendala utama.',
+                form: { 
+    name: '', 
+    whatsapp: '', 
+    email: '', 
+    institution: '',
+    status: '', 
+    deadline: '',
+    goal: '', 
+    session: '', 
+    note: '' 
+}
+                    },
+                    {
+                        id: 'career-mentorship',
+                        title: 'Mentorship Karir',
+                        category: 'Career Growth',
+                        formTitle: 'Form Mentorship Karir',
+                        icon: 'fa-solid fa-briefcase',
+                        iconColor: 'text-pink-300',
+                        badgeColor: 'text-pink-300',
+                        format: 'Career Review',
+                        output: 'Career Roadmap',
+                        desc: 'Mentorship untuk mahasiswa, fresh graduate, dan job seeker yang ingin menyusun arah karir, CV, LinkedIn, portfolio, interview preparation, dan strategi apply.',
+                        benefits: [
+                            'Career direction dan role targeting',
+                            'Review CV, LinkedIn, dan portfolio',
+                            'Strategi apply internship/job',
+                            'Interview preparation dan personal positioning'
+                        ],
+                        goalPlaceholder: 'Target role / perusahaan / industri',
+                        notePlaceholder: 'Ceritakan posisi kamu sekarang, target karir, pengalaman, dan kendala saat apply.',
+              form: { 
+    name: '', 
+    whatsapp: '', 
+    email: '', 
+    institution: '',
+    status: '', 
+    deadline: '',
+    goal: '', 
+    session: '', 
+    note: '' 
+}
+                    },
+                    {
+                        id: 'business-consulting',
+                        title: 'Konsultasi Bisnis',
+                        category: 'Business Consulting',
+                        formTitle: 'Form Konsultasi Bisnis',
+                        icon: 'fa-solid fa-store',
+                        iconColor: 'text-cyan-300',
+                        badgeColor: 'text-cyan-300',
+                        format: 'Business Diagnosis',
+                        output: 'Action Plan',
+                        desc: 'Konsultasi untuk founder, UMKM, atau project owner yang ingin membedah masalah bisnis, marketing, finance, operation, product, atau growth strategy.',
+                        benefits: [
+                            'Diagnosis masalah bisnis dan akar masalah',
+                            'Market, product, finance, dan operation review',
+                            'Strategi growth, sales, atau partnership',
+                            'Action plan yang realistis dan bisa dieksekusi'
+                        ],
+                        goalPlaceholder: 'Nama bisnis / jenis usaha / problem utama',
+                        notePlaceholder: 'Ceritakan bisnis kamu, kondisi saat ini, masalah utama, target, dan data yang sudah tersedia.',
+                form: { 
+    name: '', 
+    whatsapp: '', 
+    email: '', 
+    institution: '',
+    status: '', 
+    deadline: '',
+    goal: '', 
+    session: '', 
+    note: '' 
+}
+                    }
+                ],
+serviceAudience(id) {
+    const data = {
+        'bcc-mentorship': ['Mahasiswa', 'Tim BCC', 'Business Case Beginner', 'Finalist Preparation'],
+        'bpc-mentorship': ['Mahasiswa', 'Founder Idea', 'Tim BPC', 'Business Plan Beginner'],
+        'scholarship-mentorship': ['Scholarship Hunter', 'Mahasiswa', 'Fresh Graduate', 'Essay Preparation'],
+        'career-mentorship': ['Fresh Graduate', 'Job Seeker', 'Internship Hunter', 'Career Switcher'],
+        'business-consulting': ['UMKM', 'Founder', 'Small Business', 'Project Owner']
+    };
+
+    return data[id] || ['General Participant'];
+},
+
+serviceRoadmap(id) {
+    const data = {
+        'bcc-mentorship': ['Case Mapping', 'Problem Breakdown', 'Solution Design', 'Pitching Prep'],
+        'bpc-mentorship': ['Idea Validation', 'Market Research', 'Business Model', 'Financial Plan'],
+        'scholarship-mentorship': ['Profile Mapping', 'Document Review', 'Essay Direction', 'Interview Prep'],
+        'career-mentorship': ['Career Mapping', 'CV Review', 'LinkedIn Audit', 'Apply Strategy'],
+        'business-consulting': ['Business Diagnosis', 'Root Cause', 'Strategic Option', 'Action Plan']
+    };
+
+    return data[id] || ['Assessment', 'Planning', 'Execution', 'Review'];
+},
+
+sessionFlow(id) {
+    const data = {
+        'bcc-mentorship': [
+            'Peserta mengirim case, deck, atau brief lomba.',
+            'Sesi dimulai dari problem framing dan struktur analisis.',
+            'Output akhir diarahkan ke recommendation dan storyline pitching.'
+        ],
+        'bpc-mentorship': [
+            'Peserta mengirim ide bisnis atau proposal awal.',
+            'Sesi fokus pada validasi pasar, model bisnis, dan finansial.',
+            'Output akhir diarahkan ke proposal dan pitch deck.'
+        ],
+        'scholarship-mentorship': [
+            'Peserta mengirim target beasiswa dan dokumen awal.',
+            'Sesi fokus pada positioning, essay, CV, dan story kandidat.',
+            'Output akhir berupa arah perbaikan dokumen dan strategi seleksi.'
+        ],
+        'career-mentorship': [
+            'Peserta mengirim target role dan CV/LinkedIn.',
+            'Sesi fokus pada positioning, experience framing, dan apply strategy.',
+            'Output akhir berupa roadmap karir dan perbaikan dokumen.'
+        ],
+        'business-consulting': [
+            'Peserta menjelaskan kondisi bisnis dan masalah utama.',
+            'Sesi fokus pada diagnosis finance, marketing, operation, atau product.',
+            'Output akhir berupa rekomendasi dan action plan.'
+        ]
+    };
+
+    return data[id] || [
+        'Initial assessment.',
+        'Focused discussion.',
+        'Action recommendation.'
+    ];
+},
+
+roadmapDesc(step) {
+    const desc = {
+        'Case Mapping': 'Memahami konteks case, objective, dan data utama.',
+        'Problem Breakdown': 'Membedah masalah utama dan akar masalah.',
+        'Solution Design': 'Menyusun rekomendasi strategis yang relevan.',
+        'Pitching Prep': 'Merapikan storyline deck dan argumentasi presentasi.',
+
+        'Idea Validation': 'Menguji ide bisnis, problem, dan target pengguna.',
+        'Market Research': 'Menganalisis customer, competitor, dan opportunity.',
+        'Business Model': 'Menyusun value proposition dan revenue logic.',
+        'Financial Plan': 'Membuat budgeting, COGS, pricing, dan projection.',
+
+        'Profile Mapping': 'Memetakan kekuatan profil dan target beasiswa.',
+        'Document Review': 'Mereview CV, essay, motivation letter, atau dokumen lain.',
+        'Essay Direction': 'Menyusun arah cerita dan positioning kandidat.',
+        'Interview Prep': 'Mempersiapkan jawaban dan alur interview.',
+
+        'Career Mapping': 'Menentukan target role, industri, dan positioning.',
+        'CV Review': 'Merapikan CV agar lebih relevan dengan target role.',
+        'LinkedIn Audit': 'Meningkatkan profil LinkedIn dan personal branding.',
+        'Apply Strategy': 'Menyusun strategi apply, networking, dan follow-up.',
+
+        'Business Diagnosis': 'Membaca kondisi bisnis dan gejala masalah.',
+        'Root Cause': 'Mencari akar masalah yang paling berdampak.',
+        'Strategic Option': 'Membandingkan beberapa opsi solusi.',
+        'Action Plan': 'Menyusun langkah eksekusi yang realistis.'
+    };
+
+    return desc[step] || 'Tahapan pendampingan sesuai kebutuhan peserta.';
+},
+             submitService(service) {
+            const form = service.form;
+
+            const message = `
+Halo Kak Nabil, saya ingin daftar Social Project.
+
+Program: ${service.title}
+
+Data Diri:
+Nama: ${form.name}
+WhatsApp: ${form.whatsapp}
+Email: ${form.email}
+Instansi/Kampus/Bisnis: ${form.institution}
+Status: ${form.status}
+
+Kebutuhan:
+Tujuan/Target: ${form.goal}
+Deadline/Target Waktu: ${form.deadline}
+Preferensi Sesi: ${form.session}
+
+Catatan:
+${form.note}
+
+Saya ingin mendapatkan arahan lebih lanjut untuk program ini.
+            `.trim();
+
+            const encodedMessage = encodeURIComponent(message);
+            const waUrl = `https://wa.me/${this.SOCIAL_PROJECT_WA}?text=${encodedMessage}`;
+
+            window.open(waUrl, '_blank');
+        }
+            }
+        }
+    </script>
+
+</body>
+</html>

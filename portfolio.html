@@ -1,0 +1,3390 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Mohmmad Nabilah Abror</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            light: '#a5b4fc',
+                            DEFAULT: '#6366f1',
+                            dark: '#312e81',
+                            accent: '#f472b6',
+                        }
+                    },
+                    animation: {
+                        blob: 'blob 7s infinite',
+                        fadeInUp: 'fadeInUp 1s ease-out forwards',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1e1b4b; }
+        ::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #6366f1; }
+
+        .bg-gradient-premium {
+            background: linear-gradient(145deg, #0f172a 0%, #1e1b4b 50%, #2e1065 100%);
+        }
+
+        .glass {
+            background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255,255,255,0.10);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.28);
+        }
+
+        .glass-hover:hover {
+            background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.03) 100%);
+            border-color: rgba(165,180,252,0.35);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 38px rgba(99,102,241,0.25);
+            transition: all 0.35s ease;
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #a5b4fc, #f472b6, #a5b4fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: gradientMove 3s linear infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    </style>
+</head>
+
+<body class="bg-gradient-premium text-slate-300 font-sans antialiased relative overflow-x-hidden"
+      x-data="portfolioPage()"
+      @scroll.window="scrolled = (window.pageYOffset > 50)">
+
+    <!-- BACKGROUND ORBS -->
+    <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-indigo-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-50 animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-fuchsia-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-50 animate-blob"></div>
+        <div class="absolute -bottom-32 left-1/2 w-96 h-96 bg-blue-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-50 animate-blob"></div>
+    </div>
+
+    <!-- HEADER -->
+    <nav :class="{ 'glass py-3': scrolled, 'bg-transparent py-5': !scrolled }"
+         class="fixed w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center">
+
+            <a href="landing-page.html" class="text-2xl font-serif font-bold text-white tracking-wider relative z-50">
+                MNA<span class="text-brand-accent">.</span>
+            </a>
+
+            <div class="hidden md:flex space-x-8 items-center text-sm font-medium">
+                <a href="landing-page.html#about" class="hover:text-brand-light transition">Home</a>
+                <a href="creative-lab.html" class="hover:text-brand-light transition">Creative Labs</a>
+                <a href="landing-page.html#expertise" class="hover:text-brand-light transition">Expertise</a>
+                <a href="landing-page.html#experience" class="hover:text-brand-light transition">Experience</a>
+                    <a href="social-project.html" class="hover:text-brand-light transition">
+    Social Project
+</a>
+                <a href="portfolio.html"
+                   class="px-5 py-2 rounded-full bg-gradient-to-r from-brand to-brand-accent text-white font-bold shadow-[0_0_18px_rgba(99,102,241,0.35)]">
+                    Portfolio
+                </a>
+                 <a href="award.html" class="hover:text-brand-light transition">Awards</a>
+
+
+                <a href="landing-page.html#contact"
+                   class="px-5 py-2 glass rounded-full text-white hover:bg-white/10 hover:border-brand-light/50 transition shadow-[0_0_15px_rgba(99,102,241,0.2)]">
+                    Contact Me
+                </a>
+            </div>
+
+            <button @click="mobileMenu = !mobileMenu"
+                    class="md:hidden text-white focus:outline-none p-2 rounded-lg glass border border-white/10 hover:bg-white/10 transition relative z-50">
+                <i class="fas fa-bars text-xl" x-show="!mobileMenu"></i>
+                <i class="fas fa-times text-xl" x-show="mobileMenu" style="display:none;"></i>
+            </button>
+        </div>
+
+        <!-- MOBILE MENU -->
+        <div x-show="mobileMenu"
+             x-transition
+             class="md:hidden absolute top-full left-0 w-full border-t border-white/10 shadow-2xl"
+             style="display:none;">
+
+            <div class="flex flex-col px-6 py-6 space-y-2 bg-[#080B14]/95 backdrop-blur-2xl">
+                <a href="landing-page.html#about" @click="mobileMenu = false" class="text-slate-300 hover:text-white font-medium border-b border-white/5 pb-3 pt-2">Home</a>
+                <a href="creative-lab.html" @click="mobileMenu = false" class="text-slate-300 hover:text-white font-medium border-b border-white/5 pb-3 pt-2">Creative Labs</a>
+                <a href="landing-page.html#expertise" @click="mobileMenu = false" class="text-slate-300 hover:text-white font-medium border-b border-white/5 pb-3 pt-2">Expertise</a>
+                <a href="landing-page.html#experience" @click="mobileMenu = false" class="text-slate-300 hover:text-white font-medium border-b border-white/5 pb-3 pt-2">Experience</a>
+                   <a href="social-project.html" @click="mobileMenu = false" class="text-slate-300 hover:text-white font-medium border-b border-white/5 pb-3 pt-2">Social Project</a>
+
+                <a href="portfolio.html"
+                   @click="mobileMenu = false"
+                   class="mt-4 px-5 py-3 rounded-xl bg-gradient-to-r from-brand to-brand-accent text-white font-bold tracking-widest uppercase text-[11px] text-center shadow-[0_0_20px_rgba(99,102,241,0.3)]">
+                    Portfolio
+                </a>
+                    <a href="award.html" @click="mobileMenu = false" class="text-slate-300 hover:text-white font-medium border-b border-white/5 pb-3 pt-2">Awards</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative z-10">
+
+        <!-- ABOUT PORTFOLIO -->
+        <section class="pt-36 pb-16 px-6 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto">
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+                    <!-- LEFT CONTENT -->
+                    <div class="lg:col-span-7 animate-fadeInUp">
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand/30 bg-brand/10 text-brand-light text-[10px] font-bold tracking-widest uppercase mb-6">
+                            <i class="fa-solid fa-briefcase"></i>
+                            Portfolio Collection
+                        </div>
+
+                        <h1 class="text-5xl md:text-7xl font-serif font-bold text-white leading-[1.08] mb-6">
+                            Nabil's <br>
+                            <span class="text-gradient">Portfolio Works.</span>
+                        </h1>
+
+                        <p class="text-base md:text-lg text-slate-400 font-light leading-relaxed max-w-2xl">
+                            Halaman ini berisi kumpulan karya, project, dan bukti proses kerja dari
+                            <span class="text-white font-semibold">M. Nabilah Abror</span>, mulai dari web development,
+                            business development, market research, partnership approach, listing database,
+                            hingga strategic execution.
+                        </p>
+
+                        <div class="flex flex-wrap gap-3 mt-8">
+                            <span class="px-4 py-2 rounded-full glass text-xs font-semibold text-slate-300">
+                                Web Development
+                            </span>
+                            <span class="px-4 py-2 rounded-full glass text-xs font-semibold text-slate-300">
+                                Business Development
+                            </span>
+                            <span class="px-4 py-2 rounded-full glass text-xs font-semibold text-slate-300">
+                                Market Research
+                            </span>
+                            <span class="px-4 py-2 rounded-full glass text-xs font-semibold text-slate-300">
+                                Partnership Pipeline
+                            </span>
+                            <span class="px-4 py-2 rounded-full glass text-xs font-semibold text-slate-300">
+                                Strategic Report
+                            </span>
+                            <span class="px-4 py-2 rounded-full glass text-xs font-semibold text-slate-300">
+    Finance
+</span>
+
+<span class="px-4 py-2 rounded-full glass text-xs font-semibold text-slate-300">
+    Administration
+</span>
+
+<span class="px-4 py-2 rounded-full glass text-xs font-semibold text-slate-300">
+    Business Analyst
+</span>
+
+<span class="px-4 py-2 rounded-full glass text-xs font-semibold text-slate-300">
+    Project Management
+</span>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT CARD -->
+                    <div class="lg:col-span-5">
+                        <div class="glass rounded-[2rem] p-8 md:p-10 relative overflow-hidden">
+                            <div class="absolute -top-20 -right-20 w-56 h-56 bg-brand/20 rounded-full blur-3xl"></div>
+                            <div class="absolute -bottom-20 -left-20 w-56 h-56 bg-brand-accent/20 rounded-full blur-3xl"></div>
+
+                            <div class="relative z-10">
+                                <p class="text-xs font-bold tracking-widest text-brand-accent uppercase mb-6">
+                                    Portfolio Focus
+                                </p>
+
+                                <div class="space-y-5">
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-11 h-11 rounded-xl bg-indigo-500/10 border border-indigo-400/20 flex items-center justify-center text-brand-light">
+                                            <i class="fa-solid fa-code"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-white font-bold mb-1">Digital & Web Portfolio</h3>
+                                            <p class="text-sm text-slate-400 leading-relaxed">Showcase project website, UI, landing page, dan digital product.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-11 h-11 rounded-xl bg-pink-500/10 border border-pink-400/20 flex items-center justify-center text-pink-300">
+                                            <i class="fa-solid fa-handshake"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-white font-bold mb-1">Business Development Evidence</h3>
+                                            <p class="text-sm text-slate-400 leading-relaxed">Research, listing, approaching, pipeline, dan reporting.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-400/20 flex items-center justify-center text-emerald-300">
+                                            <i class="fa-solid fa-chart-line"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-white font-bold mb-1">Strategy & Research Works</h3>
+                                            <p class="text-sm text-slate-400 leading-relaxed">Market analysis, business analysis, dan strategic recommendation.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-3 gap-3 mt-8 pt-6 border-t border-white/10">
+                                    <div class="text-center glass rounded-2xl p-4">
+                                        <h4 class="text-xl font-bold text-white">11+</h4>
+                                        <p class="text-[10px] uppercase tracking-widest text-slate-400 mt-1">Web Projects</p>
+                                    </div>
+                                    <div class="text-center glass rounded-2xl p-4">
+                                        <h4 class="text-xl font-bold text-white">100+</h4>
+                                        <p class="text-[10px] uppercase tracking-widest text-slate-400 mt-1">Leads</p>
+                                    </div>
+                                    <div class="text-center glass rounded-2xl p-4">
+                                        <h4 class="text-xl font-bold text-white">4</h4>
+                                        <p class="text-[10px] uppercase tracking-widest text-slate-400 mt-1">Domains</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PORTFOLIO NAVIGATION -->
+      <!-- PORTFOLIO NAVIGATION -->
+<section class="px-6 pb-20" x-data>
+    <div class="max-w-7xl mx-auto">
+
+        <div class="glass rounded-[2rem] p-6 md:p-8 overflow-hidden">
+            
+            <!-- Header -->
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-8">
+                <div>
+                    <p class="text-xs font-bold tracking-widest text-brand-accent uppercase mb-2">
+                        Explore Portfolio
+                    </p>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-white">
+                        Portfolio Navigation
+                    </h2>
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                    <p class="text-sm text-slate-400 max-w-xl leading-relaxed">
+                        Pilih kategori portfolio berdasarkan jenis karya dan bukti kerja yang ingin dilihat.
+                    </p>
+
+                    <!-- Scroll Button -->
+                    <div class="flex items-center gap-2">
+                        <button 
+                            type="button"
+                            @click="$refs.portfolioNav.scrollBy({ left: -360, behavior: 'smooth' })"
+                            class="w-10 h-10 rounded-full glass border border-white/10 flex items-center justify-center text-slate-300 hover:text-white hover:border-brand-light/40 transition">
+                            <i class="fa-solid fa-arrow-left text-xs"></i>
+                        </button>
+
+                        <button 
+                            type="button"
+                            @click="$refs.portfolioNav.scrollBy({ left: 360, behavior: 'smooth' })"
+                            class="w-10 h-10 rounded-full glass border border-white/10 flex items-center justify-center text-slate-300 hover:text-white hover:border-brand-light/40 transition">
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Horizontal Scroll Cards -->
+            <div 
+                x-ref="portfolioNav"
+                class="flex gap-5 overflow-x-auto hide-scrollbar scroll-smooth snap-x snap-mandatory pb-2">
+
+                <!-- Web Development -->
+                <a href="#web-development" 
+                   class="min-w-[280px] md:min-w-[320px] lg:min-w-[340px] snap-start glass glass-hover rounded-2xl p-6 group">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-400/20 flex items-center justify-center text-brand-light mb-5 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-laptop-code text-xl"></i>
+                    </div>
+
+                    <h3 class="text-white font-bold text-lg mb-2">
+                        Web Development
+                    </h3>
+
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Website, landing page, UI/UX, dan digital product yang pernah dibuat.
+                    </p>
+                </a>
+
+                <!-- Business Development -->
+                <a href="#business-development" 
+                   class="min-w-[280px] md:min-w-[320px] lg:min-w-[340px] snap-start glass glass-hover rounded-2xl p-6 group">
+                    <div class="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-400/20 flex items-center justify-center text-pink-300 mb-5 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-handshake-angle text-xl"></i>
+                    </div>
+
+                    <h3 class="text-white font-bold text-lg mb-2">
+                        Business Development
+                    </h3>
+
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Research, listing, LinkedIn/WA approach, partnership pipeline, dan reporting.
+                    </p>
+                </a>
+
+                <!-- Product & Project -->
+                <a href="#product-project" 
+                   class="min-w-[280px] md:min-w-[320px] lg:min-w-[340px] snap-start glass glass-hover rounded-2xl p-6 group">
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-400/20 flex items-center justify-center text-purple-300 mb-5 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-diagram-project text-xl"></i>
+                    </div>
+
+                    <h3 class="text-white font-bold text-lg mb-2">
+                        Product & Project
+                    </h3>
+
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Product planning, workflow, roadmap, task execution, dan project management.
+                    </p>
+                </a>
+
+                <!-- Research & Strategy -->
+                <a href="#research-strategy" 
+                   class="min-w-[280px] md:min-w-[320px] lg:min-w-[340px] snap-start glass glass-hover rounded-2xl p-6 group">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-400/20 flex items-center justify-center text-emerald-300 mb-5 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-magnifying-glass-chart text-xl"></i>
+                    </div>
+
+                    <h3 class="text-white font-bold text-lg mb-2">
+                        Research & Strategy
+                    </h3>
+
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Market analysis, business analysis, strategic diagnosis, dan framework report.
+                    </p>
+                </a>
+
+                <!-- Administration & Finance -->
+                <a href="#administration-finance" 
+                   class="min-w-[280px] md:min-w-[320px] lg:min-w-[340px] snap-start glass glass-hover rounded-2xl p-6 group">
+                    <div class="w-12 h-12 rounded-xl bg-yellow-500/10 border border-yellow-400/20 flex items-center justify-center text-yellow-300 mb-5 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-file-invoice-dollar text-xl"></i>
+                    </div>
+
+                    <h3 class="text-white font-bold text-lg mb-2">
+                        Administration & Finance
+                    </h3>
+
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Financial records, invoice, receipt, budget tracking, reconciliation, dan reporting.
+                    </p>
+                </a>
+
+            </div>
+
+            <!-- Scroll Hint -->
+            <div class="flex items-center justify-center gap-2 mt-6 text-xs text-slate-500">
+                <i class="fa-solid fa-arrow-left-long"></i>
+                <span>Geser kanan/kiri untuk melihat kategori lainnya</span>
+                <i class="fa-solid fa-arrow-right-long"></i>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+        <!-- PLACEHOLDER SECTION UNTUK NANTI -->
+       <!-- DIGITAL PORTFOLIO SECTION -->
+<section 
+    id="web-development" 
+    class="py-24 px-6 border-t border-white/5 bg-[#070A18]/50 relative overflow-hidden"
+    x-data="{
+        selectedProject: null,
+        projects: [
+            {
+                title: 'Langao Coffee & Eatery',
+                category: 'Cafe Landing Page',
+                description: 'Website landing page premium untuk cafe dengan tampilan modern, menu interaktif, cart, checkout WhatsApp, dan desain visual yang hangat.',
+                image: 'https://cdn1.katadata.co.id/media/images/thumb/2021/09/29/Cafe_Pengilon-2021_09_29-13_41_34_749bf085297491130133d67ff3fe3b90_960x640_thumb.jpg',
+                tools: ['HTML', 'Tailwind CSS', 'Alpine.js', 'WhatsApp Checkout'],
+                link: 'https://langao-cafe.vercel.app/'
+            },
+            {
+                title: 'VapePod Store',
+                category: 'E-Commerce Interface',
+                description: 'Konsep website katalog produk dengan tampilan dark premium, card produk, navigasi kategori, dan tampilan toko digital yang responsif.',
+                image: 'https://foom.id/cdn/shop/articles/5-vape-store-jakarta-paling-hits-and-lengkap-buat-para-vapers-foom-lab-global.jpg?v=1748836953',
+                tools: ['HTML', 'Tailwind CSS', 'UI Design', 'Responsive Layout'],
+                link: 'https://vapepodstore.vercel.app/'
+            },
+            {
+                title: 'Asisten Tugas',
+                category: 'Service Landing Page',
+                description: 'Website jasa akademik dan asistensi tugas dengan fokus pada trust building, layanan, pricing, dan call-to-action yang jelas.',
+                image: 'https://ids.ac.id/wp-content/uploads/2022/05/imgonline-com-ua-CompressToSize-yEZWnzSoWAIOfy.jpg',
+                tools: ['Landing Page', 'Copywriting', 'UI/UX', 'CTA Design'],
+                link: 'https://asisten-tugas-rose.vercel.app/'
+            },
+            {
+                title: 'Book Mart',
+                category: 'Online Book Store',
+                description: 'Konsep website toko buku online dengan katalog produk, detail buku, visual card, dan pengalaman browsing yang sederhana.',
+                image: 'https://www.daya.id/01%20Tips%20-%20Info%20Terkini/Usaha/2021/2021%20-%2004/0.%20Mar/28.%207%20Tips%20Memulai%20Usaha%20Pet%20Shop%20dan%20Cara%20Mengelolanya/shutterstock_651973111.jpg',
+                tools: ['Web Design', 'Product Card', 'HTML', 'Tailwind CSS'],
+                link: 'https://book-mart-nu.vercel.app/'
+            },
+            {
+                title: 'Lumière Patisserie',
+                category: 'Bakery Brand Website',
+                description: 'Website brand patisserie dengan nuansa elegan, visual produk premium, storytelling brand, dan tampilan katalog dessert.',
+                image: 'https://awsimages.detik.net.id/community/media/visual/2022/07/27/toko-kue-jadul-di-bsd-4.jpeg?w=1200',
+                tools: ['Brand Website', 'Visual Design', 'Tailwind CSS', 'Responsive'],
+                link: 'https://lumi-re-patisserie-two.vercel.app/'
+            },
+            {
+                title: 'Paw Paw Club',
+                category: 'Pet Community Website',
+                description: 'Konsep website komunitas pet care dengan desain playful, section layanan, informasi komunitas, dan tampilan ramah pengguna.',
+                image: 'https://www.daya.id/01%20Tips%20-%20Info%20Terkini/Usaha/2021/2021%20-%2004/0.%20Mar/28.%207%20Tips%20Memulai%20Usaha%20Pet%20Shop%20dan%20Cara%20Mengelolanya/shutterstock_651973111.jpg',
+                tools: ['Community Website', 'UI Design', 'HTML', 'CSS'],
+                link: 'https://paw-paw-club.vercel.app/'
+            },
+            {
+    id: 7,
+    title: 'Fan Merch',
+    category: 'Merchandise E-Commerce',
+    description: 'A dynamic and highly visual e-commerce website dedicated to pop-culture and fandom merchandise. The interface is designed for product drops, bold visuals, interactive product galleries, and a streamlined shopping experience for fan communities.',
+    image: 'https://images.unsplash.com/photo-1528892952291-009c663ce843?auto=format&fit=crop&w=800&q=80',
+    fullImage: 'https://images.unsplash.com/photo-1607083206968-13611e3d76db?auto=format&fit=crop&w=1200&q=80',
+    concept: 'Bold, High-Energy, Pop-Culture, Conversion-Focused',
+    tools: ['Tailwind CSS', 'JavaScript', 'Dynamic Grid'],
+    link: 'https://fan-merch-seven.vercel.app/'
+},
+{
+    id: 8,
+    title: 'Clean Kicks',
+    category: 'Service Booking Platform',
+    description: 'A sleek and modern service portal for premium shoe and sneaker cleaning. The website guides users through service menus, before-after galleries, and an easy booking flow with a clean urban visual style.',
+    image: 'https://images.unsplash.com/photo-1600269452121-4f2416e55c28?auto=format&fit=crop&w=800&q=80',
+    fullImage: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=1200&q=80',
+    concept: 'Urban, Clean, Service-Oriented, Trustworthy',
+    tools: ['HTML5', 'Tailwind CSS', 'Alpine.js'],
+    link: 'https://clean-kicks-ruddy.vercel.app/'
+},
+{
+    id: 9,
+    title: 'Aisyah Signature',
+    category: 'Fashion E-Commerce',
+    description: 'A sophisticated e-commerce platform crafted for a modest fashion brand. The design highlights elegance, product lookbooks, clean product grids, and a seamless mobile shopping experience.',
+    image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=80',
+    fullImage: 'https://images.unsplash.com/photo-1550614000-4b95d466ee1c?auto=format&fit=crop&w=1200&q=80',
+    concept: 'Elegant, Modest Fashion, Premium Boutique, Chic',
+    tools: ['HTML5', 'Tailwind CSS', 'JavaScript'],
+    link: 'https://aisyah-signature.vercel.app/'
+},
+{
+    id: 10,
+    title: 'Meat Master',
+    category: 'F&B Retail / Steakhouse',
+    description: 'A bold and appetizing website built for a premium butcher shop and steakhouse. The design uses dark rich tones, high-contrast food imagery, product catalog structure, and reservation-oriented layout.',
+    image: 'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=800&q=80',
+    fullImage: 'https://images.unsplash.com/photo-1603048297172-c92544798d5e?auto=format&fit=crop&w=1200&q=80',
+    concept: 'Bold, Culinary, Premium Cuts, Appetizing',
+    tools: ['Tailwind CSS', 'Alpine.js', 'UI/UX Design'],
+    link: 'https://meat-master-inky.vercel.app/'
+},
+{
+    id: 11,
+    title: 'Bloom Tales',
+    category: 'Florist E-Commerce',
+    description: 'A visually aesthetic e-commerce platform designed for a bespoke florist. The UI emphasizes natural beauty, soft accents, clean spacing, occasion-based filtering, and a smooth gifting experience.',
+    image: 'https://images.unsplash.com/photo-1721204683636-83ad6063ea64?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE1fHx8ZW58MHx8fHx8',
+    fullImage: 'https://images.unsplash.com/photo-1463936575829-25148e1db1b8?auto=format&fit=crop&w=1200&q=80',
+    concept: 'Aesthetic, Botanical, Gifting, Clean UI',
+    tools: ['HTML5', 'Tailwind CSS', 'JavaScript', 'Design System'],
+    link: 'https://bloom-tales.vercel.app/'
+}
+        ]
+    }">
+
+    <!-- Background Glow -->
+    <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-brand/10 rounded-full blur-[150px] pointer-events-none"></div>
+    <div class="absolute bottom-0 right-0 w-[450px] h-[450px] bg-brand-accent/10 rounded-full blur-[140px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+
+        <!-- Section Header -->
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-14 border-b border-white/10 pb-8">
+            <div>
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-accent/30 bg-brand-accent/10 text-brand-accent text-[10px] font-bold tracking-widest uppercase mb-5">
+                    <i class="fa-solid fa-laptop-code"></i>
+                    Web Development
+                </div>
+
+                <h2 class="text-4xl md:text-6xl font-serif font-bold text-white leading-tight">
+                    Digital <span class="text-gradient">Portfolio</span>
+                </h2>
+            </div>
+
+            <p class="text-slate-400 max-w-xl text-sm md:text-base leading-relaxed lg:text-right">
+                A showcase of responsive, user-centric, and visually polished web interfaces designed to support brand identity, business presence, and digital conversion.
+            </p>
+        </div>
+
+        <!-- Portfolio Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+
+            <template x-for="project in projects" :key="project.title">
+                <div class="group glass rounded-[2rem] overflow-hidden border border-white/10 hover:border-brand-light/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(99,102,241,0.22)]">
+
+                    <!-- Image -->
+                    <div class="relative h-64 overflow-hidden bg-[#050814]">
+                        <img 
+                            :src="project.image" 
+                            :alt="project.title"
+                            class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
+                        >
+
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#050814] via-[#050814]/25 to-transparent"></div>
+
+                        <div class="absolute top-5 left-5">
+                            <span class="px-3 py-1 rounded-full bg-white/10 backdrop-blur-xl border border-white/15 text-white text-[10px] font-bold tracking-widest uppercase">
+                                <span x-text="project.category"></span>
+                            </span>
+                        </div>
+
+                        <a 
+                            :href="project.link" 
+                            target="_blank"
+                            class="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/15 flex items-center justify-center text-white transition-all">
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </a>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="p-7">
+                        <h3 class="text-2xl font-serif font-bold text-white mb-3 group-hover:text-brand-light transition-colors" x-text="project.title"></h3>
+
+                        <p class="text-sm text-slate-400 leading-relaxed mb-6" x-text="project.description"></p>
+
+                        <!-- Tools -->
+                        <div class="flex flex-wrap gap-2 mb-7">
+                            <template x-for="tool in project.tools" :key="tool">
+                                <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-semibold text-slate-300">
+                                    <span x-text="tool"></span>
+                                </span>
+                            </template>
+                        </div>
+
+                        <!-- Action -->
+                        <div class="flex items-center gap-3">
+                            <button 
+                                type="button"
+                                @click="selectedProject = project"
+                                class="flex-1 px-5 py-3 rounded-xl bg-gradient-to-r from-brand to-brand-accent text-white text-xs font-bold tracking-widest uppercase hover:shadow-[0_10px_25px_rgba(99,102,241,0.35)] transition-all">
+                                View Detail
+                            </button>
+
+                            <a 
+                                :href="project.link" 
+                                target="_blank"
+                                class="px-5 py-3 rounded-xl glass text-white text-xs font-bold tracking-widest uppercase hover:bg-white/10 transition-all">
+                                Preview
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+        </div>
+
+        <!-- Bottom CTA -->
+        <div class="mt-14 glass rounded-[2rem] p-8 md:p-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+            <div>
+                <p class="text-xs font-bold tracking-widest text-brand-accent uppercase mb-2">
+                    Digital Craftsmanship
+                </p>
+                <h3 class="text-2xl md:text-3xl font-serif font-bold text-white mb-3">
+                    Designed for Brand Presence & Business Conversion
+                </h3>
+                <p class="text-slate-400 text-sm leading-relaxed max-w-2xl">
+                    Setiap project dikembangkan dengan pendekatan visual, struktur informasi, responsive layout, dan pengalaman pengguna yang mendukung kebutuhan bisnis.
+                </p>
+            </div>
+
+            <a 
+                href="#business-development"
+                class="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/15 text-white text-xs font-bold tracking-widest uppercase transition-all">
+                Next: Business Portfolio
+                <i class="fa-solid fa-arrow-down"></i>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Detail Modal -->
+    <div 
+        x-show="selectedProject" 
+        x-transition.opacity
+        class="fixed inset-0 z-[80] bg-slate-950/70 backdrop-blur-md flex items-center justify-center px-6"
+        style="display:none;">
+
+        <div 
+            @click.away="selectedProject = null"
+            class="glass max-w-2xl w-full rounded-[2rem] overflow-hidden border border-white/15 shadow-2xl">
+
+            <div class="relative h-72 bg-[#050814]">
+                <img 
+                    :src="selectedProject?.image" 
+                    :alt="selectedProject?.title"
+                    class="w-full h-full object-cover opacity-80"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-[#050814] via-transparent to-transparent"></div>
+
+                <button 
+                    type="button"
+                    @click="selectedProject = null"
+                    class="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-white flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="p-8">
+                <p class="text-xs font-bold tracking-widest text-brand-accent uppercase mb-3" x-text="selectedProject?.category"></p>
+
+                <h3 class="text-3xl font-serif font-bold text-white mb-4" x-text="selectedProject?.title"></h3>
+
+                <p class="text-slate-400 text-sm leading-relaxed mb-6" x-text="selectedProject?.description"></p>
+
+                <div class="flex flex-wrap gap-2 mb-8">
+                    <template x-for="tool in selectedProject?.tools" :key="tool">
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-semibold text-slate-300">
+                            <span x-text="tool"></span>
+                        </span>
+                    </template>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <a 
+                        :href="selectedProject?.link" 
+                        target="_blank"
+                        class="flex-1 text-center px-6 py-3 rounded-xl bg-gradient-to-r from-brand to-brand-accent text-white text-xs font-bold tracking-widest uppercase">
+                        Live Preview
+                    </a>
+
+                    <button 
+                        type="button"
+                        @click="selectedProject = null"
+                        class="flex-1 px-6 py-3 rounded-xl glass text-white text-xs font-bold tracking-widest uppercase hover:bg-white/10 transition">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<!-- BUSINESS DEVELOPMENT RESEARCH SECTION -->
+<section 
+    id="business-development" 
+    class="py-24 px-6 border-t border-white/5 bg-[#050814] relative overflow-hidden"
+    x-data="businessDevelopmentPortfolio()">
+
+    <!-- Background Glow -->
+    <div class="absolute top-0 right-0 w-[520px] h-[520px] bg-pink-500/10 rounded-full blur-[150px] pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-[520px] h-[520px] bg-cyan-500/10 rounded-full blur-[150px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+
+        <!-- Section Header -->
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-14 border-b border-white/10 pb-8">
+            <div>
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-pink-400/30 bg-pink-500/10 text-pink-300 text-[10px] font-bold tracking-widest uppercase mb-5">
+                    <i class="fa-solid fa-handshake-angle"></i>
+                    Business Development
+                </div>
+
+                <h2 class="text-4xl md:text-6xl font-serif font-bold text-white leading-tight">
+                    Business Development <br>
+                    <span class="text-gradient">Research Portfolio</span>
+                </h2>
+            </div>
+
+            <p class="text-slate-400 max-w-xl text-sm md:text-base leading-relaxed lg:text-right">
+                A portfolio of business development projects covering market research, lead mapping, company listing, LinkedIn and WhatsApp approach, pipeline tracking, partnership proposal, and strategic reporting.
+            </p>
+        </div>
+
+        <!-- Process Overview -->
+        <div class="glass rounded-[2rem] p-6 md:p-8 mb-12 border border-white/10">
+            <div class="grid grid-cols-1 lg:grid-cols-6 gap-5">
+                
+                <div class="lg:col-span-2">
+                    <p class="text-xs font-bold tracking-widest text-pink-300 uppercase mb-2">
+                        Core BD Workflow
+                    </p>
+                    <h3 class="text-2xl md:text-3xl font-serif font-bold text-white">
+                        From Research to Reporting
+                    </h3>
+                </div>
+
+                <div class="lg:col-span-4 grid grid-cols-2 md:grid-cols-3 gap-3">
+                    <template x-for="step in processSteps" :key="step.label">
+                        <div class="rounded-2xl bg-white/5 border border-white/10 p-4 hover:border-pink-300/30 transition">
+                            <div class="w-9 h-9 rounded-xl bg-pink-500/10 border border-pink-400/20 flex items-center justify-center text-pink-300 mb-3">
+                                <i :class="step.icon"></i>
+                            </div>
+                            <p class="text-white text-sm font-bold" x-text="step.label"></p>
+                            <p class="text-slate-400 text-xs mt-1 leading-relaxed" x-text="step.desc"></p>
+                        </div>
+                    </template>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Portfolio Cards -->
+      <!-- Portfolio Cards - One Row One Card -->
+<div class="space-y-7">
+
+    <template x-for="project in bdProjects" :key="project.company">
+        <article class="group glass rounded-[2rem] p-6 md:p-8 border border-white/10 hover:border-pink-300/40 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(236,72,153,0.16)]">
+
+            <div class="grid grid-cols-1 xl:grid-cols-12 gap-8">
+
+                <!-- LEFT: Project Identity -->
+                <div class="xl:col-span-4">
+                    <div class="flex items-start justify-between gap-4 mb-6">
+                        <div>
+                            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pink-500/10 border border-pink-400/20 text-pink-300 text-[10px] font-bold tracking-widest uppercase mb-4">
+                                <i class="fa-solid fa-briefcase"></i>
+                                <span x-text="project.type"></span>
+                            </span>
+
+                            <h3 class="text-2xl md:text-3xl font-serif font-bold text-white leading-snug group-hover:text-pink-200 transition-colors" x-text="project.title"></h3>
+                            <p class="text-sm text-brand-accent font-semibold mt-3" x-text="project.company"></p>
+                        </div>
+
+                        <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-pink-300 shrink-0 group-hover:scale-110 transition">
+                            <i :class="project.icon"></i>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-1 gap-3 mb-6">
+                        <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                            <p class="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">Role</p>
+                            <p class="text-sm text-white font-semibold leading-relaxed" x-text="project.role"></p>
+                        </div>
+
+                        <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                            <p class="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">Period</p>
+                            <p class="text-sm text-white font-semibold leading-relaxed" x-text="project.period"></p>
+                        </div>
+                    </div>
+
+                    <p class="text-sm text-slate-400 leading-relaxed" x-text="project.description"></p>
+                </div>
+
+                <!-- MIDDLE: Tools, Process, Evidence, Output -->
+                <div class="xl:col-span-5 space-y-5">
+
+                    <!-- Tools -->
+                    <div>
+                        <p class="text-[10px] font-bold tracking-widest text-pink-300 uppercase mb-3">
+                            Tools
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <template x-for="tool in project.tools" :key="tool">
+                                <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-semibold text-slate-300" x-text="tool"></span>
+                            </template>
+                        </div>
+                    </div>
+
+                    <!-- Process -->
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                        <p class="text-[10px] font-bold tracking-widest text-cyan-300 uppercase mb-3">
+                            Process
+                        </p>
+
+                        <div class="flex flex-wrap items-center gap-2 text-xs text-slate-300">
+                            <template x-for="(step, index) in project.process" :key="step">
+                                <div class="flex items-center gap-2">
+                                    <span class="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/20 text-cyan-100" x-text="step"></span>
+                                    <i x-show="index !== project.process.length - 1" class="fa-solid fa-arrow-right text-slate-600 text-[10px]"></i>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+
+                    <!-- Evidence & Output Preview -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                            <p class="text-[10px] font-bold tracking-widest text-pink-300 uppercase mb-3">
+                                Evidence
+                            </p>
+
+                            <ul class="space-y-2 text-xs text-slate-300 leading-relaxed">
+                                <template x-for="item in project.evidence.slice(0, 3)" :key="item">
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-check text-emerald-300 mt-1"></i>
+                                        <span x-text="item"></span>
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+
+                        <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                            <p class="text-[10px] font-bold tracking-widest text-emerald-300 uppercase mb-3">
+                                Output
+                            </p>
+
+                            <ul class="space-y-2 text-xs text-slate-300 leading-relaxed">
+                                <template x-for="item in project.output.slice(0, 3)" :key="item">
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-arrow-right text-emerald-300 mt-1"></i>
+                                        <span x-text="item"></span>
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Leads Metrics -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+    <div class="rounded-2xl bg-gradient-to-br from-cyan-500/10 to-white/5 border border-cyan-400/20 p-5">
+        <div class="flex items-center justify-between gap-4">
+            <div>
+                <p class="text-[10px] font-bold tracking-widest text-cyan-300 uppercase mb-2">
+                    Total Leads
+                </p>
+                <h4 class="text-3xl font-bold text-white">
+                    <span x-text="project.metrics?.totalLeads ?? '-'"></span>
+                </h4>
+                <p class="text-xs text-slate-400 mt-1">
+                    Leads collected and mapped
+                </p>
+            </div>
+
+            <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-400/20 flex items-center justify-center text-cyan-300">
+                <i class="fa-solid fa-database text-lg"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="rounded-2xl bg-gradient-to-br from-emerald-500/10 to-white/5 border border-emerald-400/20 p-5">
+        <div class="flex items-center justify-between gap-4">
+            <div>
+                <p class="text-[10px] font-bold tracking-widest text-emerald-300 uppercase mb-2">
+                    Approved Leads
+                </p>
+                <h4 class="text-3xl font-bold text-white">
+                    <span x-text="project.metrics?.approvedLeads ?? '-'"></span>
+                </h4>
+                <p class="text-xs text-slate-400 mt-1">
+                    Leads approved for follow-up
+                </p>
+            </div>
+
+            <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-400/20 flex items-center justify-center text-emerald-300">
+                <i class="fa-solid fa-circle-check text-lg"></i>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+                </div>
+
+                <!-- RIGHT: Evidence Buttons -->
+                <div class="xl:col-span-3">
+                    <div class="rounded-[1.5rem] bg-white/5 border border-white/10 p-5 h-full flex flex-col justify-between">
+
+                        <div>
+                            <p class="text-[10px] font-bold tracking-widest text-brand-light uppercase mb-3">
+                                Evidence Center
+                            </p>
+
+                            <p class="text-xs text-slate-400 leading-relaxed mb-5">
+                                Akses bukti kerja seperti spreadsheet, approach LinkedIn, WhatsApp, report, dan meeting documentation.
+                            </p>
+
+                            <div class="space-y-3">
+                                <template x-for="btn in evidenceButtons" :key="btn.key">
+                                    <a 
+                                        :href="project.links && project.links[btn.key] ? project.links[btn.key] : '#'"
+                                        target="_blank"
+                                        @click="if (!project.links || !project.links[btn.key] || project.links[btn.key] === '#') $event.preventDefault()"
+                                        :class="project.links && project.links[btn.key] && project.links[btn.key] !== '#'
+                                            ? 'hover:bg-white/10 hover:border-pink-300/40 hover:text-white'
+                                            : 'opacity-45 cursor-not-allowed'"
+                                        class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-slate-300 text-xs font-bold transition-all flex items-center justify-between gap-3">
+                                        
+                                        <span class="flex items-center gap-2">
+                                            <i :class="btn.icon"></i>
+                                            <span x-text="btn.label"></span>
+                                        </span>
+
+                                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                    </a>
+                                </template>
+                            </div>
+                        </div>
+
+                        <button 
+                            type="button"
+                            @click="selectedBD = project"
+                            class="w-full mt-6 px-5 py-3.5 rounded-2xl bg-gradient-to-r from-pink-500 to-brand text-white text-xs font-bold tracking-widest uppercase hover:shadow-[0_10px_25px_rgba(236,72,153,0.30)] transition-all">
+                            View Case Study
+                        </button>
+
+                    </div>
+                </div>
+
+            </div>
+        </article>
+    </template>
+
+</div>
+
+        <!-- Bottom Summary -->
+        <div class="mt-14 glass rounded-[2rem] p-8 md:p-10 border border-white/10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
+                <div class="lg:col-span-7">
+                    <p class="text-xs font-bold tracking-widest text-pink-300 uppercase mb-2">
+                        Business Development Evidence
+                    </p>
+                    <h3 class="text-2xl md:text-3xl font-serif font-bold text-white mb-4">
+                        Research, Listing, Approach, Pipeline, and Reporting
+                    </h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Setiap project Business Development ditampilkan sebagai case study berbasis proses. Bukti kerja dapat berupa database spreadsheet, hasil research Google/LinkedIn, approach melalui WhatsApp atau LinkedIn, proposal deck, status pipeline, dan laporan follow-up.
+                    </p>
+                </div>
+
+                <div class="lg:col-span-5 grid grid-cols-2 gap-4">
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-5 text-center">
+                        <i class="fa-solid fa-magnifying-glass-chart text-2xl text-cyan-300 mb-3"></i>
+                        <h4 class="text-white font-bold text-lg">Research</h4>
+                        <p class="text-xs text-slate-400 mt-1">Google & LinkedIn</p>
+                    </div>
+
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-5 text-center">
+                        <i class="fa-solid fa-table text-2xl text-pink-300 mb-3"></i>
+                        <h4 class="text-white font-bold text-lg">Listing</h4>
+                        <p class="text-xs text-slate-400 mt-1">Spreadsheet Database</p>
+                    </div>
+
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-5 text-center">
+                        <i class="fa-brands fa-linkedin text-2xl text-blue-300 mb-3"></i>
+                        <h4 class="text-white font-bold text-lg">Approach</h4>
+                        <p class="text-xs text-slate-400 mt-1">LinkedIn & WhatsApp</p>
+                    </div>
+
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-5 text-center">
+                        <i class="fa-solid fa-chart-line text-2xl text-emerald-300 mb-3"></i>
+                        <h4 class="text-white font-bold text-lg">Report</h4>
+                        <p class="text-xs text-slate-400 mt-1">Pipeline Status</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- DETAIL MODAL -->
+    <div 
+        x-show="selectedBD" 
+        x-transition.opacity
+        class="fixed inset-0 z-[90] bg-slate-950/75 backdrop-blur-md flex items-center justify-center px-6 py-10"
+        style="display:none;">
+
+        <div 
+            @click.away="selectedBD = null"
+            class="glass max-w-4xl w-full max-h-[90vh] overflow-y-auto rounded-[2rem] border border-white/15 shadow-2xl">
+
+            <!-- Modal Header -->
+            <div class="relative p-8 md:p-10 border-b border-white/10 overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-pink-500/10 rounded-full blur-3xl"></div>
+
+                <button 
+                    type="button"
+                    @click="selectedBD = null"
+                    class="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-white flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+                <div class="relative z-10 pr-12">
+                    <p class="text-xs font-bold tracking-widest text-pink-300 uppercase mb-3" x-text="selectedBD?.company"></p>
+                    <h3 class="text-3xl md:text-4xl font-serif font-bold text-white mb-4" x-text="selectedBD?.title"></h3>
+                    <p class="text-slate-400 text-sm leading-relaxed max-w-2xl" x-text="selectedBD?.description"></p>
+                </div>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-8 md:p-10">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                        <p class="text-[10px] font-bold tracking-widest text-pink-300 uppercase mb-2">Role</p>
+                        <p class="text-white font-semibold" x-text="selectedBD?.role"></p>
+                    </div>
+
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                        <p class="text-[10px] font-bold tracking-widest text-pink-300 uppercase mb-2">Period</p>
+                        <p class="text-white font-semibold" x-text="selectedBD?.period"></p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                    <!-- Tools -->
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+                        <p class="text-[10px] font-bold tracking-widest text-cyan-300 uppercase mb-4">
+                            Tools Used
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <template x-for="tool in selectedBD?.tools" :key="tool">
+                                <span class="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/20 text-xs font-semibold text-cyan-100" x-text="tool"></span>
+                            </template>
+                        </div>
+                    </div>
+
+                    <!-- Evidence -->
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+                        <p class="text-[10px] font-bold tracking-widest text-pink-300 uppercase mb-4">
+                            Evidence
+                        </p>
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <template x-for="item in selectedBD?.evidence" :key="item">
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-check text-emerald-300 mt-1"></i>
+                                    <span x-text="item"></span>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+
+                    <!-- Output -->
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+                        <p class="text-[10px] font-bold tracking-widest text-emerald-300 uppercase mb-4">
+                            Output
+                        </p>
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <template x-for="item in selectedBD?.output" :key="item">
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-arrow-right text-emerald-300 mt-1"></i>
+                                    <span x-text="item"></span>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+
+                    <!-- Key Activities -->
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+                        <p class="text-[10px] font-bold tracking-widest text-brand-light uppercase mb-4">
+                            Key Activities
+                        </p>
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <template x-for="item in selectedBD?.activities" :key="item">
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-circle-dot text-brand-light mt-1"></i>
+                                    <span x-text="item"></span>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="mt-8 rounded-2xl bg-gradient-to-r from-pink-500/10 to-brand/10 border border-pink-300/20 p-6">
+                    <p class="text-[10px] font-bold tracking-widest text-pink-300 uppercase mb-3">
+                        Process Flow
+                    </p>
+
+                    <div class="flex flex-wrap items-center gap-2 text-xs text-slate-300">
+                        <template x-for="(step, index) in selectedBD?.process" :key="step">
+                            <div class="flex items-center gap-2">
+                                <span class="px-3 py-1.5 rounded-full bg-white/10 border border-white/10 text-white" x-text="step"></span>
+                                <i x-show="index !== selectedBD.process.length - 1" class="fa-solid fa-arrow-right text-slate-500 text-[10px]"></i>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function businessDevelopmentPortfolio() {
+        return {
+            selectedBD: null,
+
+            processSteps: [
+                {
+                    label: 'Research',
+                    desc: 'Market, competitor, company, and partner mapping.',
+                    icon: 'fa-solid fa-magnifying-glass-chart'
+                },
+                {
+                    label: 'Listing',
+                    desc: 'Lead database and prospect categorization.',
+                    icon: 'fa-solid fa-table'
+                },
+                {
+                    label: 'Validation',
+                    desc: 'Checking source, relevance, PIC, and opportunity.',
+                    icon: 'fa-solid fa-circle-check'
+                },
+                {
+                    label: 'Outreach',
+                    desc: 'Approach through LinkedIn, WhatsApp, or email.',
+                    icon: 'fa-solid fa-paper-plane'
+                },
+                {
+                    label: 'Follow Up',
+                    desc: 'Tracking response, status, and next action.',
+                    icon: 'fa-solid fa-rotate'
+                },
+                {
+                    label: 'Reporting',
+                    desc: 'Pipeline summary and strategic recommendation.',
+                    icon: 'fa-solid fa-chart-line'
+                }
+            ],
+
+    evidenceButtons: [
+        {
+            key: 'spreadsheet',
+            label: 'View Spreadsheet',
+            icon: 'fa-solid fa-table'
+        },
+        {
+            key: 'linkedin',
+            label: 'View LinkedIn Evidence',
+            icon: 'fa-brands fa-linkedin'
+        },
+        {
+            key: 'whatsapp',
+            label: 'View WhatsApp Approach',
+            icon: 'fa-brands fa-whatsapp'
+        },
+        {
+            key: 'report',
+            label: 'View Report',
+            icon: 'fa-solid fa-file-lines'
+        },
+        {
+            key: 'meeting',
+            label: 'View Meeting',
+            icon: 'fa-solid fa-users'
+        }
+    ],
+            bdProjects: [
+                {
+                    company: 'Fixup Legal Consulting',
+                    title: 'Legal Consulting Client Acquisition Pipeline',
+                    role: 'Business Development Intern / Vice Head Business Development Intern',
+                    period: 'September 2025 - December 2025',
+                    type: 'Legal Consulting',
+                    icon: 'fa-solid fa-scale-balanced',
+                    description: 'Built a business development pipeline for legal consulting services by identifying potential clients, mapping market opportunities, preparing value propositions, and supporting relationship management with corporate and SME prospects.',
+                    tools: ['Google Search', 'LinkedIn', 'WhatsApp', 'Google Spreadsheet', 'Proposal Deck'],
+                    process: ['Research', 'Listing', 'Contact Validation', 'Outreach', 'Follow Up', 'Reporting'],
+                    evidence: ['Company and industry research database', 'LinkedIn-based prospect mapping', 'WhatsApp or direct outreach record', 'Pipeline status and follow-up notes'],
+                    output: ['Potential client list', 'PIC and stakeholder mapping', 'Legal service opportunity status', 'Proposal and value proposition support'],
+                    activities: ['Identified new market opportunities for legal consulting services', 'Reached out to potential clients and partners', 'Assisted proposal and partnership deck preparation', 'Maintained sales pipeline and follow-up tracking'],
+                    links: {
+    spreadsheet: 'https://docs.google.com/spreadsheets/d/xxxx',
+    linkedin: 'https://drive.google.com/file/d/xxxx',
+    whatsapp: 'https://drive.google.com/file/d/xxxx',
+    report: 'https://drive.google.com/file/d/xxxx',
+    meeting: 'https://drive.google.com/file/d/xxxx'
+}, 
+metrics: {
+    totalLeads: 100,
+    approvedLeads: 5
+}
+                    
+                },
+                {
+                    company: 'Growth House',
+                    title: 'Growth Partnership & Executive Pipeline Research',
+                    role: 'Vice President Business Development Intern',
+                    period: 'September 2025 - December 2025',
+                    type: 'Growth Strategy',
+                    icon: 'fa-solid fa-arrow-trend-up',
+                    description: 'Led business development initiatives by supervising intern execution, conducting market and competitor research, reviewing partnership materials, and reporting pipeline progress to support strategic growth.',
+                    tools: ['Google Search', 'LinkedIn', 'WhatsApp', 'Google Spreadsheet', 'Executive Summary'],
+                    process: ['Research', 'Team Coordination', 'Listing', 'Outreach', 'Pipeline Monitoring', 'Reporting'],
+                    evidence: ['Market and competitor research', 'Partnership pipeline tracker', 'Proposal or value proposition draft', 'Executive summary and follow-up report'],
+                    output: ['Growth opportunity mapping', 'Potential partner database', 'Partnership status report', 'Strategic recommendation summary'],
+                    activities: ['Led and supervised business development interns', 'Conducted market and competitor research', 'Reviewed business proposals and partnership decks', 'Prepared pipeline and strategic outcome reports'],
+                              links: {
+    spreadsheet: 'https://docs.google.com/spreadsheets/d/xxxx',
+    linkedin: 'https://drive.google.com/file/d/xxxx',
+    whatsapp: 'https://drive.google.com/file/d/xxxx',
+    report: 'https://drive.google.com/file/d/xxxx',
+    meeting: 'https://drive.google.com/file/d/xxxx'
+}, 
+metrics: {
+    totalLeads: 40,
+    approvedLeads: 6
+}
+                },
+                {
+                    company: 'Jobfit',
+                    title: 'Career Platform Business Development Pipeline',
+                    role: 'Business Development Intern',
+                    period: 'September 2025 - December 2025',
+                    type: 'Career Platform',
+                    icon: 'fa-solid fa-user-tie',
+                    description: 'Supported business development execution for a career-related platform by identifying growth opportunities, mapping potential partners, maintaining communication, and reporting partnership pipeline progress.',
+                    tools: ['Google Search', 'LinkedIn', 'WhatsApp', 'Google Spreadsheet', 'Pipeline Tracker'],
+                    process: ['Research', 'Listing', 'Contact Validation', 'Outreach', 'Follow Up', 'Reporting'],
+                    evidence: ['Company listing database', 'Potential partnership mapping', 'LinkedIn research record', 'Pipeline progress report'],
+                    output: ['Partner prospect list', 'Lead status tracking', 'Follow-up action notes', 'Strategic partnership summary'],
+                    activities: ['Conducted market and competitor research', 'Developed and reviewed value propositions', 'Maintained communication with potential partners', 'Reported sales pipeline and partnership status'],
+                              links: {
+    spreadsheet: 'https://docs.google.com/spreadsheets/d/xxxx',
+    linkedin: 'https://drive.google.com/file/d/xxxx',
+    whatsapp: 'https://drive.google.com/file/d/xxxx',
+    report: 'https://drive.google.com/file/d/xxxx',
+    meeting: 'https://drive.google.com/file/d/xxxx'
+}, 
+metrics: {
+    totalLeads: 30,
+    approvedLeads: 2
+}
+                },
+                {
+                    company: 'Kokasia',
+                    title: 'Digital Marketing Client Prospecting Pipeline',
+                    role: 'Business Development Intern',
+                    period: 'September 2025 - December 2025',
+                    type: 'Digital Marketing',
+                    icon: 'fa-solid fa-bullhorn',
+                    description: 'Assisted client prospecting for digital marketing and brand strategy services through market analysis, lead database management, proposal preparation, and weekly pipeline reporting.',
+                    tools: ['Google Search', 'LinkedIn', 'WhatsApp', 'Google Spreadsheet', 'Pitch Deck'],
+                    process: ['Research', 'Listing', 'Contact Validation', 'Outreach', 'Pipeline Meeting', 'Reporting'],
+                    evidence: ['Client relationship database', 'Competitor and market research', 'Proposal or pitch deck material', 'Weekly sales pipeline notes'],
+                    output: ['Potential client list', 'Lead conversion status', 'Partnership update report', 'Marketing material support'],
+                    activities: ['Identified potential clients for digital marketing services', 'Conducted competitor analysis', 'Maintained client relationship database', 'Prepared performance reports on leads and partnership updates'],
+                              links: {
+    spreadsheet: 'https://docs.google.com/spreadsheets/d/xxxx',
+    linkedin: 'https://drive.google.com/file/d/xxxx',
+    whatsapp: 'https://drive.google.com/file/d/xxxx',
+    report: 'https://drive.google.com/file/d/xxxx',
+    meeting: 'https://drive.google.com/file/d/xxxx'
+}, 
+metrics: {
+    totalLeads: 400,
+    approvedLeads:20
+}
+                },
+                {
+                    company: 'Soko Edu Financial',
+                    title: 'Financial Education Partnership Pipeline',
+                    role: 'Lead Business Development Intern',
+                    period: 'January 2026 - April 2026',
+                    type: 'Financial Education',
+                    icon: 'fa-solid fa-coins',
+                    description: 'Led business development support for financial education initiatives by identifying client opportunities, preparing value propositions, maintaining databases, and monitoring partnership progress.',
+                    tools: ['Google Search', 'LinkedIn', 'WhatsApp', 'Google Spreadsheet', 'Partnership Deck'],
+                    process: ['Research', 'Listing', 'Contact Validation', 'Outreach', 'Follow Up', 'Reporting'],
+                    evidence: ['Market and client prospect research', 'Client database spreadsheet', 'Outreach and follow-up notes', 'Partnership progress tracker'],
+                    output: ['Financial education prospect list', 'Client needs mapping', 'Proposal support material', 'Pipeline and conversion report'],
+                    activities: ['Identified potential clients and partners', 'Conducted market and competitor analysis', 'Prepared value propositions', 'Monitored leads, conversions, and partnership updates'],
+                              links: {
+    spreadsheet: 'https://docs.google.com/spreadsheets/d/xxxx',
+    linkedin: 'https://drive.google.com/file/d/xxxx',
+    whatsapp: 'https://drive.google.com/file/d/xxxx',
+    report: 'https://drive.google.com/file/d/xxxx',
+    meeting: 'https://drive.google.com/file/d/xxxx'
+}, 
+metrics: {
+    totalLeads: 450,
+    approvedLeads: 1
+}
+                },
+                {
+                    company: 'Diet Partner',
+                    title: 'Health & Nutrition Market Prospecting Pipeline',
+                    role: 'Business Development Intern',
+                    period: 'January 2026 - March 2026',
+                    type: 'Health Business',
+                    icon: 'fa-solid fa-heart-pulse',
+                    description: 'Supported business development research for health and nutrition services by identifying potential clients, mapping market opportunities, preparing proposal materials, and tracking partnership updates.',
+                    tools: ['Google Search', 'LinkedIn', 'WhatsApp', 'Google Spreadsheet', 'Sales Pipeline'],
+                    process: ['Research', 'Listing', 'Contact Validation', 'Outreach', 'Follow Up', 'Reporting'],
+                    evidence: ['Market and competitor analysis', 'Potential client database', 'Outreach tracking sheet', 'Partnership update report'],
+                    output: ['Client prospect list', 'Industry opportunity mapping', 'Follow-up status', 'Lead conversion summary'],
+                    activities: ['Approached potential clients for service collaboration', 'Supported proposal and value proposition creation', 'Maintained relationship databases', 'Prepared reports on leads and partnership updates'],
+                              links: {
+    spreadsheet: 'https://docs.google.com/spreadsheets/d/xxxx',
+    linkedin: 'https://drive.google.com/file/d/xxxx',
+    whatsapp: 'https://drive.google.com/file/d/xxxx',
+    report: 'https://drive.google.com/file/d/xxxx',
+    meeting: 'https://drive.google.com/file/d/xxxx'
+}, 
+metrics: {
+    totalLeads: 667,
+    approvedLeads: 35
+}
+                },
+                {
+                    company: 'Kunci Hukum',
+                    title: 'LegalTech Client & Partnership Pipeline',
+                    role: 'Business Development Intern',
+                    period: 'January 2026 - March 2026',
+                    type: 'LegalTech',
+                    icon: 'fa-solid fa-gavel',
+                    description: 'Supported legal service business development by conducting market research, identifying potential clients, maintaining prospect databases, and assisting proposal development for collaboration opportunities.',
+                    tools: ['Google Search', 'LinkedIn', 'WhatsApp', 'Google Spreadsheet', 'Proposal Material'],
+                    process: ['Research', 'Listing', 'Contact Validation', 'Outreach', 'Follow Up', 'Reporting'],
+                    evidence: ['Legal market prospect research', 'Company and PIC listing', 'LinkedIn or WhatsApp approach record', 'Pipeline and follow-up status'],
+                    output: ['Legal service prospect database', 'Client opportunity status', 'Proposal support notes', 'Partnership update summary'],
+                    activities: ['Conducted market and competitor analysis', 'Prepared value propositions', 'Maintained client relationship database', 'Supported weekly pipeline reporting'],
+                              links: {
+    spreadsheet: 'https://docs.google.com/spreadsheets/d/xxxx',
+    linkedin: 'https://drive.google.com/file/d/xxxx',
+    whatsapp: 'https://drive.google.com/file/d/xxxx',
+    report: 'https://drive.google.com/file/d/xxxx',
+    meeting: 'https://drive.google.com/file/d/xxxx'
+}, 
+metrics: {
+    totalLeads: 8,
+    approvedLeads: 0
+}
+                },
+                {
+                    company: 'Job On Yours',
+                    title: 'Job Listing & Partnership Growth Pipeline',
+                    role: 'Head of Business Development Intern',
+                    period: 'April 2026 - June 2026',
+                    type: 'Career & Job Platform',
+                    icon: 'fa-solid fa-people-arrows',
+                    description: 'Led the Business Development function by setting strategy for client acquisition and partnership growth, building pipeline systems, conducting market analysis, and coordinating cross-functional execution.',
+                    tools: ['Google Search', 'LinkedIn', 'WhatsApp', 'Google Spreadsheet', 'Partnership Deck', 'Performance Report'],
+                    process: ['Research', 'Listing', 'Contact Validation', 'Outreach', 'Follow Up', 'Reporting'],
+                    evidence: ['Job listing database', 'Company and PIC research', 'LinkedIn or WhatsApp approach evidence', 'Pipeline status and conversion tracking'],
+                    output: ['Company list', 'PIC contact', 'Source validation', 'Deadline and opportunity status', 'Pipeline and performance report'],
+                    activities: ['Led BD strategy and client acquisition initiatives', 'Identified new market opportunities', 'Designed business proposals and partnership decks', 'Tracked prospect status, conversion rates, and revenue potential'],
+                              links: {
+    spreadsheet: 'https://docs.google.com/spreadsheets/d/xxxx',
+    linkedin: 'https://drive.google.com/file/d/xxxx',
+    whatsapp: 'https://drive.google.com/file/d/xxxx',
+    report: 'https://drive.google.com/file/d/xxxx',
+    meeting: 'https://drive.google.com/file/d/xxxx'
+}, 
+metrics: {
+    totalLeads: 890,
+    approvedLeads: 8
+}
+                }
+                
+            ]
+        }
+    }
+</script>
+<!-- PRODUCT & PROJECT PORTFOLIO SECTION -->
+<section 
+    id="product-project" 
+    class="py-24 px-6 border-t border-white/5 bg-[#070A18] relative overflow-hidden"
+    x-data="productProjectPortfolio()">
+
+    <!-- Background Glow -->
+    <div class="absolute top-0 left-0 w-[520px] h-[520px] bg-purple-500/10 rounded-full blur-[150px] pointer-events-none"></div>
+    <div class="absolute bottom-0 right-0 w-[520px] h-[520px] bg-amber-500/10 rounded-full blur-[150px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+
+        <!-- Section Header -->
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-14 border-b border-white/10 pb-8">
+            <div>
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-purple-400/30 bg-purple-500/10 text-purple-300 text-[10px] font-bold tracking-widest uppercase mb-5">
+                    <i class="fa-solid fa-diagram-project"></i>
+                    Product & Project
+                </div>
+
+                <h2 class="text-4xl md:text-6xl font-serif font-bold text-white leading-tight">
+                    Product & Project <br>
+                    <span class="text-gradient">Execution Portfolio</span>
+                </h2>
+            </div>
+
+            <p class="text-slate-400 max-w-xl text-sm md:text-base leading-relaxed lg:text-right">
+                A portfolio of product and project execution works covering product strategy, feature planning, project timeline, workflow coordination, meeting management, risk monitoring, and end-to-end program execution.
+            </p>
+        </div>
+
+        <!-- Portfolio Framework Overview -->
+        <div class="glass rounded-[2rem] p-6 md:p-8 mb-12 border border-white/10">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+                <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+                    <div class="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-400/20 flex items-center justify-center text-purple-300 mb-5">
+                        <i class="fa-solid fa-lightbulb text-xl"></i>
+                    </div>
+                    <h3 class="text-white font-serif font-bold text-2xl mb-3">
+                        Product Work
+                    </h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Berfokus pada pengembangan produk dari ide, user pain point, value proposition, feature planning, roadmap, sampai evaluasi KPI produk.
+                    </p>
+                </div>
+
+                <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-400/20 flex items-center justify-center text-amber-300 mb-5">
+                        <i class="fa-solid fa-list-check text-xl"></i>
+                    </div>
+                    <h3 class="text-white font-serif font-bold text-2xl mb-3">
+                        Project Management
+                    </h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Berfokus pada perencanaan project, timeline, task coordination, resource allocation, risk assessment, progress monitoring, dan reporting.
+                    </p>
+                </div>
+
+                <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+                    <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-400/20 flex items-center justify-center text-cyan-300 mb-5">
+                        <i class="fa-solid fa-users-gear text-xl"></i>
+                    </div>
+                    <h3 class="text-white font-serif font-bold text-2xl mb-3">
+                        Project Officer
+                    </h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Berfokus pada eksekusi program atau event dari hulu ke hilir, mulai dari ide, planning, team coordination, meeting, execution, hingga evaluasi.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Project Cards -->
+        <div class="space-y-8">
+
+            <template x-for="item in ppProjects" :key="item.company">
+                <article class="group glass rounded-[2rem] p-6 md:p-8 border border-white/10 hover:border-purple-300/40 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(168,85,247,0.16)]">
+
+                    <div class="grid grid-cols-1 xl:grid-cols-12 gap-8">
+
+                        <!-- LEFT: Identity -->
+                        <div class="xl:col-span-4">
+
+                            <div class="flex items-start justify-between gap-4 mb-6">
+                                <div>
+                                    <span 
+                                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[10px] font-bold tracking-widest uppercase mb-4"
+                                        :class="badgeClass(item.domain)">
+                                        <i :class="item.icon"></i>
+                                        <span x-text="item.domain"></span>
+                                    </span>
+
+                                    <h3 class="text-2xl md:text-3xl font-serif font-bold text-white leading-snug group-hover:text-purple-200 transition-colors" x-text="item.title"></h3>
+                                    <p class="text-sm text-brand-accent font-semibold mt-3" x-text="item.company"></p>
+                                </div>
+
+                                <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-purple-300 shrink-0 group-hover:scale-110 transition">
+                                    <i :class="item.icon"></i>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-1 gap-3 mb-6">
+                                <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                                    <p class="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">Role</p>
+                                    <p class="text-sm text-white font-semibold leading-relaxed" x-text="item.role"></p>
+                                </div>
+
+                                <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                                    <p class="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">Period</p>
+                                    <p class="text-sm text-white font-semibold leading-relaxed" x-text="item.period"></p>
+                                </div>
+                            </div>
+
+                            <p class="text-sm text-slate-400 leading-relaxed" x-text="item.description"></p>
+                        </div>
+
+                        <!-- MIDDLE: Different Card Elements -->
+                        <div class="xl:col-span-5 space-y-5">
+
+                            <!-- Objective & Scope -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                                    <p class="text-[10px] font-bold tracking-widest text-purple-300 uppercase mb-3">
+                                        Objective
+                                    </p>
+                                    <p class="text-sm text-slate-300 leading-relaxed" x-text="item.objective"></p>
+                                </div>
+
+                                <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                                    <p class="text-[10px] font-bold tracking-widest text-amber-300 uppercase mb-3">
+                                        Scope
+                                    </p>
+                                    <p class="text-sm text-slate-300 leading-relaxed" x-text="item.scope"></p>
+                                </div>
+                            </div>
+
+                            <!-- Lifecycle -->
+                            <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                                <p class="text-[10px] font-bold tracking-widest text-cyan-300 uppercase mb-4">
+                                    Execution Lifecycle
+                                </p>
+
+                                <div class="relative">
+                                    <div class="absolute left-[18px] top-4 bottom-4 w-px bg-white/10"></div>
+
+                                    <div class="space-y-4">
+                                        <template x-for="(step, index) in item.lifecycle" :key="step">
+                                            <div class="relative flex items-start gap-4">
+                                                <div 
+                                                    class="relative z-10 w-9 h-9 rounded-xl flex items-center justify-center text-xs font-bold border"
+                                                    :class="lifecycleClass(item.domain)">
+                                                    <span x-text="index + 1"></span>
+                                                </div>
+
+                                                <div>
+                                                    <p class="text-sm text-white font-semibold" x-text="step"></p>
+                                                    <p class="text-xs text-slate-500 mt-1" x-text="lifecycleDescription(step)"></p>
+                                                </div>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Deliverables & Governance -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                                    <p class="text-[10px] font-bold tracking-widest text-emerald-300 uppercase mb-3">
+                                        Deliverables
+                                    </p>
+
+                                    <ul class="space-y-2 text-xs text-slate-300 leading-relaxed">
+                                        <template x-for="deliverable in item.deliverables.slice(0, 4)" :key="deliverable">
+                                            <li class="flex items-start gap-2">
+                                                <i class="fa-solid fa-check text-emerald-300 mt-1"></i>
+                                                <span x-text="deliverable"></span>
+                                            </li>
+                                        </template>
+                                    </ul>
+                                </div>
+
+                                <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                                    <p class="text-[10px] font-bold tracking-widest text-brand-light uppercase mb-3">
+                                        Coordination
+                                    </p>
+
+                                    <ul class="space-y-2 text-xs text-slate-300 leading-relaxed">
+                                        <template x-for="coord in item.coordination.slice(0, 4)" :key="coord">
+                                            <li class="flex items-start gap-2">
+                                                <i class="fa-solid fa-circle-dot text-brand-light mt-1"></i>
+                                                <span x-text="coord"></span>
+                                            </li>
+                                        </template>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- RIGHT: Evidence & Metrics -->
+                        <div class="xl:col-span-3">
+                            <div class="rounded-[1.5rem] bg-white/5 border border-white/10 p-5 h-full flex flex-col justify-between">
+
+                                <div>
+                                    <p class="text-[10px] font-bold tracking-widest text-brand-light uppercase mb-3">
+                                        Delivery Center
+                                    </p>
+
+                                    <p class="text-xs text-slate-400 leading-relaxed mb-5">
+                                        Bukti kerja product/project dapat berupa roadmap, WBS, timeline, report, meeting notes, dashboard, dan product documentation.
+                                    </p>
+
+                                    <!-- Metrics -->
+                                    <div class="grid grid-cols-2 gap-3 mb-5">
+                                        <div class="rounded-2xl bg-white/5 border border-white/10 p-4 text-center">
+                                            <p class="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">
+                                                Tasks
+                                            </p>
+                                            <h4 class="text-2xl font-bold text-white" x-text="item.metrics.tasks"></h4>
+                                        </div>
+
+                                        <div class="rounded-2xl bg-white/5 border border-white/10 p-4 text-center">
+                                            <p class="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">
+                                                Output
+                                            </p>
+                                            <h4 class="text-2xl font-bold text-white" x-text="item.metrics.outputs"></h4>
+                                        </div>
+                                    </div>
+
+                                    <!-- Evidence Buttons -->
+                                    <div class="space-y-3">
+                                        <template x-for="btn in evidenceButtons" :key="btn.key">
+                                            <a 
+                                                :href="item.links && item.links[btn.key] ? item.links[btn.key] : '#'"
+                                                target="_blank"
+                                                @click="if (!item.links || !item.links[btn.key] || item.links[btn.key] === '#') $event.preventDefault()"
+                                                :class="item.links && item.links[btn.key] && item.links[btn.key] !== '#'
+                                                    ? 'hover:bg-white/10 hover:border-purple-300/40 hover:text-white'
+                                                    : 'opacity-45 cursor-not-allowed'"
+                                                class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-slate-300 text-xs font-bold transition-all flex items-center justify-between gap-3">
+                                                
+                                                <span class="flex items-center gap-2">
+                                                    <i :class="btn.icon"></i>
+                                                    <span x-text="btn.label"></span>
+                                                </span>
+
+                                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                            </a>
+                                        </template>
+                                    </div>
+                                </div>
+
+                                <button 
+                                    type="button"
+                                    @click="selectedPP = item"
+                                    class="w-full mt-6 px-5 py-3.5 rounded-2xl bg-gradient-to-r from-purple-500 to-brand-accent text-white text-xs font-bold tracking-widest uppercase hover:shadow-[0_10px_25px_rgba(168,85,247,0.30)] transition-all">
+                                    View Execution Detail
+                                </button>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </article>
+            </template>
+
+        </div>
+    </div>
+
+    <!-- DETAIL MODAL -->
+    <div 
+        x-show="selectedPP" 
+        x-transition.opacity
+        class="fixed inset-0 z-[90] bg-slate-950/75 backdrop-blur-md flex items-center justify-center px-6 py-10"
+        style="display:none;">
+
+        <div 
+            @click.away="selectedPP = null"
+            class="glass max-w-5xl w-full max-h-[90vh] overflow-y-auto rounded-[2rem] border border-white/15 shadow-2xl">
+
+            <div class="relative p-8 md:p-10 border-b border-white/10 overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl"></div>
+
+                <button 
+                    type="button"
+                    @click="selectedPP = null"
+                    class="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-white flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+                <div class="relative z-10 pr-12">
+                    <p class="text-xs font-bold tracking-widest text-purple-300 uppercase mb-3" x-text="selectedPP?.company"></p>
+                    <h3 class="text-3xl md:text-4xl font-serif font-bold text-white mb-4" x-text="selectedPP?.title"></h3>
+                    <p class="text-slate-400 text-sm leading-relaxed max-w-3xl" x-text="selectedPP?.description"></p>
+                </div>
+            </div>
+
+            <div class="p-8 md:p-10">
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                        <p class="text-[10px] font-bold tracking-widest text-purple-300 uppercase mb-2">Role</p>
+                        <p class="text-white font-semibold" x-text="selectedPP?.role"></p>
+                    </div>
+
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                        <p class="text-[10px] font-bold tracking-widest text-purple-300 uppercase mb-2">Period</p>
+                        <p class="text-white font-semibold" x-text="selectedPP?.period"></p>
+                    </div>
+
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                        <p class="text-[10px] font-bold tracking-widest text-purple-300 uppercase mb-2">Domain</p>
+                        <p class="text-white font-semibold" x-text="selectedPP?.domain"></p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+                        <p class="text-[10px] font-bold tracking-widest text-cyan-300 uppercase mb-4">
+                            Execution Lifecycle
+                        </p>
+
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <template x-for="step in selectedPP?.lifecycle" :key="step">
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-arrow-right text-cyan-300 mt-1"></i>
+                                    <span x-text="step"></span>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+                        <p class="text-[10px] font-bold tracking-widest text-emerald-300 uppercase mb-4">
+                            Deliverables
+                        </p>
+
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <template x-for="deliverable in selectedPP?.deliverables" :key="deliverable">
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-check text-emerald-300 mt-1"></i>
+                                    <span x-text="deliverable"></span>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+                        <p class="text-[10px] font-bold tracking-widest text-brand-light uppercase mb-4">
+                            Coordination
+                        </p>
+
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <template x-for="coord in selectedPP?.coordination" :key="coord">
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-circle-dot text-brand-light mt-1"></i>
+                                    <span x-text="coord"></span>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+                        <p class="text-[10px] font-bold tracking-widest text-amber-300 uppercase mb-4">
+                            Evidence Type
+                        </p>
+
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <template x-for="evidence in selectedPP?.evidence" :key="evidence">
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-folder-open text-amber-300 mt-1"></i>
+                                    <span x-text="evidence"></span>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function productProjectPortfolio() {
+        return {
+            selectedPP: null,
+
+            evidenceButtons: [
+                {
+                    key: 'roadmap',
+                    label: 'View Roadmap',
+                    icon: 'fa-solid fa-map'
+                },
+                {
+                    key: 'wbs',
+                    label: 'View WBS / Timeline',
+                    icon: 'fa-solid fa-list-check'
+                },
+                {
+                    key: 'report',
+                    label: 'View Report',
+                    icon: 'fa-solid fa-file-lines'
+                },
+                {
+                    key: 'meeting',
+                    label: 'View Meeting Notes',
+                    icon: 'fa-solid fa-users'
+                },
+                {
+                    key: 'dashboard',
+                    label: 'View Dashboard',
+                    icon: 'fa-solid fa-chart-line'
+                }
+            ],
+
+            badgeClass(domain) {
+                if (domain === 'Product Strategy') {
+                    return 'bg-purple-500/10 border-purple-400/20 text-purple-300';
+                }
+                if (domain === 'Product Management') {
+                    return 'bg-cyan-500/10 border-cyan-400/20 text-cyan-300';
+                }
+                if (domain === 'Project Management') {
+                    return 'bg-amber-500/10 border-amber-400/20 text-amber-300';
+                }
+                return 'bg-pink-500/10 border-pink-400/20 text-pink-300';
+            },
+
+            lifecycleClass(domain) {
+                if (domain === 'Product Strategy') {
+                    return 'bg-purple-500/10 border-purple-400/20 text-purple-200';
+                }
+                if (domain === 'Product Management') {
+                    return 'bg-cyan-500/10 border-cyan-400/20 text-cyan-200';
+                }
+                if (domain === 'Project Management') {
+                    return 'bg-amber-500/10 border-amber-400/20 text-amber-200';
+                }
+                return 'bg-pink-500/10 border-pink-400/20 text-pink-200';
+            },
+
+            lifecycleDescription(step) {
+                const desc = {
+                    'Idea Validation': 'Mengubah ide awal menjadi dasar produk atau project yang jelas.',
+                    'Research': 'Mengumpulkan insight dari market, user, competitor, atau stakeholder.',
+                    'Planning': 'Menyusun objective, scope, timeline, dan kebutuhan eksekusi.',
+                    'Roadmap': 'Menyusun arah prioritas fitur atau milestone project.',
+                    'Execution': 'Mengelola proses implementasi dan koordinasi lintas tim.',
+                    'Monitoring': 'Memantau progress, issue, risiko, dan status eksekusi.',
+                    'Reporting': 'Menyusun laporan, evaluasi, dan rekomendasi tindak lanjut.',
+                    'Evaluation': 'Menilai hasil akhir dan improvement untuk next cycle.'
+                };
+                return desc[step] || 'Tahapan kerja dalam proses product/project execution.';
+            },
+
+            ppProjects: [
+                {
+                    company: 'Afbenesia',
+                    title: 'End-to-End Project Execution Management',
+                    role: 'Project Manager Intern',
+                    period: 'April 2026 - April 2026',
+                    domain: 'Project Management',
+                    icon: 'fa-solid fa-list-check',
+                    description: 'Assisted in managing project execution from planning, scheduling, task coordination, project monitoring, risk assessment, budgeting, resource allocation, and stakeholder communication.',
+                    objective: 'Ensure project execution runs according to timeline, objectives, operational targets, and expected deliverables.',
+                    scope: 'Planning, scheduling, team coordination, monitoring, risk assessment, budgeting, reporting, and stakeholder alignment.',
+                    lifecycle: ['Planning', 'Execution', 'Monitoring', 'Reporting', 'Evaluation'],
+                    deliverables: [
+                        'Project timeline and execution plan',
+                        'Progress report and performance evaluation',
+                        'Risk assessment and problem-solving notes',
+                        'Budget and resource allocation monitoring',
+                        'Stakeholder communication summary'
+                    ],
+                    coordination: [
+                        'Coordinated cross-functional teams',
+                        'Aligned workflow execution with project objectives',
+                        'Collaborated with stakeholders and internal teams',
+                        'Monitored project constraints and corrective actions'
+                    ],
+                    evidence: [
+                        'Project timeline',
+                        'Task tracker',
+                        'Progress report',
+                        'Risk assessment notes',
+                        'Meeting documentation'
+                    ],
+                    metrics: {
+                        tasks: '25+',
+                        outputs: '5+'
+                    },
+                    links: {
+                        roadmap: '#',
+                        wbs: '#',
+                        report: '#',
+                        meeting: '#',
+                        dashboard: '#'
+                    }
+                },
+                {
+                    company: 'Growise Hub',
+                    title: 'Digital Product Strategy & Startup Incubation Roadmap',
+                    role: 'Product Strategist Intern',
+                    period: 'September 2025 - December 2025',
+                    domain: 'Product Strategy',
+                    icon: 'fa-solid fa-lightbulb',
+                    description: 'Supported product strategy development for startup incubation projects through user research, market research, roadmap formulation, value proposition design, KPI analysis, dashboard development, and pitch material preparation.',
+                    objective: 'Translate business opportunities, user pain points, and market insights into product roadmap, positioning strategy, and growth recommendations.',
+                    scope: 'Product roadmap, user research, market insight, value proposition, KPI dashboard, pitch deck, and executive-ready documentation.',
+                    lifecycle: ['Idea Validation', 'Research', 'Roadmap', 'Execution', 'Reporting'],
+                    deliverables: [
+                        'Product roadmap draft',
+                        'User and market research insight',
+                        'Product value proposition',
+                        'Product KPI dashboard',
+                        'Pitch deck and product documentation'
+                    ],
+                    coordination: [
+                        'Collaborated with marketing, design, and technology teams',
+                        'Aligned product vision with company objectives',
+                        'Prepared executive-ready dashboards',
+                        'Supported mentor and investor-facing materials'
+                    ],
+                    evidence: [
+                        'Product roadmap',
+                        'Market and user research',
+                        'KPI dashboard',
+                        'Pitch deck',
+                        'Product documentation'
+                    ],
+                    metrics: {
+                        tasks: '30+',
+                        outputs: '6+'
+                    },
+                    links: {
+                        roadmap: '#',
+                        wbs: '#',
+                        report: '#',
+                        meeting: '#',
+                        dashboard: '#'
+                    }
+                },
+                {
+                    company: 'Ralat.ind',
+                    title: 'EdTech Product Feature Planning & Improvement',
+                    role: 'Product Manager Intern',
+                    period: 'August 2025 - December 2025',
+                    domain: 'Product Management',
+                    icon: 'fa-solid fa-layer-group',
+                    description: 'Assisted in planning, developing, and improving edutech platform features through competitor research, user feedback analysis, feature documentation, workflow diagrams, timeline management, and leadership reporting.',
+                    objective: 'Improve learning experience and user engagement through structured product planning, feature prioritization, and product iteration.',
+                    scope: 'Feature specification, workflow diagram, product timeline, user feedback analysis, task priority, product report, and meeting follow-up.',
+                    lifecycle: ['Research', 'Planning', 'Roadmap', 'Execution', 'Monitoring', 'Reporting'],
+                    deliverables: [
+                        'Feature specification document',
+                        'Workflow diagram',
+                        'Product timeline',
+                        'User feedback insight',
+                        'Product report for leadership review'
+                    ],
+                    coordination: [
+                        'Collaborated with UI/UX designers, developers, and content teams',
+                        'Managed product-related task lists and priorities',
+                        'Scheduled product meetings and documented action items',
+                        'Aligned product execution with leadership direction'
+                    ],
+                    evidence: [
+                        'Feature specification',
+                        'Workflow diagram',
+                        'Product meeting notes',
+                        'Task priority tracker',
+                        'Leadership product report'
+                    ],
+                    metrics: {
+                        tasks: '35+',
+                        outputs: '7+'
+                    },
+                    links: {
+                        roadmap: '#',
+                        wbs: '#',
+                        report: '#',
+                        meeting: '#',
+                        dashboard: '#'
+                    }
+                },
+                {
+                    company: 'Yeongu Indonesia',
+                    title: 'Program & Event Execution Management',
+                    role: 'Project Officer Intern',
+                    period: 'January 2026 - March 2026',
+                    domain: 'Project Officer',
+                    icon: 'fa-solid fa-users-gear',
+                    description: 'Led and coordinated end-to-end project execution for organizational and client-based programs, including project planning, WBS, team coordination, meeting management, progress monitoring, budget support, and leadership reporting.',
+                    objective: 'Manage program execution from idea to implementation while ensuring alignment between leadership, cross-functional teams, timeline, and deliverables.',
+                    scope: 'Project planning, WBS, timeline, team supervision, meeting agenda, minutes of meeting, action item follow-up, budget support, and project evaluation.',
+                    lifecycle: ['Idea Validation', 'Planning', 'Execution', 'Monitoring', 'Reporting', 'Evaluation'],
+                    deliverables: [
+                        'Project plan and work breakdown structure',
+                        'Project timeline and task distribution',
+                        'Meeting agenda and minutes of meeting',
+                        'Post-meeting action item tracker',
+                        'Project report and evaluation summary'
+                    ],
+                    coordination: [
+                        'Supervised operations, content, and partnership divisions',
+                        'Acted as liaison between leadership and cross-functional teams',
+                        'Managed executive-level task tracking and follow-ups',
+                        'Strengthened stakeholder communication and project sustainability'
+                    ],
+                    evidence: [
+                        'Work breakdown structure',
+                        'Timeline tracker',
+                        'Meeting agenda and MoM',
+                        'Action item follow-up sheet',
+                        'Project evaluation report'
+                    ],
+                    metrics: {
+                        tasks: '40+',
+                        outputs: '8+'
+                    },
+                    links: {
+                        roadmap: '#',
+                        wbs: '#',
+                        report: '#',
+                        meeting: '#',
+                        dashboard: '#'
+                    }
+                }
+            ]
+        }
+    }
+</script>
+<!-- STRATEGY & RESEARCH / CONSULTING PORTFOLIO SECTION -->
+<section 
+    id="research-strategy" 
+    class="py-24 px-6 border-t border-white/5 bg-[#050814] relative overflow-hidden"
+    x-data="strategyResearchPortfolio()">
+
+    <!-- Background Glow -->
+    <div class="absolute top-0 right-0 w-[560px] h-[560px] bg-emerald-500/10 rounded-full blur-[150px] pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-[560px] h-[560px] bg-blue-500/10 rounded-full blur-[150px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+
+        <!-- Section Header -->
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-14 border-b border-white/10 pb-8">
+            <div>
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-400/30 bg-emerald-500/10 text-emerald-300 text-[10px] font-bold tracking-widest uppercase mb-5">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    Strategy & Research
+                </div>
+
+                <h2 class="text-4xl md:text-6xl font-serif font-bold text-white leading-tight">
+                    Business Consulting <br>
+                    <span class="text-gradient">Strategy Portfolio</span>
+                </h2>
+            </div>
+
+            <p class="text-slate-400 max-w-xl text-sm md:text-base leading-relaxed lg:text-right">
+                A consulting-oriented portfolio covering business diagnosis, market research, financial analysis, operational improvement, management analysis, HR evaluation, marketing strategy, and client-facing strategic recommendation.
+            </p>
+        </div>
+
+        <!-- Consulting Capability Overview -->
+        <div class="glass rounded-[2rem] p-6 md:p-8 mb-12 border border-white/10">
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-5">
+
+                <div class="lg:col-span-2">
+                    <p class="text-xs font-bold tracking-widest text-emerald-300 uppercase mb-2">
+                        Consulting Scope
+                    </p>
+                    <h3 class="text-2xl md:text-3xl font-serif font-bold text-white mb-4">
+                        End-to-End Business Diagnosis
+                    </h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Section ini dibuat berbeda dari portfolio Web Development, Business Development, dan Product/Project karena consulting berfokus pada proses diagnosis bisnis, analisis lintas fungsi, sintesis masalah, dan rekomendasi strategis untuk klien.
+                    </p>
+                </div>
+
+                <div class="lg:col-span-3 grid grid-cols-2 md:grid-cols-3 gap-3">
+                    <template x-for="area in consultingAreas" :key="area.label">
+                        <div class="rounded-2xl bg-white/5 border border-white/10 p-4 hover:border-emerald-300/30 transition">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-400/20 flex items-center justify-center text-emerald-300 mb-3">
+                                <i :class="area.icon"></i>
+                            </div>
+                            <p class="text-white text-sm font-bold" x-text="area.label"></p>
+                            <p class="text-slate-400 text-xs mt-1 leading-relaxed" x-text="area.desc"></p>
+                        </div>
+                    </template>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Consulting Case Cards -->
+        <div class="space-y-8">
+
+            <template x-for="project in consultingProjects" :key="project.company">
+                <article class="group glass rounded-[2rem] p-6 md:p-8 border border-white/10 hover:border-emerald-300/40 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(16,185,129,0.16)]">
+
+                    <div class="grid grid-cols-1 xl:grid-cols-12 gap-8">
+
+                        <!-- LEFT: Case Identity -->
+                        <div class="xl:col-span-4">
+
+                            <div class="flex items-start justify-between gap-4 mb-6">
+                                <div>
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-400/20 text-emerald-300 text-[10px] font-bold tracking-widest uppercase mb-4">
+                                        <i class="fa-solid fa-briefcase"></i>
+                                        <span x-text="project.type"></span>
+                                    </span>
+
+                                    <h3 class="text-2xl md:text-3xl font-serif font-bold text-white leading-snug group-hover:text-emerald-200 transition-colors" x-text="project.title"></h3>
+                                    <p class="text-sm text-brand-accent font-semibold mt-3" x-text="project.company"></p>
+                                </div>
+
+                                <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-emerald-300 shrink-0 group-hover:scale-110 transition">
+                                    <i :class="project.icon"></i>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-1 gap-3 mb-6">
+                                <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                                    <p class="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">Role</p>
+                                    <p class="text-sm text-white font-semibold leading-relaxed" x-text="project.role"></p>
+                                </div>
+
+                                <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                                    <p class="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">Period</p>
+                                    <p class="text-sm text-white font-semibold leading-relaxed" x-text="project.period"></p>
+                                </div>
+                            </div>
+
+                            <p class="text-sm text-slate-400 leading-relaxed mb-6" x-text="project.description"></p>
+
+                            <!-- Consulting Positioning -->
+                            <div class="rounded-2xl bg-gradient-to-br from-emerald-500/10 to-white/5 border border-emerald-400/20 p-5">
+                                <p class="text-[10px] font-bold tracking-widest text-emerald-300 uppercase mb-2">
+                                    Consulting Position
+                                </p>
+                                <p class="text-sm text-slate-300 leading-relaxed" x-text="project.positioning"></p>
+                            </div>
+                        </div>
+
+                        <!-- MIDDLE: Consulting Elements -->
+                        <div class="xl:col-span-5 space-y-5">
+
+                            <!-- Business Diagnosis -->
+                            <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                                <p class="text-[10px] font-bold tracking-widest text-emerald-300 uppercase mb-4">
+                                    Business Diagnosis Flow
+                                </p>
+
+                                <div class="relative">
+                                    <div class="absolute left-[18px] top-4 bottom-4 w-px bg-white/10"></div>
+
+                                    <div class="space-y-4">
+                                        <template x-for="(step, index) in project.diagnosisFlow" :key="step">
+                                            <div class="relative flex items-start gap-4">
+                                                <div class="relative z-10 w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-400/20 text-emerald-200 flex items-center justify-center text-xs font-bold">
+                                                    <span x-text="index + 1"></span>
+                                                </div>
+
+                                                <div>
+                                                    <p class="text-sm text-white font-semibold" x-text="step"></p>
+                                                    <p class="text-xs text-slate-500 mt-1" x-text="diagnosisDescription(step)"></p>
+                                                </div>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Analysis Coverage -->
+                            <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                                <p class="text-[10px] font-bold tracking-widest text-cyan-300 uppercase mb-4">
+                                    Analysis Coverage
+                                </p>
+
+                                <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                                    <template x-for="coverage in project.coverage" :key="coverage.label">
+                                        <div class="rounded-xl bg-white/5 border border-white/10 p-3">
+                                            <div class="flex items-center gap-2 mb-2">
+                                                <i :class="coverage.icon" class="text-cyan-300 text-sm"></i>
+                                                <p class="text-xs text-white font-bold" x-text="coverage.label"></p>
+                                            </div>
+                                            <p class="text-[11px] text-slate-500 leading-relaxed" x-text="coverage.focus"></p>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+
+                            <!-- Framework & Recommendation -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                                <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                                    <p class="text-[10px] font-bold tracking-widest text-purple-300 uppercase mb-3">
+                                        Framework Stack
+                                    </p>
+
+                                    <div class="flex flex-wrap gap-2">
+                                        <template x-for="framework in project.frameworks" :key="framework">
+                                            <span class="px-3 py-1 rounded-full bg-purple-500/10 border border-purple-400/20 text-[10px] font-semibold text-purple-100" x-text="framework"></span>
+                                        </template>
+                                    </div>
+                                </div>
+
+                                <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                                    <p class="text-[10px] font-bold tracking-widest text-amber-300 uppercase mb-3">
+                                        Recommendation Type
+                                    </p>
+
+                                    <ul class="space-y-2 text-xs text-slate-300 leading-relaxed">
+                                        <template x-for="item in project.recommendationType" :key="item">
+                                            <li class="flex items-start gap-2">
+                                                <i class="fa-solid fa-arrow-right text-amber-300 mt-1"></i>
+                                                <span x-text="item"></span>
+                                            </li>
+                                        </template>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                            <!-- Deliverables -->
+                            <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                                <p class="text-[10px] font-bold tracking-widest text-emerald-300 uppercase mb-3">
+                                    Client Deliverables
+                                </p>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                    <template x-for="deliverable in project.deliverables" :key="deliverable">
+                                        <div class="flex items-start gap-2 text-xs text-slate-300 leading-relaxed">
+                                            <i class="fa-solid fa-check text-emerald-300 mt-1"></i>
+                                            <span x-text="deliverable"></span>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- RIGHT: Evidence Center -->
+                        <div class="xl:col-span-3">
+                            <div class="rounded-[1.5rem] bg-white/5 border border-white/10 p-5 h-full flex flex-col justify-between">
+
+                                <div>
+                                    <p class="text-[10px] font-bold tracking-widest text-brand-light uppercase mb-3">
+                                        Consulting Evidence
+                                    </p>
+
+                                    <p class="text-xs text-slate-400 leading-relaxed mb-5">
+                                        Bukti kerja consulting dapat berupa business case, market research, financial analysis, client report, presentation deck, workshop notes, dan action plan.
+                                    </p>
+
+                                    <!-- Consulting Metrics -->
+                                    <div class="grid grid-cols-2 gap-3 mb-5">
+                                        <div class="rounded-2xl bg-white/5 border border-white/10 p-4 text-center">
+                                            <p class="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">
+                                                Scope
+                                            </p>
+                                            <h4 class="text-2xl font-bold text-white" x-text="project.metrics.scopes"></h4>
+                                        </div>
+
+                                        <div class="rounded-2xl bg-white/5 border border-white/10 p-4 text-center">
+                                            <p class="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">
+                                                Output
+                                            </p>
+                                            <h4 class="text-2xl font-bold text-white" x-text="project.metrics.outputs"></h4>
+                                        </div>
+                                    </div>
+
+                                    <!-- Evidence Buttons -->
+                                    <div class="space-y-3">
+                                        <template x-for="btn in evidenceButtons" :key="btn.key">
+                                            <a 
+                                                :href="project.links && project.links[btn.key] ? project.links[btn.key] : '#'"
+                                                target="_blank"
+                                                @click="if (!project.links || !project.links[btn.key] || project.links[btn.key] === '#') $event.preventDefault()"
+                                                :class="project.links && project.links[btn.key] && project.links[btn.key] !== '#'
+                                                    ? 'hover:bg-white/10 hover:border-emerald-300/40 hover:text-white'
+                                                    : 'opacity-45 cursor-not-allowed'"
+                                                class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-slate-300 text-xs font-bold transition-all flex items-center justify-between gap-3">
+                                                
+                                                <span class="flex items-center gap-2">
+                                                    <i :class="btn.icon"></i>
+                                                    <span x-text="btn.label"></span>
+                                                </span>
+
+                                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                            </a>
+                                        </template>
+                                    </div>
+                                </div>
+
+                                <button 
+                                    type="button"
+                                    @click="selectedConsulting = project"
+                                    class="w-full mt-6 px-5 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-brand text-white text-xs font-bold tracking-widest uppercase hover:shadow-[0_10px_25px_rgba(16,185,129,0.30)] transition-all">
+                                    View Consulting Case
+                                </button>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </article>
+            </template>
+
+        </div>
+
+    </div>
+
+    <!-- DETAIL MODAL -->
+    <div 
+        x-show="selectedConsulting" 
+        x-transition.opacity
+        class="fixed inset-0 z-[90] bg-slate-950/75 backdrop-blur-md flex items-center justify-center px-6 py-10"
+        style="display:none;">
+
+        <div 
+            @click.away="selectedConsulting = null"
+            class="glass max-w-5xl w-full max-h-[90vh] overflow-y-auto rounded-[2rem] border border-white/15 shadow-2xl">
+
+            <!-- Modal Header -->
+            <div class="relative p-8 md:p-10 border-b border-white/10 overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl"></div>
+
+                <button 
+                    type="button"
+                    @click="selectedConsulting = null"
+                    class="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-white flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+                <div class="relative z-10 pr-12">
+                    <p class="text-xs font-bold tracking-widest text-emerald-300 uppercase mb-3" x-text="selectedConsulting?.company"></p>
+                    <h3 class="text-3xl md:text-4xl font-serif font-bold text-white mb-4" x-text="selectedConsulting?.title"></h3>
+                    <p class="text-slate-400 text-sm leading-relaxed max-w-3xl" x-text="selectedConsulting?.description"></p>
+                </div>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-8 md:p-10">
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                        <p class="text-[10px] font-bold tracking-widest text-emerald-300 uppercase mb-2">Role</p>
+                        <p class="text-white font-semibold" x-text="selectedConsulting?.role"></p>
+                    </div>
+
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                        <p class="text-[10px] font-bold tracking-widest text-emerald-300 uppercase mb-2">Period</p>
+                        <p class="text-white font-semibold" x-text="selectedConsulting?.period"></p>
+                    </div>
+
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                        <p class="text-[10px] font-bold tracking-widest text-emerald-300 uppercase mb-2">Type</p>
+                        <p class="text-white font-semibold" x-text="selectedConsulting?.type"></p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                    <!-- Diagnosis Flow -->
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+                        <p class="text-[10px] font-bold tracking-widest text-emerald-300 uppercase mb-4">
+                            Business Diagnosis Flow
+                        </p>
+
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <template x-for="step in selectedConsulting?.diagnosisFlow" :key="step">
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-arrow-right text-emerald-300 mt-1"></i>
+                                    <span x-text="step"></span>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+
+                    <!-- Key Activities -->
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+                        <p class="text-[10px] font-bold tracking-widest text-cyan-300 uppercase mb-4">
+                            Key Consulting Activities
+                        </p>
+
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <template x-for="activity in selectedConsulting?.activities" :key="activity">
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-circle-dot text-cyan-300 mt-1"></i>
+                                    <span x-text="activity"></span>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+
+                    <!-- Deliverables -->
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+                        <p class="text-[10px] font-bold tracking-widest text-amber-300 uppercase mb-4">
+                            Deliverables
+                        </p>
+
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <template x-for="deliverable in selectedConsulting?.deliverables" :key="deliverable">
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-check text-amber-300 mt-1"></i>
+                                    <span x-text="deliverable"></span>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+
+                    <!-- Evidence -->
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+                        <p class="text-[10px] font-bold tracking-widest text-purple-300 uppercase mb-4">
+                            Evidence Type
+                        </p>
+
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <template x-for="evidence in selectedConsulting?.evidence" :key="evidence">
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-folder-open text-purple-300 mt-1"></i>
+                                    <span x-text="evidence"></span>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function strategyResearchPortfolio() {
+        return {
+            selectedConsulting: null,
+
+            consultingAreas: [
+                {
+                    label: 'Finance',
+                    desc: 'Financial analysis, cost structure, and business feasibility.',
+                    icon: 'fa-solid fa-coins'
+                },
+                {
+                    label: 'Operation',
+                    desc: 'Workflow, efficiency, bottleneck, and process improvement.',
+                    icon: 'fa-solid fa-gears'
+                },
+                {
+                    label: 'Management',
+                    desc: 'Business model, governance, decision flow, and execution control.',
+                    icon: 'fa-solid fa-chess'
+                },
+                {
+                    label: 'People / HR',
+                    desc: 'Role clarity, team structure, capability, and coordination.',
+                    icon: 'fa-solid fa-users'
+                },
+                {
+                    label: 'Marketing',
+                    desc: 'Market positioning, customer segment, and campaign direction.',
+                    icon: 'fa-solid fa-bullhorn'
+                },
+                {
+                    label: 'Strategy',
+                    desc: 'Problem definition, recommendation, roadmap, and action plan.',
+                    icon: 'fa-solid fa-compass-drafting'
+                }
+            ],
+
+          evidenceButtons: [
+    {
+        key: 'businessCase',
+        label: 'View Business Case',
+        icon: 'fa-solid fa-briefcase'
+    },
+    {
+        key: 'problemAnalysis',
+        label: 'View Problem Analysis',
+        icon: 'fa-solid fa-triangle-exclamation'
+    },
+    {
+        key: 'marketResearch',
+        label: 'View Market Research',
+        icon: 'fa-solid fa-magnifying-glass-chart'
+    },
+    {
+        key: 'productAnalysis',
+        label: 'View Product Analysis',
+        icon: 'fa-solid fa-layer-group'
+    },
+    {
+        key: 'financialAnalysis',
+        label: 'View Financial Analysis',
+        icon: 'fa-solid fa-chart-pie'
+    },
+    {
+        key: 'operationalAnalysis',
+        label: 'View Operational Analysis',
+        icon: 'fa-solid fa-gears'
+    },
+    {
+        key: 'organizationAnalysis',
+        label: 'View Organization Analysis',
+        icon: 'fa-solid fa-sitemap'
+    },
+    {
+        key: 'internalAnalysis',
+        label: 'View Internal Analysis',
+        icon: 'fa-solid fa-building-user'
+    },
+    {
+        key: 'externalAnalysis',
+        label: 'View External Analysis',
+        icon: 'fa-solid fa-earth-asia'
+    },
+    {
+        key: 'frameworkFormulation',
+        label: 'View Framework Formulation',
+        icon: 'fa-solid fa-diagram-project'
+    },
+    {
+        key: 'clientReport',
+        label: 'View Client Report',
+        icon: 'fa-solid fa-file-lines'
+    },
+    {
+        key: 'presentation',
+        label: 'View Presentation',
+        icon: 'fa-solid fa-display'
+    },
+    {
+        key: 'workshopNotes',
+        label: 'View Workshop Notes',
+        icon: 'fa-solid fa-users-viewfinder'
+    },
+    {
+        key: 'actionPlan',
+        label: 'View Action Plan',
+        icon: 'fa-solid fa-list-check'
+    }
+],
+            diagnosisDescription(step) {
+                const desc = {
+                    'Problem Understanding': 'Memahami konteks masalah, kebutuhan klien, dan situasi bisnis.',
+                    'Data Collection': 'Mengumpulkan data internal, eksternal, market, finance, dan operasional.',
+                    'Business Analysis': 'Menganalisis aspek finance, operation, management, people, dan marketing.',
+                    'Insight Synthesis': 'Merangkum temuan utama dan menghubungkan pola masalah.',
+                    'Strategic Recommendation': 'Menyusun solusi strategis yang relevan dengan kebutuhan klien.',
+                    'Action Plan': 'Menerjemahkan rekomendasi menjadi langkah implementasi dan follow-up.'
+                };
+
+                return desc[step] || 'Tahapan analisis consulting.';
+            },
+
+            consultingProjects: [
+                {
+                    company: 'Damirich Consultant',
+                    title: 'Business Case Analysis & Strategic Recommendation',
+                    role: 'Specialist Consultant Intern',
+                    period: 'September 2025 - December 2025',
+                    type: 'Business Consulting',
+                    icon: 'fa-solid fa-chart-simple',
+                    description: 'Assisted senior consultants in analyzing client business cases, conducting market and financial analysis, preparing client-facing presentations, documenting consultation sessions, and drafting strategic recommendations across business functions.',
+                    positioning: 'Supported senior consultants as a business analyst and consulting support function, handling research, analysis, documentation, presentation, and recommendation drafting for client projects.',
+                    diagnosisFlow: [
+                        'Problem Understanding',
+                        'Data Collection',
+                        'Business Analysis',
+                        'Insight Synthesis',
+                        'Strategic Recommendation',
+                        'Action Plan'
+                    ],
+                    coverage: [
+                        {
+                            label: 'Finance',
+                            focus: 'Financial analysis and decision support.',
+                            icon: 'fa-solid fa-coins'
+                        },
+                        {
+                            label: 'Market',
+                            focus: 'Market research and competitor insight.',
+                            icon: 'fa-solid fa-magnifying-glass-chart'
+                        },
+                        {
+                            label: 'Operation',
+                            focus: 'Operational challenge and efficiency improvement.',
+                            icon: 'fa-solid fa-gears'
+                        },
+                        {
+                            label: 'Management',
+                            focus: 'Business case review and strategic direction.',
+                            icon: 'fa-solid fa-chess-board'
+                        },
+                        {
+                            label: 'People',
+                            focus: 'Workshop notes and follow-up alignment.',
+                            icon: 'fa-solid fa-users'
+                        },
+                        {
+                            label: 'Strategy',
+                            focus: 'Recommendation and action plan drafting.',
+                            icon: 'fa-solid fa-compass'
+                        }
+                    ],
+                    frameworks: [
+                        'Business Case Analysis',
+                        'Market Research',
+                        'Financial Analysis',
+                        'Operational Diagnosis',
+                        'Strategic Recommendation',
+                        'Action Plan'
+                    ],
+                    recommendationType: [
+                        'Business improvement recommendation',
+                        'Operational efficiency improvement',
+                        'Market and positioning insight',
+                        'Client action plan and follow-up'
+                    ],
+                    deliverables: [
+                        'Client-facing presentation deck',
+                        'Business case analysis summary',
+                        'Market research insight',
+                        'Financial analysis support',
+                        'Consultation notes and follow-up action plan',
+                        'Strategic recommendation draft'
+                    ],
+                    activities: [
+                        'Assisted senior consultants in analyzing client business cases',
+                        'Conducted market research and financial analysis',
+                        'Prepared client-facing reports and presentations',
+                        'Evaluated operational challenges and efficiency opportunities',
+                        'Supported workshops and consultation sessions',
+                        'Documented discussions and prepared follow-up action plans',
+                        'Drafted ad-hoc research and strategic recommendation materials'
+                    ],
+                    evidence: [
+                        'Business case analysis document',
+                        'Market research file',
+                        'Financial analysis spreadsheet',
+                        'Client report or presentation deck',
+                        'Workshop or consultation notes',
+                        'Follow-up action plan'
+                    ],
+                    metrics: {
+                        scopes: '6',
+                        outputs: '6+'
+                    },
+                   links: {
+    businessCase: 'https://drive.google.com/...',
+    problemAnalysis: 'https://drive.google.com/...',
+    marketResearch: 'https://drive.google.com/...',
+    productAnalysis: 'https://drive.google.com/...',
+    financialAnalysis: 'https://docs.google.com/spreadsheets/...',
+    operationalAnalysis: 'https://drive.google.com/...',
+    organizationAnalysis: 'https://drive.google.com/...',
+    internalAnalysis: 'https://drive.google.com/...',
+    externalAnalysis: 'https://drive.google.com/...',
+    frameworkFormulation: 'https://drive.google.com/...',
+    clientReport: 'https://drive.google.com/...',
+    presentation: 'https://docs.google.com/presentation/...',
+    workshopNotes: 'https://drive.google.com/...',
+    actionPlan: 'https://docs.google.com/spreadsheets/...'
+}
+                }
+            ]
+        }
+    }
+</script>
+<!-- ADMINISTRATION & FINANCE PORTFOLIO SECTION -->
+<section 
+    id="administration-finance" 
+    class="py-24 px-6 border-t border-white/5 bg-[#070A18] relative overflow-hidden"
+    x-data="administrationFinancePortfolio()">
+
+    <!-- Background Glow -->
+    <div class="absolute top-0 left-0 w-[560px] h-[560px] bg-emerald-500/10 rounded-full blur-[150px] pointer-events-none"></div>
+    <div class="absolute bottom-0 right-0 w-[560px] h-[560px] bg-yellow-500/10 rounded-full blur-[150px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+
+        <!-- Section Header -->
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-14 border-b border-white/10 pb-8">
+            <div>
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-400/30 bg-emerald-500/10 text-emerald-300 text-[10px] font-bold tracking-widest uppercase mb-5">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                    Administration & Finance
+                </div>
+
+                <h2 class="text-4xl md:text-6xl font-serif font-bold text-white leading-tight">
+                    Administration & <br>
+                    <span class="text-gradient">Finance Portfolio</span>
+                </h2>
+            </div>
+
+            <p class="text-slate-400 max-w-xl text-sm md:text-base leading-relaxed lg:text-right">
+                A portfolio of administration and finance works covering transaction recording, financial document management, invoice and receipt verification, expense tracking, cash flow support, budget monitoring, reconciliation, and management-level reporting.
+            </p>
+        </div>
+
+        <!-- Finance Capability Overview -->
+        <div class="glass rounded-[2rem] p-6 md:p-8 mb-12 border border-white/10">
+            <div class="grid grid-cols-1 lg:grid-cols-6 gap-5">
+
+                <div class="lg:col-span-2">
+                    <p class="text-xs font-bold tracking-widest text-emerald-300 uppercase mb-2">
+                        Finance Workflow
+                    </p>
+                    <h3 class="text-2xl md:text-3xl font-serif font-bold text-white mb-4">
+                        From Transaction to Management Report
+                    </h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Section ini menampilkan proses kerja administrasi dan keuangan, mulai dari pencatatan transaksi, pengarsipan dokumen, pengecekan invoice, monitoring biaya, sampai penyusunan ringkasan laporan untuk kebutuhan manajemen.
+                    </p>
+                </div>
+
+                <div class="lg:col-span-4 grid grid-cols-2 md:grid-cols-3 gap-3">
+                    <template x-for="item in financeAreas" :key="item.label">
+                        <div class="rounded-2xl bg-white/5 border border-white/10 p-4 hover:border-emerald-300/30 transition">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-400/20 flex items-center justify-center text-emerald-300 mb-3">
+                                <i :class="item.icon"></i>
+                            </div>
+                            <p class="text-white text-sm font-bold" x-text="item.label"></p>
+                            <p class="text-slate-400 text-xs mt-1 leading-relaxed" x-text="item.desc"></p>
+                        </div>
+                    </template>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Finance Cards -->
+        <div class="space-y-8">
+
+            <template x-for="project in financeProjects" :key="project.company">
+                <article class="group glass rounded-[2rem] p-6 md:p-8 border border-white/10 hover:border-emerald-300/40 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(16,185,129,0.16)]">
+
+                    <div class="grid grid-cols-1 xl:grid-cols-12 gap-8">
+
+                        <!-- LEFT: Identity -->
+                        <div class="xl:col-span-4">
+
+                            <div class="flex items-start justify-between gap-4 mb-6">
+                                <div>
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-400/20 text-emerald-300 text-[10px] font-bold tracking-widest uppercase mb-4">
+                                        <i class="fa-solid fa-coins"></i>
+                                        <span x-text="project.type"></span>
+                                    </span>
+
+                                    <h3 class="text-2xl md:text-3xl font-serif font-bold text-white leading-snug group-hover:text-emerald-200 transition-colors" x-text="project.title"></h3>
+                                    <p class="text-sm text-brand-accent font-semibold mt-3" x-text="project.company"></p>
+                                </div>
+
+                                <div class="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-emerald-300 shrink-0 group-hover:scale-110 transition">
+                                    <i :class="project.icon"></i>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-1 gap-3 mb-6">
+                                <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                                    <p class="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">Role</p>
+                                    <p class="text-sm text-white font-semibold leading-relaxed" x-text="project.role"></p>
+                                </div>
+
+                                <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                                    <p class="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">Period</p>
+                                    <p class="text-sm text-white font-semibold leading-relaxed" x-text="project.period"></p>
+                                </div>
+                            </div>
+
+                            <p class="text-sm text-slate-400 leading-relaxed" x-text="project.description"></p>
+                        </div>
+
+                        <!-- MIDDLE: Finance Elements -->
+                        <div class="xl:col-span-5 space-y-5">
+
+                            <!-- Finance Scope -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                                    <p class="text-[10px] font-bold tracking-widest text-emerald-300 uppercase mb-3">
+                                        Finance Scope
+                                    </p>
+                                    <p class="text-sm text-slate-300 leading-relaxed" x-text="project.scope"></p>
+                                </div>
+
+                                <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                                    <p class="text-[10px] font-bold tracking-widest text-yellow-300 uppercase mb-3">
+                                        Admin Scope
+                                    </p>
+                                    <p class="text-sm text-slate-300 leading-relaxed" x-text="project.adminScope"></p>
+                                </div>
+                            </div>
+
+                            <!-- Finance Workflow -->
+                            <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                                <p class="text-[10px] font-bold tracking-widest text-cyan-300 uppercase mb-4">
+                                    Administration & Finance Workflow
+                                </p>
+
+                                <div class="relative">
+                                    <div class="absolute left-[18px] top-4 bottom-4 w-px bg-white/10"></div>
+
+                                    <div class="space-y-4">
+                                        <template x-for="(step, index) in project.workflow" :key="step">
+                                            <div class="relative flex items-start gap-4">
+                                                <div class="relative z-10 w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-400/20 text-emerald-200 flex items-center justify-center text-xs font-bold">
+                                                    <span x-text="index + 1"></span>
+                                                </div>
+
+                                                <div>
+                                                    <p class="text-sm text-white font-semibold" x-text="step"></p>
+                                                    <p class="text-xs text-slate-500 mt-1" x-text="workflowDescription(step)"></p>
+                                                </div>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Records & Reports -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                                <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                                    <p class="text-[10px] font-bold tracking-widest text-emerald-300 uppercase mb-3">
+                                        Records Managed
+                                    </p>
+
+                                    <ul class="space-y-2 text-xs text-slate-300 leading-relaxed">
+                                        <template x-for="record in project.records.slice(0, 4)" :key="record">
+                                            <li class="flex items-start gap-2">
+                                                <i class="fa-solid fa-check text-emerald-300 mt-1"></i>
+                                                <span x-text="record"></span>
+                                            </li>
+                                        </template>
+                                    </ul>
+                                </div>
+
+                                <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                                    <p class="text-[10px] font-bold tracking-widest text-yellow-300 uppercase mb-3">
+                                        Reports Prepared
+                                    </p>
+
+                                    <ul class="space-y-2 text-xs text-slate-300 leading-relaxed">
+                                        <template x-for="report in project.reports.slice(0, 4)" :key="report">
+                                            <li class="flex items-start gap-2">
+                                                <i class="fa-solid fa-file-lines text-yellow-300 mt-1"></i>
+                                                <span x-text="report"></span>
+                                            </li>
+                                        </template>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                            <!-- Controls -->
+                            <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                                <p class="text-[10px] font-bold tracking-widest text-brand-light uppercase mb-3">
+                                    Financial Control Focus
+                                </p>
+
+                                <div class="flex flex-wrap gap-2">
+                                    <template x-for="control in project.controls" :key="control">
+                                        <span class="px-3 py-1 rounded-full bg-brand/10 border border-brand-light/20 text-[10px] font-semibold text-brand-light" x-text="control"></span>
+                                    </template>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- RIGHT: Evidence Center -->
+                        <div class="xl:col-span-3">
+                            <div class="rounded-[1.5rem] bg-white/5 border border-white/10 p-5 h-full flex flex-col justify-between">
+
+                                <div>
+                                    <p class="text-[10px] font-bold tracking-widest text-brand-light uppercase mb-3">
+                                        Finance Evidence
+                                    </p>
+
+                                    <p class="text-xs text-slate-400 leading-relaxed mb-5">
+                                        Bukti kerja finance dan administrasi dapat berupa ledger, laporan keuangan, invoice, receipt, budget tracker, reconciliation notes, dan management summary.
+                                    </p>
+
+                                    <!-- Metrics -->
+                                    <div class="grid grid-cols-2 gap-3 mb-5">
+                                        <div class="rounded-2xl bg-white/5 border border-white/10 p-4 text-center">
+                                            <p class="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">
+                                                Reports
+                                            </p>
+                                            <h4 class="text-2xl font-bold text-white" x-text="project.metrics.reports"></h4>
+                                        </div>
+
+                                        <div class="rounded-2xl bg-white/5 border border-white/10 p-4 text-center">
+                                            <p class="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">
+                                                Records
+                                            </p>
+                                            <h4 class="text-2xl font-bold text-white" x-text="project.metrics.records"></h4>
+                                        </div>
+                                    </div>
+
+                                    <!-- Evidence Buttons -->
+                                    <div class="space-y-3">
+                                        <template x-for="btn in evidenceButtons" :key="btn.key">
+                                            <a 
+                                                :href="project.links && project.links[btn.key] ? project.links[btn.key] : '#'"
+                                                target="_blank"
+                                                @click="if (!project.links || !project.links[btn.key] || project.links[btn.key] === '#') $event.preventDefault()"
+                                                :class="project.links && project.links[btn.key] && project.links[btn.key] !== '#'
+                                                    ? 'hover:bg-white/10 hover:border-emerald-300/40 hover:text-white'
+                                                    : 'opacity-45 cursor-not-allowed'"
+                                                class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-slate-300 text-xs font-bold transition-all flex items-center justify-between gap-3">
+                                                
+                                                <span class="flex items-center gap-2">
+                                                    <i :class="btn.icon"></i>
+                                                    <span x-text="btn.label"></span>
+                                                </span>
+
+                                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                            </a>
+                                        </template>
+                                    </div>
+                                </div>
+
+                                <button 
+                                    type="button"
+                                    @click="selectedFinance = project"
+                                    class="w-full mt-6 px-5 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-brand text-white text-xs font-bold tracking-widest uppercase hover:shadow-[0_10px_25px_rgba(16,185,129,0.30)] transition-all">
+                                    View Finance Detail
+                                </button>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </article>
+            </template>
+
+        </div>
+
+    </div>
+
+    <!-- DETAIL MODAL -->
+    <div 
+        x-show="selectedFinance" 
+        x-transition.opacity
+        class="fixed inset-0 z-[90] bg-slate-950/75 backdrop-blur-md flex items-center justify-center px-6 py-10"
+        style="display:none;">
+
+        <div 
+            @click.away="selectedFinance = null"
+            class="glass max-w-5xl w-full max-h-[90vh] overflow-y-auto rounded-[2rem] border border-white/15 shadow-2xl">
+
+            <div class="relative p-8 md:p-10 border-b border-white/10 overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl"></div>
+
+                <button 
+                    type="button"
+                    @click="selectedFinance = null"
+                    class="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-white flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+                <div class="relative z-10 pr-12">
+                    <p class="text-xs font-bold tracking-widest text-emerald-300 uppercase mb-3" x-text="selectedFinance?.company"></p>
+                    <h3 class="text-3xl md:text-4xl font-serif font-bold text-white mb-4" x-text="selectedFinance?.title"></h3>
+                    <p class="text-slate-400 text-sm leading-relaxed max-w-3xl" x-text="selectedFinance?.description"></p>
+                </div>
+            </div>
+
+            <div class="p-8 md:p-10">
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                        <p class="text-[10px] font-bold tracking-widest text-emerald-300 uppercase mb-2">Role</p>
+                        <p class="text-white font-semibold" x-text="selectedFinance?.role"></p>
+                    </div>
+
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                        <p class="text-[10px] font-bold tracking-widest text-emerald-300 uppercase mb-2">Period</p>
+                        <p class="text-white font-semibold" x-text="selectedFinance?.period"></p>
+                    </div>
+
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                        <p class="text-[10px] font-bold tracking-widest text-emerald-300 uppercase mb-2">Type</p>
+                        <p class="text-white font-semibold" x-text="selectedFinance?.type"></p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+                        <p class="text-[10px] font-bold tracking-widest text-cyan-300 uppercase mb-4">
+                            Finance Workflow
+                        </p>
+
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <template x-for="step in selectedFinance?.workflow" :key="step">
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-arrow-right text-cyan-300 mt-1"></i>
+                                    <span x-text="step"></span>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+                        <p class="text-[10px] font-bold tracking-widest text-emerald-300 uppercase mb-4">
+                            Records Managed
+                        </p>
+
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <template x-for="record in selectedFinance?.records" :key="record">
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-check text-emerald-300 mt-1"></i>
+                                    <span x-text="record"></span>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+                        <p class="text-[10px] font-bold tracking-widest text-yellow-300 uppercase mb-4">
+                            Reports Prepared
+                        </p>
+
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <template x-for="report in selectedFinance?.reports" :key="report">
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-file-lines text-yellow-300 mt-1"></i>
+                                    <span x-text="report"></span>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+                        <p class="text-[10px] font-bold tracking-widest text-brand-light uppercase mb-4">
+                            Evidence Type
+                        </p>
+
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <template x-for="evidence in selectedFinance?.evidence" :key="evidence">
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-folder-open text-brand-light mt-1"></i>
+                                    <span x-text="evidence"></span>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function administrationFinancePortfolio() {
+        return {
+            selectedFinance: null,
+
+            financeAreas: [
+                {
+                    label: 'Transaction Records',
+                    desc: 'Pencatatan transaksi pemasukan dan pengeluaran.',
+                    icon: 'fa-solid fa-receipt'
+                },
+                {
+                    label: 'Financial Report',
+                    desc: 'Income statement, cash flow, and expense tracking.',
+                    icon: 'fa-solid fa-file-invoice-dollar'
+                },
+                {
+                    label: 'Document Control',
+                    desc: 'Invoice, receipt, payment proof, and audit support.',
+                    icon: 'fa-solid fa-folder-open'
+                },
+                {
+                    label: 'Budget Monitoring',
+                    desc: 'Budget planning and expense efficiency control.',
+                    icon: 'fa-solid fa-wallet'
+                },
+                {
+                    label: 'Reconciliation',
+                    desc: 'Account checking and monthly reporting preparation.',
+                    icon: 'fa-solid fa-scale-balanced'
+                },
+                {
+                    label: 'Management Summary',
+                    desc: 'Concise financial summary for leadership review.',
+                    icon: 'fa-solid fa-chart-line'
+                }
+            ],
+
+            evidenceButtons: [
+                {
+                    key: 'ledger',
+                    label: 'View Ledger',
+                    icon: 'fa-solid fa-book'
+                },
+                {
+                    key: 'financialReport',
+                    label: 'View Financial Report',
+                    icon: 'fa-solid fa-file-invoice-dollar'
+                },
+                {
+                    key: 'invoiceDocs',
+                    label: 'View Invoice / Receipt',
+                    icon: 'fa-solid fa-receipt'
+                },
+                {
+                    key: 'budgetTracker',
+                    label: 'View Budget Tracker',
+                    icon: 'fa-solid fa-wallet'
+                },
+                {
+                    key: 'reconciliation',
+                    label: 'View Reconciliation',
+                    icon: 'fa-solid fa-scale-balanced'
+                },
+                {
+                    key: 'managementSummary',
+                    label: 'View Management Summary',
+                    icon: 'fa-solid fa-chart-simple'
+                }
+            ],
+
+            workflowDescription(step) {
+                const desc = {
+                    'Transaction Recording': 'Mencatat transaksi pemasukan dan pengeluaran secara rapi.',
+                    'Document Verification': 'Mengecek invoice, bukti pembayaran, receipt, dan dokumen pendukung.',
+                    'Expense Tracking': 'Memantau pengeluaran dan memastikan penggunaan dana efisien.',
+                    'Budget Monitoring': 'Mendukung perencanaan anggaran dan kontrol biaya.',
+                    'Account Reconciliation': 'Membantu pengecekan data akun dan kesesuaian transaksi.',
+                    'Financial Reporting': 'Menyusun laporan dan ringkasan keuangan untuk manajemen.',
+                    'Administrative Support': 'Mengelola dokumen, database, dan kebutuhan administrasi operasional.',
+                    'Leadership Summary': 'Menyusun laporan ringkas untuk kebutuhan review pimpinan.'
+                };
+
+                return desc[step] || 'Tahapan kerja administrasi dan finance.';
+            },
+
+            financeProjects: [
+                {
+                    company: 'Anuva Study',
+                    title: 'Financial Records & Management Reporting',
+                    role: 'Administration and Finance',
+                    period: 'September 2025 - December 2025',
+                    type: 'Finance Administration',
+                    icon: 'fa-solid fa-file-invoice-dollar',
+                    description: 'Managed financial transaction records, organized financial documents, assisted in financial reporting, supported budget planning, expense monitoring, account reconciliation, and prepared financial summaries for management review.',
+                    scope: 'Financial transaction recording, income statement support, cash flow tracking, expense monitoring, budget support, and reconciliation preparation.',
+                    adminScope: 'Invoice organization, receipt verification, financial document filing, audit support, and leadership-level financial data organization.',
+                    workflow: [
+                        'Transaction Recording',
+                        'Document Verification',
+                        'Expense Tracking',
+                        'Budget Monitoring',
+                        'Account Reconciliation',
+                        'Financial Reporting',
+                        'Leadership Summary'
+                    ],
+                    records: [
+                        'Financial transaction records',
+                        'Invoices and payment receipts',
+                        'Expense tracking documents',
+                        'Cash flow support data',
+                        'Monthly financial data'
+                    ],
+                    reports: [
+                        'Income statement support',
+                        'Cash flow summary',
+                        'Expense tracking report',
+                        'Concise financial summary',
+                        'Leadership-level finance report'
+                    ],
+                    controls: [
+                        'Transparency',
+                        'Compliance',
+                        'Document Accuracy',
+                        'Budget Efficiency',
+                        'Monthly Reporting',
+                        'Audit Support'
+                    ],
+                    evidence: [
+                        'Transaction ledger',
+                        'Invoice and receipt folder',
+                        'Expense tracker',
+                        'Cash flow report',
+                        'Budget monitoring sheet',
+                        'Management financial summary'
+                    ],
+                    metrics: {
+                        reports: '5+',
+                        records: '100+'
+                    },
+                    links: {
+                        ledger: '#',
+                        financialReport: '#',
+                        invoiceDocs: '#',
+                        budgetTracker: '#',
+                        reconciliation: '#',
+                        managementSummary: '#'
+                    }
+                },
+                {
+                    company: 'Growth Education',
+                    title: 'Finance Administration & Business Reporting Support',
+                    role: 'Finance & Administration Intern',
+                    period: 'September 2025 - December 2025',
+                    type: 'Finance & Admin Support',
+                    icon: 'fa-solid fa-chart-line',
+                    description: 'Supported administrative and financial reporting activities while contributing to structured business documentation, reporting workflows, and internal coordination for management review.',
+                    scope: 'Administrative finance support, reporting preparation, business data organization, pipeline reporting support, and management documentation.',
+                    adminScope: 'Document organization, internal coordination support, report compilation, proposal documentation, and structured data management.',
+                    workflow: [
+                        'Administrative Support',
+                        'Document Verification',
+                        'Expense Tracking',
+                        'Financial Reporting',
+                        'Leadership Summary'
+                    ],
+                    records: [
+                        'Administrative records',
+                        'Business report documents',
+                        'Finance support data',
+                        'Internal coordination notes',
+                        'Management reporting files'
+                    ],
+                    reports: [
+                        'Business progress report',
+                        'Partnership status summary',
+                        'Strategic outcome report',
+                        'Management review support',
+                        'Administrative finance summary'
+                    ],
+                    controls: [
+                        'Data Organization',
+                        'Reporting Accuracy',
+                        'Document Control',
+                        'Internal Coordination',
+                        'Management Review'
+                    ],
+                    evidence: [
+                        'Administration tracker',
+                        'Report documentation',
+                        'Management summary',
+                        'Business progress file',
+                        'Finance support notes'
+                    ],
+                    metrics: {
+                        reports: '4+',
+                        records: '50+'
+                    },
+                    links: {
+                        ledger: '#',
+                        financialReport: '#',
+                        invoiceDocs: '#',
+                        budgetTracker: '#',
+                        reconciliation: '#',
+                        managementSummary: '#'
+                    }
+                }
+            ]
+        }
+    }
+</script>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="contact" class="relative z-10 border-t border-white/10 bg-[#050814] px-6 py-16">
+        <div class="max-w-7xl mx-auto">
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+
+                <div class="md:col-span-2">
+                    <a href="landing-page.html" class="text-3xl font-serif font-bold text-white tracking-wider">
+                        MNA<span class="text-brand-accent">.</span>
+                    </a>
+
+                    <p class="mt-5 text-slate-400 max-w-md leading-relaxed text-sm">
+                        Portfolio digital M. Nabilah Abror yang menampilkan karya, pengalaman,
+                        project, research, dan bukti proses kerja dalam bidang business strategy,
+                        product management, business development, dan digital innovation.
+                    </p>
+
+                    <div class="flex gap-3 mt-6">
+                        <a href="mailto:lobiianewar1234@gmail.com"
+                           class="w-10 h-10 rounded-full glass flex items-center justify-center text-slate-300 hover:text-brand-light hover:border-brand-light transition">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+
+                        <a href="https://nabil-profile-six.vercel.app/" target="_blank"
+                           class="w-10 h-10 rounded-full glass flex items-center justify-center text-slate-300 hover:text-brand-light hover:border-brand-light transition">
+                            <i class="fas fa-globe"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-5">Explore</h4>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li><a href="landing-page.html#about" class="hover:text-brand-light transition">About</a></li>
+                        <li><a href="landing-page.html#experience" class="hover:text-brand-light transition">Experience</a></li>
+                        <li><a href="landing-page.html#awards" class="hover:text-brand-light transition">Awards</a></li>
+                        <li><a href="portfolio.html" class="hover:text-brand-light transition">Portfolio</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-5">Portfolio</h4>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li><a href="#web-development" class="hover:text-brand-light transition">Web Development</a></li>
+                        <li><a href="#business-development" class="hover:text-brand-light transition">Business Development</a></li>
+                        <li><a href="#product-project" class="hover:text-brand-light transition">Product & Project</a></li>
+                        <li><a href="#research-strategy" class="hover:text-brand-light transition">Research & Strategy</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-xs text-slate-500">
+                    © 2026 M. Nabilah Abror. All rights reserved.
+                </p>
+
+                <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+                        class="px-4 py-2 rounded-full glass text-xs font-bold text-slate-300 hover:text-white hover:border-brand-light/40 transition">
+                    Back to Top <i class="fa-solid fa-arrow-up ml-2"></i>
+                </button>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        function portfolioPage() {
+            return {
+                mobileMenu: false,
+                scrolled: false
+            }
+        }
+    </script>
+
+</body>
+</html>

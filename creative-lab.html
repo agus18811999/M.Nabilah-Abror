@@ -1,0 +1,2657 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Labs | M. Nabilah Abror</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            light: '#a5b4fc',
+                            DEFAULT: '#6366f1',
+                            dark: '#312e81',
+                            accent: '#f472b6',
+                        }
+                    },
+                    animation: {
+                        blob: 'blob 7s infinite',
+                        float: 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-14px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        [x-cloak] { display: none !important; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1e1b4b; }
+        ::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #6366f1; }
+
+        .bg-gradient-premium {
+            background: linear-gradient(145deg, #0f172a 0%, #1e1b4b 48%, #2e1065 100%);
+        }
+
+        .glass {
+            background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255,255,255,0.10);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.28);
+        }
+
+        .glass-hover:hover {
+            background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.03) 100%);
+            border-color: rgba(165,180,252,0.35);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 38px rgba(99,102,241,0.25);
+            transition: all 0.35s ease;
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #a5b4fc, #f472b6, #facc15, #a5b4fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 250% auto;
+            animation: gradientMove 4s linear infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% center; }
+            100% { background-position: 250% center; }
+        }
+
+        .venture-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .venture-card::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            background: radial-gradient(circle at top right, rgba(244,114,182,0.18), transparent 36%),
+                        radial-gradient(circle at bottom left, rgba(99,102,241,0.16), transparent 42%);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            pointer-events: none;
+        }
+
+        .venture-card:hover::before {
+            opacity: 1;
+        }
+
+        .timeline-line {
+            background: linear-gradient(to bottom, rgba(244,114,182,0.55), rgba(99,102,241,0.25), transparent);
+        }
+     
+    .creative-lab-row {
+        position: relative;
+        min-height: 250px;
+        border-radius: 2.2rem;
+        overflow: hidden;
+        background:
+            linear-gradient(135deg, rgba(255,255,255,0.075), rgba(255,255,255,0.025)),
+            radial-gradient(circle at 80% 20%, rgba(244,114,182,0.18), transparent 32%),
+            radial-gradient(circle at 8% 80%, rgba(34,211,238,0.16), transparent 34%);
+        border: 1px solid rgba(255,255,255,0.10);
+        box-shadow: 0 18px 45px rgba(0,0,0,0.25);
+        transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .creative-lab-row:hover {
+        transform: translateY(-6px);
+        border-color: rgba(244,114,182,0.38);
+        box-shadow: 0 28px 80px rgba(244,114,182,0.15), 0 18px 55px rgba(0,0,0,0.38);
+    }
+
+    .creative-lab-row::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+            linear-gradient(90deg, rgba(244,114,182,0.22), transparent 24%, transparent 76%, rgba(99,102,241,0.18)),
+            linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.07) 45%, transparent 60%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+    }
+
+    .creative-lab-row:hover::before {
+        opacity: 1;
+    }
+
+    .creative-lab-row::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 0 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(244,114,182,0.7), rgba(99,102,241,0.7), transparent);
+        opacity: 0.8;
+    }
+
+    .creative-index-box {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        border-radius: 2rem;
+        background:
+            linear-gradient(145deg, rgba(255,255,255,0.10), rgba(255,255,255,0.025));
+        border: 1px solid rgba(255,255,255,0.12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .creative-index-box::before {
+        content: "";
+        position: absolute;
+        width: 180px;
+        height: 180px;
+        border-radius: 999px;
+        background: conic-gradient(from 90deg, rgba(244,114,182,0.55), rgba(99,102,241,0.45), rgba(34,211,238,0.45), rgba(244,114,182,0.55));
+        animation: creativeSpin 8s linear infinite;
+        opacity: 0.25;
+    }
+
+    .creative-index-box::after {
+        content: "";
+        position: absolute;
+        inset: 3px;
+        border-radius: 1.75rem;
+        background: rgba(15,23,42,0.86);
+        backdrop-filter: blur(10px);
+    }
+
+    .creative-index-number {
+        position: relative;
+        z-index: 2;
+        font-family: "Playfair Display", serif;
+        font-size: 3rem;
+        font-weight: 800;
+        color: rgba(255,255,255,0.95);
+        line-height: 1;
+    }
+
+    @keyframes creativeSpin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+    .creative-main-icon {
+        width: 66px;
+        height: 66px;
+        border-radius: 1.5rem;
+        background: rgba(255,255,255,0.07);
+        border: 1px solid rgba(255,255,255,0.12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #f472b6;
+        font-size: 1.45rem;
+        box-shadow: inset 0 0 22px rgba(255,255,255,0.04);
+        transition: transform 0.35s ease, background 0.35s ease, color 0.35s ease;
+    }
+
+    .creative-lab-row:hover .creative-main-icon {
+        transform: rotate(-6deg) scale(1.08);
+        background: rgba(244,114,182,0.14);
+        color: #ffffff;
+    }
+
+    .creative-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.42rem 0.75rem;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.055);
+        border: 1px solid rgba(255,255,255,0.10);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+    }
+
+    .creative-tag {
+        display: inline-flex;
+        padding: 0.42rem 0.75rem;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.055);
+        border: 1px solid rgba(255,255,255,0.10);
+        font-size: 10px;
+        font-weight: 700;
+        color: #cbd5e1;
+    }
+
+    .creative-preview-box {
+        position: relative;
+        height: 150px;
+        border-radius: 1.5rem;
+        overflow: hidden;
+        background:
+            linear-gradient(135deg, rgba(99,102,241,0.18), rgba(244,114,182,0.10)),
+            rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .creative-preview-box::before {
+        content: "";
+        position: absolute;
+        inset: 18px;
+        border-radius: 1rem;
+        border: 1px solid rgba(255,255,255,0.16);
+        background:
+            linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+        transform: rotate(-2deg);
+    }
+
+    .creative-preview-box::after {
+        content: "";
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        right: -30px;
+        top: -30px;
+        border-radius: 999px;
+        background: rgba(244,114,182,0.22);
+        filter: blur(26px);
+    }
+
+    .creative-preview-content {
+        position: relative;
+        z-index: 2;
+        height: 100%;
+        padding: 1.15rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .creative-open-btn {
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+    }
+
+    .creative-open-btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(120deg, transparent, rgba(255,255,255,0.18), transparent);
+        transform: translateX(-120%);
+        transition: transform 0.6s ease;
+        z-index: -1;
+    }
+
+    .creative-open-btn:hover::before {
+        transform: translateX(120%);
+    }
+
+    @media (max-width: 1024px) {
+        .creative-index-box {
+            width: 90px;
+            height: 90px;
+            border-radius: 1.5rem;
+        }
+
+        .creative-index-number {
+            font-size: 2.25rem;
+        }
+
+        .creative-preview-box {
+            height: 130px;
+        }
+    }
+    .creative-preview-box {
+        position: relative;
+        height: 150px;
+        border-radius: 1.5rem;
+        overflow: hidden;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.10);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .creative-preview-box::before {
+        content: "";
+        position: absolute;
+        inset: 14px;
+        border-radius: 1rem;
+        background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.015));
+        border: 1px solid rgba(255,255,255,0.10);
+        transform: none;
+    }
+
+    .creative-preview-box::after {
+        display: none;
+    }
+
+    .creative-preview-content {
+        position: relative;
+        z-index: 2;
+        height: 100%;
+        width: 100%;
+        padding: 1.1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+ 
+    .proposal-dossier-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 2rem;
+        background:
+            linear-gradient(135deg, rgba(255,255,255,0.075), rgba(255,255,255,0.025)),
+            radial-gradient(circle at top right, rgba(250,204,21,0.13), transparent 34%),
+            radial-gradient(circle at bottom left, rgba(244,114,182,0.13), transparent 42%);
+        border: 1px solid rgba(255,255,255,0.10);
+        box-shadow: 0 18px 45px rgba(0,0,0,0.25);
+        transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .proposal-dossier-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(250,204,21,0.32);
+        box-shadow: 0 28px 80px rgba(250,204,21,0.11), 0 18px 55px rgba(0,0,0,0.38);
+    }
+
+    .proposal-dossier-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.08) 42%, transparent 62%);
+        transform: translateX(-130%);
+        transition: transform 0.75s ease;
+        pointer-events: none;
+    }
+
+    .proposal-dossier-card:hover::before {
+        transform: translateX(130%);
+    }
+
+    .proposal-doc-preview {
+        position: relative;
+        min-height: 355px;
+        border-radius: 1.6rem;
+        background:
+            linear-gradient(180deg, rgba(255,255,255,0.075), rgba(255,255,255,0.025)),
+            radial-gradient(circle at 50% 0%, rgba(250,204,21,0.10), transparent 42%),
+            rgba(15,23,42,0.86);
+        border: 1px solid rgba(255,255,255,0.10);
+        overflow: hidden;
+        padding: 1.35rem;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        align-items: center;
+        text-align: center;
+    }
+
+    .proposal-doc-preview::before {
+        content: "";
+        position: absolute;
+        inset: 16px;
+        border-radius: 1.15rem;
+        border: 1px solid rgba(255,255,255,0.08);
+        background:
+            linear-gradient(90deg, rgba(255,255,255,0.045) 0 1px, transparent 1px 100%),
+            linear-gradient(180deg, rgba(255,255,255,0.045) 0 1px, transparent 1px 100%);
+        background-size: 28px 28px;
+        opacity: 0.20;
+        pointer-events: none;
+    }
+
+    .proposal-doc-preview::after {
+        content: "";
+        position: absolute;
+        width: 180px;
+        height: 180px;
+        right: -70px;
+        bottom: -70px;
+        border-radius: 999px;
+        background: rgba(244,114,182,0.14);
+        filter: blur(36px);
+        pointer-events: none;
+    }
+
+    .proposal-cover-category {
+        position: relative;
+        z-index: 2;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        width: fit-content;
+        margin: 0 auto;
+        padding: 0.5rem 0.9rem;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.075);
+        border: 1px solid rgba(255,255,255,0.12);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        line-height: 1.2;
+    }
+
+    .proposal-cover-main {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .proposal-cover-icon {
+        width: 78px;
+        height: 78px;
+        border-radius: 1.5rem;
+        background: rgba(255,255,255,0.085);
+        border: 1px solid rgba(255,255,255,0.13);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        margin-bottom: 1.25rem;
+        box-shadow: inset 0 0 24px rgba(255,255,255,0.04);
+    }
+
+    .proposal-cover-label {
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #f472b6;
+        margin-bottom: 0.55rem;
+    }
+
+    .proposal-cover-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1.85rem;
+        font-weight: 700;
+        color: #ffffff;
+        line-height: 1.08;
+        max-width: 210px;
+        margin: 0 auto;
+    }
+
+    .proposal-cover-footer {
+        position: relative;
+        z-index: 2;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .proposal-cover-award {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        color: #cbd5e1;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        line-height: 1.4;
+        margin-bottom: 0.9rem;
+    }
+
+    .proposal-cover-award i {
+        color: #facc15;
+    }
+
+    .proposal-cover-mini-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.55rem;
+    }
+
+    .proposal-cover-mini {
+        border-radius: 0.9rem;
+        padding: 0.65rem 0.45rem;
+        background: rgba(255,255,255,0.055);
+        border: 1px solid rgba(255,255,255,0.09);
+    }
+
+    .proposal-cover-mini i {
+        display: block;
+        font-size: 0.85rem;
+        margin-bottom: 0.35rem;
+        color: #a5b4fc;
+    }
+
+    .proposal-cover-mini span {
+        display: block;
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        color: #cbd5e1;
+        line-height: 1.2;
+    }
+
+    .proposal-cover-award i {
+        color: #facc15;
+    }
+    .proposal-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.42rem 0.75rem;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.10);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+    }
+
+    .proposal-metric-box {
+        border-radius: 1.2rem;
+        padding: 1rem;
+        background: rgba(255,255,255,0.055);
+        border: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .proposal-action-btn {
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+    }
+
+    .proposal-action-btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(120deg, transparent, rgba(255,255,255,0.15), transparent);
+        transform: translateX(-120%);
+        transition: transform 0.55s ease;
+        z-index: -1;
+    }
+
+    .proposal-action-btn:hover::before {
+        transform: translateX(120%);
+    }
+
+    .proposal-pdf-frame {
+        width: 100%;
+        height: 68vh;
+        border: 0;
+        background: #020617;
+        border-radius: 1.25rem;
+    }
+
+    @media (max-width: 768px) {
+        .proposal-pdf-frame {
+            height: 55vh;
+        }
+    }
+
+    
+ .proposal-resource-tray {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.65rem;
+    }
+
+    .proposal-resource-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 1rem;
+        padding: 0.85rem 0.65rem;
+        background: rgba(255,255,255,0.055);
+        border: 1px solid rgba(255,255,255,0.10);
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    .proposal-resource-item:hover {
+        transform: translateY(-3px);
+        background: rgba(255,255,255,0.09);
+        border-color: rgba(165,180,252,0.35);
+    }
+
+    .proposal-resource-item i {
+        display: block;
+        font-size: 1rem;
+        margin-bottom: 0.4rem;
+        color: #a5b4fc;
+    }
+
+    .proposal-resource-item span {
+        display: block;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        color: #cbd5e1;
+        line-height: 1.2;
+    }
+        .proposal-resource-panel {
+        border-radius: 1.4rem;
+        padding: 1rem;
+        background: rgba(255,255,255,0.045);
+        border: 1px solid rgba(255,255,255,0.09);
+    }
+
+    .proposal-resource-tray {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.65rem;
+    }
+
+    .proposal-resource-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 1rem;
+        padding: 0.85rem 0.55rem;
+        background: rgba(255,255,255,0.055);
+        border: 1px solid rgba(255,255,255,0.10);
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    .proposal-resource-item:hover {
+        transform: translateY(-3px);
+        background: rgba(255,255,255,0.09);
+        border-color: rgba(165,180,252,0.35);
+    }
+
+    .proposal-resource-item i {
+        display: block;
+        font-size: 1rem;
+        margin-bottom: 0.4rem;
+        color: #a5b4fc;
+    }
+
+    .proposal-resource-item span {
+        display: block;
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #cbd5e1;
+        line-height: 1.2;
+    }
+
+    </style>
+</head>
+
+<body 
+    class="bg-gradient-premium text-slate-300 font-sans antialiased relative overflow-x-hidden"
+    x-data="creativeLabPage()"
+    @scroll.window="scrolled = (window.pageYOffset > 50)">
+
+    <!-- BACKGROUND ORBS -->
+    <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-indigo-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-50 animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-fuchsia-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-50 animate-blob"></div>
+        <div class="absolute -bottom-32 left-1/2 w-96 h-96 bg-yellow-500/10 rounded-full mix-blend-screen filter blur-3xl opacity-50 animate-blob"></div>
+    </div>
+
+    <!-- HEADER -->
+    <nav 
+        :class="{ 'glass py-3': scrolled, 'bg-transparent py-5': !scrolled }"
+        class="fixed w-full z-50 transition-all duration-300">
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center">
+
+            <a href="landing-page.html" class="text-2xl font-serif font-bold text-white tracking-wider relative z-50">
+                MNA<span class="text-brand-accent">.</span>
+            </a>
+
+            <div class="hidden md:flex space-x-8 items-center text-sm font-medium">
+                <a href="landing-page.html#about" class="hover:text-brand-light transition">Home</a>
+
+                <a href="creative-lab.html"
+                   class="px-5 py-2 rounded-full bg-gradient-to-r from-brand to-brand-accent text-white font-bold shadow-[0_0_18px_rgba(99,102,241,0.35)]">
+                    Creative Labs
+                </a>
+
+                <a href="landing-page.html#expertise" class="hover:text-brand-light transition">Expertise</a>
+                <a href="landing-page.html#experience" class="hover:text-brand-light transition">Experience</a>
+                   <a href="social-project.html" class="hover:text-brand-light transition">
+    Social Project
+</a>
+
+                <a href="portfolio.html" class="hover:text-brand-light transition">Portfolio</a>
+                <a href="award.html" class="hover:text-brand-light transition">Awards</a>
+
+                <a href="landing-page.html#contact"
+                   class="px-5 py-2 glass rounded-full text-white hover:bg-white/10 hover:border-brand-light/50 transition shadow-[0_0_15px_rgba(99,102,241,0.2)]">
+                    Contact Me
+                </a>
+            </div>
+
+            <button 
+                @click="mobileMenu = !mobileMenu"
+                class="md:hidden text-white focus:outline-none p-2 rounded-lg glass border border-white/10 hover:bg-white/10 transition relative z-50">
+                <i class="fas fa-bars text-xl" x-show="!mobileMenu"></i>
+                <i class="fas fa-times text-xl" x-show="mobileMenu" style="display:none;"></i>
+            </button>
+        </div>
+
+        <!-- MOBILE MENU -->
+        <div 
+            x-show="mobileMenu"
+            x-transition
+            class="md:hidden absolute top-full left-0 w-full border-t border-white/10 shadow-2xl"
+            style="display:none;">
+
+            <div class="flex flex-col px-6 py-6 space-y-2 bg-[#080B14]/95 backdrop-blur-2xl">
+                <a href="landing-page.html#about" @click="mobileMenu = false" class="text-slate-300 hover:text-white font-medium border-b border-white/5 pb-3 pt-2">Home</a>
+                <a href="creative-lab.html" @click="mobileMenu = false" class="text-white font-bold border-b border-white/5 pb-3 pt-2">Creative Labs</a>
+                <a href="landing-page.html#expertise" @click="mobileMenu = false" class="text-slate-300 hover:text-white font-medium border-b border-white/5 pb-3 pt-2">Expertise</a>
+                <a href="landing-page.html#experience" @click="mobileMenu = false" class="text-slate-300 hover:text-white font-medium border-b border-white/5 pb-3 pt-2">Experience</a>
+                                   <a href="social-project.html" @click="mobileMenu = false" class="text-slate-300 hover:text-white font-medium border-b border-white/5 pb-3 pt-2">Social Project</a>
+                <a href="portfolio.html" @click="mobileMenu = false" class="text-slate-300 hover:text-white font-medium border-b border-white/5 pb-3 pt-2">Portfolio</a>
+                <a href="award.html" @click="mobileMenu = false" class="text-slate-300 hover:text-white font-medium border-b border-white/5 pb-3 pt-2">Awards</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative z-10">
+
+        <!-- HERO -->
+        <section class="pt-36 pb-16 px-6 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto">
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+                    <!-- LEFT -->
+                    <div class="lg:col-span-7">
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-accent/30 bg-brand-accent/10 text-brand-accent text-[10px] font-bold tracking-widest uppercase mb-6">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            Creative Business Ecosystem
+                        </div>
+
+                        <h1 class="text-5xl md:text-7xl font-serif font-bold text-white leading-[1.08] mb-6">
+                            Creative Labs <br>
+                            <span class="text-gradient">Beyond CV.</span>
+                        </h1>
+
+                        <p class="text-base md:text-lg text-slate-400 font-light leading-relaxed max-w-2xl">
+                            Halaman ini menampilkan sisi bisnis, kreativitas, dan entrepreneurial journey 
+                            <span class="text-white font-semibold">M. Nabilah Abror</span> di luar CV, portfolio formal, edukasi, dan pengalaman organisasi.
+                        </p>
+
+                        <div class="flex flex-wrap gap-3 mt-8">
+                            <span class="px-4 py-2 rounded-full glass text-xs font-semibold text-slate-300">Founder Journey</span>
+                            <span class="px-4 py-2 rounded-full glass text-xs font-semibold text-slate-300">Small Business</span>
+                            <span class="px-4 py-2 rounded-full glass text-xs font-semibold text-slate-300">Finance Operation</span>
+                            <span class="px-4 py-2 rounded-full glass text-xs font-semibold text-slate-300">Digital Agency</span>
+                            <span class="px-4 py-2 rounded-full glass text-xs font-semibold text-slate-300">Creative Execution</span>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT SUMMARY -->
+                    <div class="lg:col-span-5">
+                        <div class="glass rounded-[2rem] p-8 md:p-10 relative overflow-hidden">
+                            <div class="absolute -top-20 -right-20 w-56 h-56 bg-brand-accent/20 rounded-full blur-3xl"></div>
+                            <div class="absolute -bottom-20 -left-20 w-56 h-56 bg-brand/20 rounded-full blur-3xl"></div>
+
+                            <div class="relative z-10">
+                                <p class="text-xs font-bold tracking-widest text-brand-accent uppercase mb-6">
+                                    Creative Lab Snapshot
+                                </p>
+
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="glass rounded-2xl p-5 text-center border border-brand-accent/20">
+                                        <h3 class="text-3xl font-bold text-white">3</h3>
+                                        <p class="text-[10px] uppercase tracking-widest text-slate-400 mt-1">Business Units</p>
+                                    </div>
+
+                                    <div class="glass rounded-2xl p-5 text-center">
+                                        <h3 class="text-3xl font-bold text-white">20+</h3>
+                                        <p class="text-[10px] uppercase tracking-widest text-slate-400 mt-1">Clients Served</p>
+                                    </div>
+
+                                    <div class="glass rounded-2xl p-5 text-center">
+                                        <h3 class="text-3xl font-bold text-white">40</h3>
+                                        <p class="text-[10px] uppercase tracking-widest text-slate-400 mt-1">Dessert Units</p>
+                                    </div>
+
+                                    <div class="glass rounded-2xl p-5 text-center">
+                                        <h3 class="text-3xl font-bold text-white">2.2M</h3>
+                                        <p class="text-[10px] uppercase tracking-widest text-slate-400 mt-1">Agency Profit</p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-6 pt-6 border-t border-white/10">
+                                    <p class="text-sm text-slate-400 leading-relaxed">
+                                        Creative Labs berisi bukti bahwa kreativitas bisa dikembangkan menjadi produk, layanan, sistem keuangan, dan bisnis kecil yang berjalan nyata.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CREATIVE LAB NAVIGATION -->
+        <section class="px-6 pb-14">
+            <div class="max-w-7xl mx-auto">
+                <div class="glass rounded-[2rem] p-6 md:p-8">
+
+                    <div class="text-center mb-8">
+                        <p class="text-xs font-bold tracking-widest text-brand-accent uppercase mb-2">
+                            Explore Creative Labs
+                        </p>
+
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-white mb-3">
+                            Business & Creativity Navigation
+                        </h2>
+
+                        <p class="text-sm text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                            Pilih area creative lab untuk melihat bisnis, proses kreatif, model operasional, dan hasil yang pernah dijalankan.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                        <a href="#creative-ventures" class="glass glass-hover rounded-2xl p-6 group">
+                            <div class="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-400/20 flex items-center justify-center text-pink-300 mb-5 group-hover:scale-110 transition">
+                                <i class="fa-solid fa-store text-xl"></i>
+                            </div>
+                            <h3 class="text-white font-bold text-lg mb-2">Creative Ventures</h3>
+                            <p class="text-sm text-slate-400 leading-relaxed">
+                                Brulle Roots, Toko Putra Barokah, dan Nexgrata Agency Digital.
+                            </p>
+                        </a>
+
+                       <a href="#nabil-creativity" class="glass glass-hover rounded-2xl p-6 group">
+    <div class="w-12 h-12 rounded-xl bg-fuchsia-500/10 border border-fuchsia-400/20 flex items-center justify-center text-fuchsia-300 mb-5 group-hover:scale-110 transition">
+        <i class="fa-solid fa-cube text-xl"></i>
+    </div>
+    <h3 class="text-white font-bold text-lg mb-2">Kreativitas Nabil</h3>
+    <p class="text-sm text-slate-400 leading-relaxed">
+        Eksperimen web, tools, edukasi, produktivitas, teknologi, religi, dan creative digital ideas.
+    </p>
+</a>
+
+                        <a href="#business-capabilities" class="glass glass-hover rounded-2xl p-6 group">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-400/20 flex items-center justify-center text-emerald-300 mb-5 group-hover:scale-110 transition">
+                                <i class="fa-solid fa-chart-line text-xl"></i>
+                            </div>
+                            <h3 class="text-white font-bold text-lg mb-2">Business Capabilities</h3>
+                            <p class="text-sm text-slate-400 leading-relaxed">
+                                Branding, product concept, budgeting, COGS, pricing, UI/UX, dan client delivery.
+                            </p>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CREATIVE VENTURES -->
+        <section id="creative-ventures" class="px-6 pb-20">
+            <div class="max-w-7xl mx-auto">
+
+                <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12 border-b border-white/10 pb-8">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-accent/30 bg-brand-accent/10 text-brand-accent text-[10px] font-bold tracking-widest uppercase mb-5">
+                            <i class="fa-solid fa-seedling"></i>
+                            Creative Ventures
+                        </div>
+
+                        <h2 class="text-4xl md:text-6xl font-serif font-bold text-white leading-tight">
+                            Business Built <br>
+                            <span class="text-gradient">from Ideas.</span>
+                        </h2>
+                    </div>
+
+                    <p class="text-slate-400 max-w-xl text-sm md:text-base leading-relaxed lg:text-right">
+                        Setiap card di bawah ini bukan sekadar pengalaman kerja, tetapi representasi dari bisnis dan kreativitas yang dibangun secara langsung melalui ide, strategi, eksekusi, finance, dan delivery.
+                    </p>
+                </div>
+
+                <div class="space-y-8">
+
+                    <template x-for="venture in ventures" :key="venture.name">
+                        <article class="venture-card glass rounded-[2rem] p-6 md:p-8 border border-white/10 hover:border-brand-accent/40 transition-all duration-500">
+
+                            <div class="grid grid-cols-1 xl:grid-cols-12 gap-8 relative z-10">
+
+                                <!-- LEFT -->
+                                <div class="xl:col-span-4">
+                                    <div class="flex items-start justify-between gap-4 mb-6">
+                                        <div>
+                                            <span 
+                                                class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[10px] font-bold tracking-widest uppercase mb-4"
+                                                :class="venture.badgeClass">
+                                                <i :class="venture.icon"></i>
+                                                <span x-text="venture.type"></span>
+                                            </span>
+
+                                            <h3 class="text-3xl md:text-4xl font-serif font-bold text-white leading-tight" x-text="venture.name"></h3>
+                                            <p class="text-sm text-brand-accent font-semibold mt-3" x-text="venture.role"></p>
+                                        </div>
+
+                                        <div class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0" :class="venture.iconColor">
+                                            <i :class="venture.icon"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-1 gap-3 mb-6">
+                                        <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                                            <p class="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">Period</p>
+                                            <p class="text-sm text-white font-semibold leading-relaxed" x-text="venture.period"></p>
+                                        </div>
+
+                                        <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                                            <p class="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">Business Position</p>
+                                            <p class="text-sm text-white font-semibold leading-relaxed" x-text="venture.position"></p>
+                                        </div>
+                                    </div>
+
+                                    <p class="text-sm text-slate-400 leading-relaxed" x-text="venture.description"></p>
+                                </div>
+
+                                <!-- MIDDLE -->
+                                <div class="xl:col-span-5 space-y-5">
+
+                                    <!-- Business Model Canvas Mini -->
+                                    <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                                        <p class="text-[10px] font-bold tracking-widest text-brand-light uppercase mb-4">
+                                            Business Model Snapshot
+                                        </p>
+
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div>
+                                                <p class="text-[10px] font-bold tracking-widest text-pink-300 uppercase mb-2">Customer</p>
+                                                <p class="text-sm text-slate-300 leading-relaxed" x-text="venture.customer"></p>
+                                            </div>
+
+                                            <div>
+                                                <p class="text-[10px] font-bold tracking-widest text-purple-300 uppercase mb-2">Value Proposition</p>
+                                                <p class="text-sm text-slate-300 leading-relaxed" x-text="venture.value"></p>
+                                            </div>
+
+                                            <div>
+                                                <p class="text-[10px] font-bold tracking-widest text-emerald-300 uppercase mb-2">Revenue Logic</p>
+                                                <p class="text-sm text-slate-300 leading-relaxed" x-text="venture.revenue"></p>
+                                            </div>
+
+                                            <div>
+                                                <p class="text-[10px] font-bold tracking-widest text-yellow-300 uppercase mb-2">Creative Edge</p>
+                                                <p class="text-sm text-slate-300 leading-relaxed" x-text="venture.creativeEdge"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Founder Workflow -->
+                                    <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                                        <p class="text-[10px] font-bold tracking-widest text-cyan-300 uppercase mb-4">
+                                            Founder Workflow
+                                        </p>
+
+                                        <div class="relative">
+                                            <div class="absolute left-[18px] top-4 bottom-4 w-px timeline-line"></div>
+
+                                            <div class="space-y-4">
+                                                <template x-for="(step, index) in venture.workflow" :key="step">
+                                                    <div class="relative flex items-start gap-4">
+                                                        <div class="relative z-10 w-9 h-9 rounded-xl bg-white/5 border border-white/10 text-white flex items-center justify-center text-xs font-bold">
+                                                            <span x-text="index + 1"></span>
+                                                        </div>
+
+                                                        <div>
+                                                            <p class="text-sm text-white font-semibold" x-text="step"></p>
+                                                            <p class="text-xs text-slate-500 mt-1" x-text="workflowDescription(step)"></p>
+                                                        </div>
+                                                    </div>
+                                                </template>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Capabilities -->
+                                    <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                                        <p class="text-[10px] font-bold tracking-widest text-brand-accent uppercase mb-3">
+                                            Capabilities Practiced
+                                        </p>
+
+                                        <div class="flex flex-wrap gap-2">
+                                            <template x-for="capability in venture.capabilities" :key="capability">
+                                                <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-semibold text-slate-300" x-text="capability"></span>
+                                            </template>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- RIGHT -->
+                                <div class="xl:col-span-3">
+                                    <div class="rounded-[1.5rem] bg-white/5 border border-white/10 p-5 h-full flex flex-col justify-between">
+
+                                        <div>
+                                            <p class="text-[10px] font-bold tracking-widest text-brand-light uppercase mb-3">
+                                                Business Result
+                                            </p>
+
+                                            <p class="text-xs text-slate-400 leading-relaxed mb-5">
+                                                Ringkasan hasil dan bukti bisnis yang menunjukkan bahwa ide kreatif ini pernah dijalankan secara nyata.
+                                            </p>
+
+                                            <div class="grid grid-cols-2 gap-3 mb-5">
+                                                <div class="rounded-2xl bg-white/5 border border-white/10 p-4 text-center">
+                                                    <p class="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1" x-text="venture.metricOneLabel"></p>
+                                                    <h4 class="text-2xl font-bold text-white" x-text="venture.metricOne"></h4>
+                                                </div>
+
+                                                <div class="rounded-2xl bg-white/5 border border-white/10 p-4 text-center">
+                                                    <p class="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1" x-text="venture.metricTwoLabel"></p>
+                                                    <h4 class="text-2xl font-bold text-white" x-text="venture.metricTwo"></h4>
+                                                </div>
+                                            </div>
+
+                                            <div class="space-y-3">
+                                                <template x-for="btn in evidenceButtons" :key="btn.key">
+                                                    <a 
+                                                        :href="venture.links && venture.links[btn.key] ? venture.links[btn.key] : '#'"
+                                                        target="_blank"
+                                                        @click="if (!venture.links || !venture.links[btn.key] || venture.links[btn.key] === '#') $event.preventDefault()"
+                                                        :class="venture.links && venture.links[btn.key] && venture.links[btn.key] !== '#'
+                                                            ? 'hover:bg-white/10 hover:border-brand-accent/40 hover:text-white'
+                                                            : 'opacity-45 cursor-not-allowed'"
+                                                        class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-slate-300 text-xs font-bold transition-all flex items-center justify-between gap-3">
+                                                        
+                                                        <span class="flex items-center gap-2">
+                                                            <i :class="btn.icon"></i>
+                                                            <span x-text="btn.label"></span>
+                                                        </span>
+
+                                                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                                    </a>
+                                                </template>
+                                            </div>
+                                        </div>
+
+                                        <button 
+                                            type="button"
+                                            @click="selectedVenture = venture"
+                                            class="w-full mt-6 px-5 py-3.5 rounded-2xl bg-gradient-to-r from-brand to-brand-accent text-white text-xs font-bold tracking-widest uppercase hover:shadow-[0_10px_25px_rgba(244,114,182,0.30)] transition-all">
+                                            View Creative Case
+                                        </button>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </article>
+                    </template>
+
+                </div>
+            </div>
+        </section>
+<!-- KREATIVITAS NABIL SECTION -->
+<!-- KREATIVITAS NABIL SECTION - PREMIUM ROW DESIGN -->
+<section id="nabil-creativity" class="px-6 pb-20">
+    <div class="max-w-7xl mx-auto">
+
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12 border-b border-white/10 pb-8">
+            <div>
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-fuchsia-400/30 bg-fuchsia-500/10 text-fuchsia-300 text-[10px] font-bold tracking-widest uppercase mb-5">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    Kreativitas Nabil
+                </div>
+
+                <h2 class="text-4xl md:text-6xl font-serif font-bold text-white leading-tight">
+                    Creative Digital <br>
+                    <span class="text-gradient">Experiments.</span>
+                </h2>
+            </div>
+
+            <p class="text-slate-400 max-w-xl text-sm md:text-base leading-relaxed lg:text-right">
+                Kumpulan eksperimen kreatif Nabil di luar CV formal, portfolio utama, edukasi, dan pengalaman kerja. Setiap project dibuat sebagai eksplorasi ide digital, tools, teknologi, edukasi, produktivitas, religi, dan konsep bisnis kreatif.
+            </p>
+        </div>
+
+        <div class="space-y-6">
+
+            <template x-for="(work, index) in creativeWorks" :key="work.title">
+                <article class="creative-lab-row p-5 md:p-7">
+
+                    <div class="grid grid-cols-1 xl:grid-cols-12 gap-6 items-center relative z-10">
+
+                        <!-- INDEX -->
+                        <div class="xl:col-span-2">
+                            <div class="flex items-center gap-5">
+                                <div class="creative-index-box shrink-0">
+                                    <span class="creative-index-number" x-text="String(index + 1).padStart(2, '0')"></span>
+                                </div>
+
+                                <div class="creative-main-icon xl:hidden">
+                                    <i :class="creativeIcon(work.keywords)"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- MAIN CONTENT -->
+                        <div class="xl:col-span-4">
+                            <div class="flex flex-wrap items-center gap-2 mb-4">
+                                <span 
+                                    class="creative-pill"
+                                    :class="creativeCategoryClass(work.keywords)">
+                                    <i :class="creativeIcon(work.keywords)"></i>
+                                    <span x-text="creativeCategory(work.keywords)"></span>
+                                </span>
+
+                                <span class="creative-pill text-slate-400">
+                                    <i class="fa-solid fa-flask"></i>
+                                    Creative Experiment
+                                </span>
+                            </div>
+
+                            <h3 class="text-2xl md:text-4xl font-serif font-bold text-white leading-tight mb-3" x-text="work.title"></h3>
+
+                            <p class="text-sm text-slate-400 leading-relaxed max-w-2xl" x-text="work.desc"></p>
+                        </div>
+
+                        <!-- DESKTOP ICON PREVIEW -->
+                        <div class="hidden xl:flex xl:col-span-1 justify-center">
+                            <div class="creative-main-icon">
+                                <i :class="creativeIcon(work.keywords)"></i>
+                            </div>
+                        </div>
+
+                        <!-- TAGS -->
+                        <div class="xl:col-span-2">
+                            <p class="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-3">
+                                Creative Tags
+                            </p>
+
+                            <div class="flex flex-wrap gap-2">
+                                <template x-for="tag in work.keywords.split(',').slice(0, 5)" :key="tag">
+                                    <span class="creative-tag" x-text="tag.trim()"></span>
+                                </template>
+                            </div>
+                        </div>
+
+                        <!-- MINI VISUAL -->
+                        <div class="xl:col-span-2">
+                            <div class="creative-preview-box">
+                                <div class="creative-preview-content">
+                                    <div class="flex items-center justify-between gap-3">
+                                        <span class="text-[10px] font-bold tracking-widest uppercase text-white/70">
+                                            Digital Lab
+                                        </span>
+                                        <i :class="creativeIcon(work.keywords)" class="text-white/70"></i>
+                                    </div>
+
+                                    <div>
+                                        <p class="text-[10px] font-bold tracking-widest uppercase text-brand-accent mb-1">
+                                            Focus Area
+                                        </p>
+                                        <p class="text-sm font-bold text-white leading-snug" x-text="creativeCategory(work.keywords)"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ACTION -->
+                        <div class="xl:col-span-1 flex xl:justify-end">
+                            <a 
+                                :href="work.url" 
+                                target="_blank"
+                                class="creative-open-btn w-full xl:w-14 xl:h-14 xl:p-0 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-brand to-brand-accent text-white text-xs font-bold tracking-widest uppercase hover:shadow-[0_10px_25px_rgba(244,114,182,0.30)] transition-all">
+                                <span class="xl:hidden">Open Project</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </article>
+            </template>
+
+        </div>
+
+    </div>
+</section>
+        <!-- CREATIVE OPERATING SYSTEM -->
+        <section id="creative-system" class="px-6 pb-20">
+            <div class="max-w-7xl mx-auto">
+
+                <div class="glass rounded-[2rem] p-8 md:p-10 border border-white/10">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+
+                        <div class="lg:col-span-4">
+                            <p class="text-xs font-bold tracking-widest text-brand-accent uppercase mb-2">
+                                Creative Operating System
+                            </p>
+
+                            <h2 class="text-3xl md:text-5xl font-serif font-bold text-white leading-tight mb-5">
+                                How Ideas Become <span class="text-gradient">Business Output.</span>
+                            </h2>
+
+                            <p class="text-sm text-slate-400 leading-relaxed">
+                                Creative Labs tidak hanya berisi ide, tetapi juga cara mengubah ide menjadi produk, layanan, sistem kerja, dan financial output.
+                            </p>
+                        </div>
+
+                        <div class="lg:col-span-8">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                                <template x-for="system in systems" :key="system.title">
+                                    <div class="rounded-2xl bg-white/5 border border-white/10 p-6 hover:border-brand-accent/30 transition">
+                                        <div class="w-12 h-12 rounded-xl bg-brand/10 border border-brand-light/20 flex items-center justify-center text-brand-light mb-5">
+                                            <i :class="system.icon"></i>
+                                        </div>
+
+                                        <h3 class="text-white font-bold text-lg mb-2" x-text="system.title"></h3>
+                                        <p class="text-sm text-slate-400 leading-relaxed" x-text="system.desc"></p>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- BUSINESS CAPABILITIES -->
+        <!-- COMPETITION PROPOSAL ARCHIVE -->
+<section id="competition-proposals" class="px-6 pb-24">
+    <div class="max-w-7xl mx-auto">
+
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12 border-b border-white/10 pb-8">
+            <div>
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-yellow-400/30 bg-yellow-400/10 text-yellow-300 text-[10px] font-bold tracking-widest uppercase mb-5">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    Proposal Archive
+                </div>
+
+                <h2 class="text-4xl md:text-6xl font-serif font-bold text-white leading-tight">
+                    Competition Proposal <br>
+                    <span class="text-gradient">Winning Archive.</span>
+                </h2>
+            </div>
+
+            <p class="text-slate-400 max-w-xl text-sm md:text-base leading-relaxed lg:text-right">
+                Arsip proposal Business Plan dan Business Case yang berisi dokumen strategi, financial analysis, budgeting, market analysis, operational plan, business model, dan pitch deck dari kompetisi yang pernah diikuti.
+            </p>
+        </div>
+
+        <!-- Summary -->
+        <div class="glass rounded-[2rem] p-6 md:p-8 mb-10 border border-white/10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="proposal-metric-box">
+                    <p class="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-2">Total Archive</p>
+                    <h3 class="text-3xl font-bold text-white" x-text="proposalArchive.length"></h3>
+                    <p class="text-xs text-slate-400 mt-1">Proposal records</p>
+                </div>
+
+                <div class="proposal-metric-box">
+                    <p class="text-[10px] font-bold tracking-widest text-yellow-300 uppercase mb-2">Business Plan</p>
+                    <h3 class="text-3xl font-bold text-white" x-text="countProposalType('Business Plan')"></h3>
+                    <p class="text-xs text-slate-400 mt-1">BPC documents</p>
+                </div>
+
+                <div class="proposal-metric-box">
+                    <p class="text-[10px] font-bold tracking-widest text-brand-light uppercase mb-2">Business Case</p>
+                    <h3 class="text-3xl font-bold text-white" x-text="countProposalType('Business Case')"></h3>
+                    <p class="text-xs text-slate-400 mt-1">BCC documents</p>
+                </div>
+
+                <div class="proposal-metric-box">
+                    <p class="text-[10px] font-bold tracking-widest text-emerald-300 uppercase mb-2">Analysis Scope</p>
+                    <h3 class="text-3xl font-bold text-white">6+</h3>
+                    <p class="text-xs text-slate-400 mt-1">Finance, budget, market, ops</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Proposal Cards: 2 Cards Per Row -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-7">
+
+            <template x-for="proposal in proposalArchive" :key="proposal.id">
+                <article class="proposal-dossier-card p-5 md:p-6">
+
+                    <div class="grid grid-cols-1 xl:grid-cols-12 gap-5 relative z-10">
+
+                        <!-- Document Preview -->
+                        <!-- Document Preview - Clean Cover -->
+<!-- Document Preview - Minimal Premium Cover -->
+<!-- Document Preview - Centered Premium Cover -->
+<!-- Document Preview + Resource Access - Left Side -->
+<div class="xl:col-span-5 flex flex-col gap-4">
+
+    <!-- PDF Cover -->
+    <div class="proposal-doc-preview">
+
+        <!-- Category -->
+        <span 
+            class="proposal-cover-category"
+            :class="proposal.type === 'Business Plan' ? 'text-yellow-300' : 'text-brand-light'">
+            <i :class="proposal.type === 'Business Plan' ? 'fa-solid fa-lightbulb' : 'fa-solid fa-chart-simple'"></i>
+            <span x-text="proposal.type"></span>
+        </span>
+
+        <!-- Main Cover -->
+        <div class="proposal-cover-main">
+            <div class="proposal-cover-icon">
+                <i class="fa-solid fa-file-pdf text-2xl"></i>
+            </div>
+
+            <p class="proposal-cover-label">
+                Competition Dossier
+            </p>
+
+            <h3 class="proposal-cover-title" x-text="proposal.shortTitle"></h3>
+        </div>
+
+        <!-- Award Footer -->
+        <div class="proposal-cover-footer">
+            <span class="proposal-cover-award">
+                <i class="fa-solid fa-trophy"></i>
+                <span x-text="proposal.award"></span>
+            </span>
+        </div>
+
+    </div>
+
+    <!-- Resource Access - Left Side -->
+    <div class="proposal-resource-panel">
+        <p class="text-[10px] font-bold tracking-widest text-brand-light uppercase mb-3">
+            Resource Access
+        </p>
+
+        <div class="proposal-resource-tray">
+            <a 
+                :href="proposal.files.proposal && proposal.files.proposal !== '#' ? proposal.files.proposal : '#'"
+                target="_blank"
+                @click="if (!proposal.files.proposal || proposal.files.proposal === '#') $event.preventDefault()"
+                :class="proposal.files.proposal && proposal.files.proposal !== '#' ? '' : 'opacity-45 cursor-not-allowed'"
+                class="proposal-resource-item">
+                <i class="fa-solid fa-file-lines"></i>
+                <span>Proposal</span>
+            </a>
+
+            <a 
+                :href="proposal.files.deck && proposal.files.deck !== '#' ? proposal.files.deck : '#'"
+                target="_blank"
+                @click="if (!proposal.files.deck || proposal.files.deck === '#') $event.preventDefault()"
+                :class="proposal.files.deck && proposal.files.deck !== '#' ? '' : 'opacity-45 cursor-not-allowed'"
+                class="proposal-resource-item">
+                <i class="fa-solid fa-display"></i>
+                <span>Deck</span>
+            </a>
+
+            <a 
+                :href="proposal.files.financial && proposal.files.financial !== '#' ? proposal.files.financial : '#'"
+                target="_blank"
+                @click="if (!proposal.files.financial || proposal.files.financial === '#') $event.preventDefault()"
+                :class="proposal.files.financial && proposal.files.financial !== '#' ? '' : 'opacity-45 cursor-not-allowed'"
+                class="proposal-resource-item">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Finance</span>
+            </a>
+        </div>
+    </div>
+
+</div>
+                        <!-- Content -->
+                        <div class="xl:col-span-7 flex flex-col justify-between">
+                            <div>
+                                <p class="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-2" x-text="proposal.organizer"></p>
+
+                                <h3 class="text-2xl md:text-3xl font-serif font-bold text-white leading-tight mb-3" x-text="proposal.title"></h3>
+
+                                <p class="text-sm text-slate-400 leading-relaxed mb-5" x-text="proposal.desc"></p>
+
+                                <div class="grid grid-cols-2 gap-3 mb-5">
+                                    <div class="proposal-metric-box">
+                                        <p class="text-[10px] font-bold tracking-widest text-yellow-300 uppercase mb-1">Core Output</p>
+                                        <p class="text-sm text-white font-semibold" x-text="proposal.output"></p>
+                                    </div>
+
+                                    <div class="proposal-metric-box">
+                                        <p class="text-[10px] font-bold tracking-widest text-emerald-300 uppercase mb-1">Main Analysis</p>
+                                        <p class="text-sm text-white font-semibold" x-text="proposal.mainAnalysis"></p>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <p class="text-[10px] font-bold tracking-widest text-brand-light uppercase mb-3">
+                                        Document Components
+                                    </p>
+
+                                    <div class="flex flex-wrap gap-2">
+                                        <template x-for="component in proposal.components" :key="component">
+                                            <span class="px-3 py-1 rounded-full bg-brand/10 border border-brand-light/20 text-[10px] font-semibold text-brand-light" x-text="component"></span>
+                                        </template>
+                                    </div>
+                                </div>
+                            </div>
+
+                           <div class="mt-6">
+
+    <!-- Resource Access -->
+   <div class="mt-6">
+
+    <!-- Main Action -->
+    
+
+    <!-- Main Action -->
+    <div class="flex flex-col sm:flex-row gap-3">
+        <button 
+            type="button"
+            @click="selectedProposal = proposal"
+            class="proposal-action-btn flex-1 px-5 py-3.5 rounded-2xl bg-gradient-to-r from-yellow-500 to-brand-accent text-white text-xs font-bold tracking-widest uppercase">
+            Preview PDF
+        </button>
+
+        <a 
+            :href="proposal.files.detail && proposal.files.detail !== '#' ? proposal.files.detail : '#'"
+            target="_blank"
+            @click="if (!proposal.files.detail || proposal.files.detail === '#') $event.preventDefault()"
+            :class="proposal.files.detail && proposal.files.detail !== '#' ? 'hover:bg-white/10' : 'opacity-45 cursor-not-allowed'"
+            class="px-5 py-3.5 rounded-2xl bg-white/5 border border-white/10 text-slate-300 text-xs font-bold tracking-widest uppercase text-center transition">
+            Lihat Detail
+        </a>
+    </div>
+
+</div>
+                        </div>
+
+                    </div>
+                </article>
+            </template>
+
+        </div>
+
+    </div>
+</section>
+        <section id="business-capabilities" class="px-6 pb-24">
+            <div class="max-w-7xl mx-auto">
+
+                <div class="text-center mb-12">
+                    <p class="text-xs font-bold tracking-widest text-brand-accent uppercase mb-2">
+                        Business Capabilities
+                    </p>
+
+                    <h2 class="text-3xl md:text-5xl font-serif font-bold text-white mb-4">
+                        Skills Practiced Through <span class="text-gradient">Real Business.</span>
+                    </h2>
+
+                    <p class="text-sm md:text-base text-slate-400 max-w-3xl mx-auto leading-relaxed">
+                        Kemampuan yang diasah melalui Creative Labs berasal dari praktik langsung, bukan hanya teori.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <template x-for="skill in skills" :key="skill.title">
+                        <div class="glass glass-hover rounded-2xl p-6">
+                            <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-brand-accent mb-5">
+                                <i :class="skill.icon"></i>
+                            </div>
+
+                            <h3 class="text-white font-bold text-lg mb-2" x-text="skill.title"></h3>
+                            <p class="text-sm text-slate-400 leading-relaxed" x-text="skill.desc"></p>
+                        </div>
+                    </template>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="contact" class="relative z-10 border-t border-white/10 bg-[#050814] px-6 py-16">
+        <div class="max-w-7xl mx-auto">
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+
+                <div class="md:col-span-2">
+                    <a href="landing-page.html" class="text-3xl font-serif font-bold text-white tracking-wider">
+                        MNA<span class="text-brand-accent">.</span>
+                    </a>
+
+                    <p class="mt-5 text-slate-400 max-w-md leading-relaxed text-sm">
+                        Personal professional website M. Nabilah Abror yang menampilkan CV digital,
+                        portfolio project, creative business, awards, dan entrepreneurial journey.
+                    </p>
+
+                    <div class="flex gap-3 mt-6">
+                        <a href="mailto:lobiianewar1234@gmail.com"
+                           class="w-10 h-10 rounded-full glass flex items-center justify-center text-slate-300 hover:text-brand-light hover:border-brand-light transition">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+
+                        <a href="https://nabil-profile-six.vercel.app/" target="_blank"
+                           class="w-10 h-10 rounded-full glass flex items-center justify-center text-slate-300 hover:text-brand-light hover:border-brand-light transition">
+                            <i class="fas fa-globe"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-5">Explore</h4>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li><a href="landing-page.html#about" class="hover:text-brand-light transition">About</a></li>
+                        <li><a href="portfolio.html" class="hover:text-brand-light transition">Portfolio</a></li>
+                        <li><a href="award.html" class="hover:text-brand-light transition">Awards</a></li>
+                        <li><a href="creative-lab.html" class="hover:text-brand-light transition">Creative Labs</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-5">Creative Lab</h4>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li><a href="#creative-ventures" class="hover:text-brand-light transition">Creative Ventures</a></li>
+                        <li><a href="#creative-system" class="hover:text-brand-light transition">Creative System</a></li>
+                        <li><a href="#business-capabilities" class="hover:text-brand-light transition">Business Capabilities</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-xs text-slate-500">
+                    © 2026 M. Nabilah Abror. All rights reserved.
+                </p>
+
+                <button 
+                    onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+                    class="px-4 py-2 rounded-full glass text-xs font-bold text-slate-300 hover:text-white hover:border-brand-light/40 transition">
+                    Back to Top <i class="fa-solid fa-arrow-up ml-2"></i>
+                </button>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- MODAL DETAIL -->
+    <div 
+        x-show="selectedVenture" 
+        x-transition.opacity
+        class="fixed inset-0 z-[90] bg-slate-950/75 backdrop-blur-md flex items-center justify-center px-6 py-10"
+        style="display:none;">
+
+        <div 
+            @click.away="selectedVenture = null"
+            class="glass max-w-5xl w-full max-h-[90vh] overflow-y-auto rounded-[2rem] border border-white/15 shadow-2xl">
+
+            <div class="relative p-8 md:p-10 border-b border-white/10 overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-brand-accent/10 rounded-full blur-3xl"></div>
+
+                <button 
+                    type="button"
+                    @click="selectedVenture = null"
+                    class="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-white flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+                <div class="relative z-10 pr-12">
+                    <p class="text-xs font-bold tracking-widest text-brand-accent uppercase mb-3" x-text="selectedVenture?.type"></p>
+                    <h3 class="text-3xl md:text-4xl font-serif font-bold text-white mb-4" x-text="selectedVenture?.name"></h3>
+                    <p class="text-slate-400 text-sm leading-relaxed max-w-3xl" x-text="selectedVenture?.description"></p>
+                </div>
+            </div>
+
+            <div class="p-8 md:p-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+                        <p class="text-[10px] font-bold tracking-widest text-pink-300 uppercase mb-4">
+                            Business Story
+                        </p>
+                        <p class="text-sm text-slate-300 leading-relaxed" x-text="selectedVenture?.story"></p>
+                    </div>
+
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+                        <p class="text-[10px] font-bold tracking-widest text-emerald-300 uppercase mb-4">
+                            Business Result
+                        </p>
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <template x-for="result in selectedVenture?.results" :key="result">
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-check text-emerald-300 mt-1"></i>
+                                    <span x-text="result"></span>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+                        <p class="text-[10px] font-bold tracking-widest text-cyan-300 uppercase mb-4">
+                            Founder Workflow
+                        </p>
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <template x-for="step in selectedVenture?.workflow" :key="step">
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-arrow-right text-cyan-300 mt-1"></i>
+                                    <span x-text="step"></span>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-6">
+                        <p class="text-[10px] font-bold tracking-widest text-brand-light uppercase mb-4">
+                            Evidence Type
+                        </p>
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <template x-for="evidence in selectedVenture?.evidence" :key="evidence">
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-folder-open text-brand-light mt-1"></i>
+                                    <span x-text="evidence"></span>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- PROPOSAL PDF MODAL -->
+<div 
+    x-show="selectedProposal" 
+    x-transition.opacity
+    class="fixed inset-0 z-[95] bg-slate-950/80 backdrop-blur-md flex items-center justify-center px-6 py-8"
+    style="display:none;">
+
+    <div 
+        @click.away="selectedProposal = null"
+        class="glass max-w-6xl w-full max-h-[92vh] overflow-y-auto rounded-[2rem] border border-white/15 shadow-2xl">
+
+        <!-- Header -->
+        <div class="relative p-6 md:p-8 border-b border-white/10 overflow-hidden">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-yellow-400/10 rounded-full blur-3xl"></div>
+
+            <button 
+                type="button"
+                @click="selectedProposal = null"
+                class="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-white flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="relative z-10 pr-12">
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="proposal-badge text-yellow-300">
+                        <i class="fa-solid fa-trophy"></i>
+                        <span x-text="selectedProposal?.award"></span>
+                    </span>
+
+                    <span class="proposal-badge text-brand-light">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span x-text="selectedProposal?.type"></span>
+                    </span>
+                </div>
+
+                <h3 class="text-2xl md:text-4xl font-serif font-bold text-white leading-tight mb-3" x-text="selectedProposal?.title"></h3>
+                <p class="text-sm text-slate-400 leading-relaxed max-w-3xl" x-text="selectedProposal?.desc"></p>
+            </div>
+        </div>
+
+        <!-- PDF Preview -->
+        <div class="p-6 md:p-8">
+
+            <div 
+                x-show="selectedProposal?.files?.proposal && selectedProposal?.files?.proposal !== '#'"
+                class="rounded-2xl overflow-hidden border border-white/10 bg-slate-950">
+                <iframe 
+                    class="proposal-pdf-frame"
+                    :src="selectedProposal?.files?.proposal">
+                </iframe>
+            </div>
+
+            <div 
+                x-show="!selectedProposal?.files?.proposal || selectedProposal?.files?.proposal === '#'"
+                class="rounded-2xl border border-white/10 bg-white/5 p-10 text-center">
+                <div class="w-20 h-20 rounded-3xl bg-yellow-400/10 border border-yellow-400/20 flex items-center justify-center text-yellow-300 mx-auto mb-6">
+                    <i class="fa-solid fa-file-pdf text-3xl"></i>
+                </div>
+
+                <h4 class="text-2xl font-serif font-bold text-white mb-3">
+                    PDF belum dihubungkan
+                </h4>
+
+                <p class="text-sm text-slate-400 max-w-xl mx-auto leading-relaxed">
+                    Link proposal PDF masih menggunakan placeholder. Ganti bagian <b class="text-white">proposal: '#'</b> dengan link Google Drive/PDF asli agar preview muncul di sini.
+                </p>
+            </div>
+
+            <!-- Action Links -->
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-3 mt-6">
+                <a 
+                    :href="selectedProposal?.files?.detail && selectedProposal?.files?.detail !== '#' ? selectedProposal.files.detail : '#'"
+                    target="_blank"
+                    @click="if (!selectedProposal?.files?.detail || selectedProposal.files.detail === '#') $event.preventDefault()"
+                    :class="selectedProposal?.files?.detail && selectedProposal.files.detail !== '#' ? 'hover:bg-white/10' : 'opacity-45 cursor-not-allowed'"
+                    class="px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-slate-300 text-xs font-bold text-center">
+                    Lihat Detail
+                </a>
+
+                <a 
+                    :href="selectedProposal?.files?.proposal && selectedProposal?.files?.proposal !== '#' ? selectedProposal.files.proposal : '#'"
+                    target="_blank"
+                    @click="if (!selectedProposal?.files?.proposal || selectedProposal.files.proposal === '#') $event.preventDefault()"
+                    :class="selectedProposal?.files?.proposal && selectedProposal.files.proposal !== '#' ? 'hover:bg-white/10' : 'opacity-45 cursor-not-allowed'"
+                    class="px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-slate-300 text-xs font-bold text-center">
+                    Proposal PDF
+                </a>
+
+                <a 
+                    :href="selectedProposal?.files?.deck && selectedProposal?.files?.deck !== '#' ? selectedProposal.files.deck : '#'"
+                    target="_blank"
+                    @click="if (!selectedProposal?.files?.deck || selectedProposal.files.deck === '#') $event.preventDefault()"
+                    :class="selectedProposal?.files?.deck && selectedProposal.files.deck !== '#' ? 'hover:bg-white/10' : 'opacity-45 cursor-not-allowed'"
+                    class="px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-slate-300 text-xs font-bold text-center">
+                    Pitch Deck
+                </a>
+
+                <a 
+                    :href="selectedProposal?.files?.financial && selectedProposal?.files?.financial !== '#' ? selectedProposal.files.financial : '#'"
+                    target="_blank"
+                    @click="if (!selectedProposal?.files?.financial || selectedProposal.files.financial === '#') $event.preventDefault()"
+                    :class="selectedProposal?.files?.financial && selectedProposal.files.financial !== '#' ? 'hover:bg-white/10' : 'opacity-45 cursor-not-allowed'"
+                    class="px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-slate-300 text-xs font-bold text-center">
+                    Financial Analysis
+                </a>
+
+                <a 
+                    :href="selectedProposal?.files?.budgeting && selectedProposal?.files?.budgeting !== '#' ? selectedProposal.files.budgeting : '#'"
+                    target="_blank"
+                    @click="if (!selectedProposal?.files?.budgeting || selectedProposal.files.budgeting === '#') $event.preventDefault()"
+                    :class="selectedProposal?.files?.budgeting && selectedProposal.files.budgeting !== '#' ? 'hover:bg-white/10' : 'opacity-45 cursor-not-allowed'"
+                    class="px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-slate-300 text-xs font-bold text-center">
+                    Budgeting
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script>
+        function creativeLabPage() {
+            return {
+                mobileMenu: false,
+                scrolled: false,
+                selectedVenture: null,
+                    selectedProposal: null,
+
+                evidenceButtons: [
+                    { key: 'website', label: 'View Website', icon: 'fa-solid fa-globe' },
+                    { key: 'finance', label: 'View Finance Sheet', icon: 'fa-solid fa-file-invoice-dollar' },
+                    { key: 'branding', label: 'View Branding', icon: 'fa-solid fa-palette' },
+                    { key: 'documentation', label: 'View Documentation', icon: 'fa-solid fa-folder-open' }
+                ],
+
+                ventures: [
+                    {
+                        name: 'Brulle Roots',
+                        type: 'Dessert Business',
+                        role: 'Founder and Business Owner',
+                        period: 'May 2025 - Present',
+                        position: 'Small-Scale F&B Founder',
+                        icon: 'fa-solid fa-cookie-bite',
+                        iconColor: 'text-yellow-300',
+                        badgeClass: 'bg-yellow-400/10 border-yellow-400/20 text-yellow-300',
+                        description: 'A small-scale dessert business focused on premium brûlée-based products, built from product concept, branding, packaging, pricing, and financial planning.',
+                        story: 'Brulle Roots menjadi ruang eksplorasi bisnis F&B yang dibangun dari nol, mulai dari ide produk, eksperimen rasa, packaging, pricing, pemasaran awal, hingga pencatatan penjualan dan profit.',
+                        customer: 'Personal network, online buyers, dessert lovers, and early adopters around student/community market.',
+                        value: 'Premium brûlée-based dessert with aesthetic packaging, affordable pricing, and homemade quality.',
+                        revenue: 'Unit-based dessert sales with COGS calculation, margin control, and daily/monthly target planning.',
+                        creativeEdge: 'Product aesthetic, packaging, brand naming, and premium dessert positioning.',
+                        workflow: ['Product Ideation', 'Branding', 'COGS Calculation', 'Pricing Strategy', 'Sales Execution', 'Profit Review'],
+                        capabilities: ['Product Concept', 'Branding', 'Packaging', 'COGS', 'Pricing', 'Sales Target', 'Budgeting'],
+                        metricOneLabel: 'Units Sold',
+                        metricOne: '40',
+                        metricTwoLabel: 'Net Profit',
+                        metricTwo: '101K',
+                        results: [
+                            'Sold 40 units within the first month',
+                            'Generated Rp101.000 net profit in the first month',
+                            'Built product concept, branding, packaging, and pricing from scratch',
+                            'Managed COGS, margin, daily target, and monthly sales target independently'
+                        ],
+                        evidence: [
+                            'Product photo documentation',
+                            'Branding and packaging concept',
+                            'COGS and margin calculation',
+                            'Sales and profit tracking sheet'
+                        ],
+                        links: {
+                            website: '#',
+                            finance: '#',
+                            branding: '#',
+                            documentation: '#'
+                        }
+                    },
+                    {
+                        name: 'Toko Putra Barokah',
+                        type: 'Wholesale Business',
+                        role: 'Chief Financial Officer',
+                        period: 'January 2023 - July 2025',
+                        position: 'Finance & Business Operation',
+                        icon: 'fa-solid fa-warehouse',
+                        iconColor: 'text-emerald-300',
+                        badgeClass: 'bg-emerald-500/10 border-emerald-400/20 text-emerald-300',
+                        description: 'A small-to-medium scale wholesale business where finance, bookkeeping, cost control, budgeting, and cash flow monitoring were managed and improved.',
+                        story: 'Toko Putra Barokah menjadi ruang praktik finance dan business operation secara nyata, dari pencatatan arus kas, laporan laba rugi, efisiensi biaya, sampai pembuatan sistem pembukuan digital sederhana.',
+                        customer: 'Retail buyers, local merchants, small business customers, and wholesale product buyers.',
+                        value: 'Wholesale product availability with practical financial control and stable operational management.',
+                        revenue: 'Wholesale transaction-based revenue with margin analysis, cost-saving identification, and cash flow control.',
+                        creativeEdge: 'Simplified digital bookkeeping system and practical financial planning for business decision-making.',
+                        workflow: ['Transaction Recording', 'Financial Statement', 'Cash Flow Monitoring', 'Budget Planning', 'Margin Analysis', 'Bookkeeping System'],
+                        capabilities: ['Financial Planning', 'P&L Report', 'Cash Flow', 'Balance Sheet', 'Budgeting', 'Cost Saving', 'Digital Bookkeeping'],
+                        metricOneLabel: 'Years',
+                        metricOne: '2+',
+                        metricTwoLabel: 'Reports',
+                        metricTwo: 'Monthly',
+                        results: [
+                            'Led financial management for a small-to-medium wholesale business',
+                            'Prepared profit & loss, cash flow, and balance sheet reports',
+                            'Designed monthly and annual financial planning models',
+                            'Developed simplified digital bookkeeping system'
+                        ],
+                        evidence: [
+                            'Financial statement template',
+                            'Cash flow monitoring sheet',
+                            'Budget planning model',
+                            'Digital bookkeeping system'
+                        ],
+                        links: {
+                            website: '#',
+                            finance: '#',
+                            branding: '#',
+                            documentation: '#'
+                        }
+                    },
+                    {
+                        name: 'Nexgrata Agency Digital',
+                        type: 'Digital Agency',
+                        role: 'Founder and Business Owner',
+                        period: 'March 2025 - Present',
+                        position: 'Website & UI/UX Service Founder',
+                        icon: 'fa-solid fa-laptop-code',
+                        iconColor: 'text-brand-light',
+                        badgeClass: 'bg-brand/10 border-brand-light/20 text-brand-light',
+                        description: 'A service-based digital agency specializing in website development and UI/UX design for small businesses, personal brands, and digital presence.',
+                        story: 'Nexgrata Agency Digital menjadi creative business berbasis jasa digital yang dibangun dengan lean operation, personalized client relationship, word-of-mouth marketing, pricing strategy, dan delivery berbasis kebutuhan klien.',
+                        customer: 'Small businesses, personal brands, SMEs, students, and early-stage digital businesses.',
+                        value: 'Responsive websites and user-centric UI/UX design with affordable, personalized, and practical digital solutions.',
+                        revenue: 'Project-based service revenue from website development and UI/UX design delivery.',
+                        creativeEdge: 'Combination of business understanding, design thinking, responsive development, and client-centered delivery.',
+                        workflow: ['Client Discovery', 'Requirement Mapping', 'UI/UX Direction', 'Website Development', 'Delivery', 'Revision & Referral'],
+                        capabilities: ['Website Development', 'UI/UX Design', 'Client Handling', 'Pricing', 'Lean Operation', 'Service Delivery', 'Referral Growth'],
+                        metricOneLabel: 'Clients',
+                        metricOne: '20+',
+                        metricTwoLabel: 'Net Profit',
+                        metricTwo: '2.2M',
+                        results: [
+                            'Served over 20 clients to date',
+                            'Generated Rp2.200.000 total net profit since launch',
+                            'Built service strategy, pricing, delivery flow, and client relationship independently',
+                            'Developed responsive websites and user-centric UI/UX designs'
+                        ],
+                        evidence: [
+                            'Website project documentation',
+                            'Client delivery record',
+                            'UI/UX design sample',
+                            'Revenue and profit tracking'
+                        ],
+                        links: {
+                            website: '#',
+                            finance: '#',
+                            branding: '#',
+                            documentation: '#'
+                        }
+                    }
+                ],
+proposalArchive: [
+    {
+        id: 1,
+        title: 'National Business Case Competition 2025',
+        shortTitle: 'NBCC 2025',
+        type: 'Business Case',
+        award: '1st Winner & Best Presenter',
+        organizer: 'UIN Malik Ibrahim Malang',
+        desc: 'Business case proposal containing problem diagnosis, market insight, strategic recommendation, impact analysis, and final presentation material.',
+        output: 'Case Deck',
+        mainAnalysis: 'Problem Diagnosis',
+        scopes: ['Problem Analysis', 'Market Analysis', 'Financial Logic', 'Strategy'],
+        components: ['Case Deck', 'Problem Analysis', 'Strategic Recommendation', 'Impact Analysis'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    },
+    {
+        id: 2,
+        title: 'IEC Business Model Canvas Competition 2024',
+        shortTitle: 'IEC BMC',
+        type: 'Business Plan',
+        award: '1st Winner',
+        organizer: 'Trisakti University',
+        desc: 'Business model canvas proposal covering customer segment, value proposition, revenue stream, cost structure, market validation, and business feasibility.',
+        output: 'BMC Proposal',
+        mainAnalysis: 'Business Model',
+        scopes: ['BMC', 'Market Validation', 'Revenue Stream', 'Cost Structure'],
+        components: ['Business Model Canvas', 'Market Analysis', 'Revenue Stream', 'Cost Structure'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    },
+    {
+        id: 3,
+        title: 'Business Plan Competition 2024',
+        shortTitle: 'BPC 2024',
+        type: 'Business Plan',
+        award: '1st Winner',
+        organizer: 'Umsida',
+        desc: 'Business plan proposal covering product concept, target market, operational plan, marketing strategy, financial projection, and pitching material.',
+        output: 'Business Plan',
+        mainAnalysis: 'Financial Projection',
+        scopes: ['Product Concept', 'Marketing', 'Budgeting', 'Financial Projection'],
+        components: ['Proposal', 'Pitch Deck', 'Budgeting', 'Financial Analysis'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    },
+    {
+        id: 4,
+        title: 'ASIA Business Plan Competition 2024',
+        shortTitle: 'ASIA BPC',
+        type: 'Business Plan',
+        award: '1st Winner',
+        organizer: 'Andalas University',
+        desc: 'Business plan proposal focused on market opportunity, product positioning, business model, competitive advantage, and financial feasibility.',
+        output: 'Proposal & Deck',
+        mainAnalysis: 'Market Opportunity',
+        scopes: ['Market Analysis', 'Business Model', 'Competitive Advantage', 'Finance'],
+        components: ['Proposal', 'Market Analysis', 'Business Model', 'Financial Feasibility'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    },
+    {
+        id: 5,
+        title: 'Business Plan Competition SPECTA 2.0',
+        shortTitle: 'SPECTA 2.0',
+        type: 'Business Plan',
+        award: '1st Winner',
+        organizer: 'KMB Solo Raya',
+        desc: 'Business proposal covering product innovation, customer validation, go-to-market strategy, budgeting, and profit projection.',
+        output: 'Business Proposal',
+        mainAnalysis: 'Go-to-Market',
+        scopes: ['Product Innovation', 'Customer Validation', 'Budgeting', 'Profit Projection'],
+        components: ['Proposal', 'Pitch Deck', 'Budget Plan', 'Profit Projection'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    },
+    {
+        id: 6,
+        title: 'National Business Plan BDFest Competition 2024',
+        shortTitle: 'BDFest',
+        type: 'Business Plan',
+        award: '1st Winner',
+        organizer: 'STIKOM Bali',
+        desc: 'Business plan proposal with focus on innovation, digital business potential, market segmentation, revenue logic, and implementation roadmap.',
+        output: 'Business Plan',
+        mainAnalysis: 'Revenue Logic',
+        scopes: ['Innovation', 'Segmentation', 'Revenue Logic', 'Roadmap'],
+        components: ['Proposal', 'Roadmap', 'Revenue Model', 'Marketing Strategy'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    },
+    {
+        id: 7,
+        title: 'National Business Plan Competition GALAKSI 2024',
+        shortTitle: 'GALAKSI 2024',
+        type: 'Business Plan',
+        award: '1st Winner',
+        organizer: 'Jakarta UIN University',
+        desc: 'Business proposal covering value proposition, market research, operational plan, budget allocation, and financial projection.',
+        output: 'Business Proposal',
+        mainAnalysis: 'Operational Plan',
+        scopes: ['Value Proposition', 'Market Research', 'Operational Plan', 'Budget Allocation'],
+        components: ['Proposal', 'Operational Plan', 'Budgeting', 'Financial Projection'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    },
+    {
+        id: 8,
+        title: 'Perbanas Entrepreneur Awards 2024',
+        shortTitle: 'PEA 2024',
+        type: 'Business Plan',
+        award: '1st Winner',
+        organizer: 'UHW University',
+        desc: 'Entrepreneurship proposal presenting business innovation, market approach, financial plan, implementation strategy, and pitching deck.',
+        output: 'Entrepreneurship Proposal',
+        mainAnalysis: 'Business Feasibility',
+        scopes: ['Innovation', 'Market Approach', 'Financial Plan', 'Implementation'],
+        components: ['Proposal', 'Pitch Deck', 'Financial Plan', 'Implementation Strategy'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    },
+    {
+        id: 9,
+        title: 'Soedirman Entrepreneurship Case Competition',
+        shortTitle: 'SECC',
+        type: 'Business Case',
+        award: '1st Winner',
+        organizer: 'Soedirman University',
+        desc: 'Entrepreneurship case proposal covering business issue diagnosis, opportunity analysis, solution design, financial consideration, and strategic recommendation.',
+        output: 'Case Proposal',
+        mainAnalysis: 'Opportunity Analysis',
+        scopes: ['Problem Analysis', 'Opportunity Analysis', 'Solution Design', 'Finance'],
+        components: ['Case Deck', 'Solution Framework', 'Financial Consideration', 'Action Plan'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    },
+
+    {
+        id: 10,
+        title: 'SIGMA Business Plan Competition 2024',
+        shortTitle: 'SIGMA BPC',
+        type: 'Business Plan',
+        award: '2nd Winner',
+        organizer: 'Telkom University',
+        desc: 'Business plan proposal focused on business innovation, digital growth, market positioning, budgeting, and revenue forecast.',
+        output: 'Business Plan',
+        mainAnalysis: 'Revenue Forecast',
+        scopes: ['Innovation', 'Market Positioning', 'Budgeting', 'Revenue Forecast'],
+        components: ['Proposal', 'Pitch Deck', 'Budgeting', 'Revenue Forecast'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    },
+    {
+        id: 11,
+        title: 'Grand Economics 2024',
+        shortTitle: 'Grand Economics',
+        type: 'Business Plan',
+        award: '2nd Winner',
+        organizer: 'President University',
+        desc: 'Business plan proposal covering target market, product strategy, competitive mapping, financial analysis, and implementation plan.',
+        output: 'Proposal & Deck',
+        mainAnalysis: 'Competitive Mapping',
+        scopes: ['Target Market', 'Product Strategy', 'Competitive Mapping', 'Finance'],
+        components: ['Proposal', 'Pitch Deck', 'Competitor Analysis', 'Financial Analysis'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    },
+    {
+        id: 12,
+        title: 'Business Plan Competition Sharia Economic Festival #5',
+        shortTitle: 'SEF #5',
+        type: 'Business Plan',
+        award: '2nd Winner',
+        organizer: 'UAD University',
+        desc: 'Business plan proposal with focus on sharia-based business logic, market opportunity, operational planning, and financial feasibility.',
+        output: 'Business Plan',
+        mainAnalysis: 'Financial Feasibility',
+        scopes: ['Sharia Business', 'Market Opportunity', 'Operational Plan', 'Finance'],
+        components: ['Proposal', 'Financial Feasibility', 'Market Analysis', 'Operational Plan'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    },
+    {
+        id: 13,
+        title: 'VOCREATIVE Competition 2024',
+        shortTitle: 'VOCREATIVE',
+        type: 'Business Plan',
+        award: '2nd Winner',
+        organizer: 'Yogyakarta State University',
+        desc: 'Creative business proposal covering product concept, creative branding, market segmentation, budgeting, and business development plan.',
+        output: 'Creative Proposal',
+        mainAnalysis: 'Branding Strategy',
+        scopes: ['Product Concept', 'Branding', 'Segmentation', 'Budgeting'],
+        components: ['Proposal', 'Creative Strategy', 'Budgeting', 'Pitch Deck'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    },
+    {
+        id: 14,
+        title: 'National Business Plan Competition Economy Festival 2023',
+        shortTitle: 'Economy Festival',
+        type: 'Business Plan',
+        award: '2nd Winner',
+        organizer: 'UIN Malik Ibrahim University',
+        desc: 'Business plan proposal presenting product innovation, customer segment, marketing mix, operational structure, and financial projection.',
+        output: 'Business Proposal',
+        mainAnalysis: 'Marketing Mix',
+        scopes: ['Innovation', 'Customer Segment', 'Marketing Mix', 'Financial Projection'],
+        components: ['Proposal', 'Marketing Strategy', 'Operational Plan', 'Financial Projection'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    },
+    {
+        id: 15,
+        title: 'Science Expo Business Plan Competition 2024',
+        shortTitle: 'Science Expo',
+        type: 'Business Plan',
+        award: '2nd Winner',
+        organizer: 'Sriwijaya University',
+        desc: 'Business plan proposal with emphasis on innovation feasibility, market research, product development, budget structure, and growth plan.',
+        output: 'Business Plan',
+        mainAnalysis: 'Innovation Feasibility',
+        scopes: ['Feasibility', 'Market Research', 'Product Development', 'Budget Structure'],
+        components: ['Proposal', 'Feasibility Analysis', 'Budgeting', 'Growth Plan'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    },
+    {
+        id: 16,
+        title: 'Dies Natalis 31st UPNVJ Business Plan Competition 2024',
+        shortTitle: 'UPNVJ BPC',
+        type: 'Business Plan',
+        award: '2nd Winner',
+        organizer: 'UPNVJ',
+        desc: 'Business plan proposal covering strategic product planning, market potential, operational execution, financial analysis, and pitch material.',
+        output: 'Proposal & Pitch',
+        mainAnalysis: 'Market Potential',
+        scopes: ['Product Planning', 'Market Potential', 'Operations', 'Financial Analysis'],
+        components: ['Proposal', 'Pitch Deck', 'Operational Plan', 'Financial Analysis'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    },
+    {
+        id: 17,
+        title: 'Business Plan Competition Economic Education',
+        shortTitle: 'Economic Education',
+        type: 'Business Plan',
+        award: '2nd Winner',
+        organizer: 'Semarang State University',
+        desc: 'Business plan proposal with focus on education-based product idea, market segmentation, pricing strategy, budgeting, and implementation.',
+        output: 'Business Plan',
+        mainAnalysis: 'Pricing Strategy',
+        scopes: ['Education Product', 'Segmentation', 'Pricing', 'Budgeting'],
+        components: ['Proposal', 'Pricing Strategy', 'Budgeting', 'Implementation Plan'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    },
+
+    {
+        id: 18,
+        title: 'Business Plan Competition STIM YKPN 2024',
+        shortTitle: 'STIM YKPN',
+        type: 'Business Plan',
+        award: '3rd Winner',
+        organizer: 'STIM YKPN Yogyakarta',
+        desc: 'Business plan proposal presenting business idea, market problem, solution concept, revenue model, and financial projection.',
+        output: 'Business Plan',
+        mainAnalysis: 'Revenue Model',
+        scopes: ['Business Idea', 'Problem-Solution', 'Revenue Model', 'Finance'],
+        components: ['Proposal', 'Revenue Model', 'Financial Projection', 'Pitch Deck'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    },
+    {
+        id: 19,
+        title: 'Management Fair Vol.V Business Plan Competition 2023',
+        shortTitle: 'Management Fair',
+        type: 'Business Plan',
+        award: '3rd Winner',
+        organizer: 'National Level',
+        desc: 'Business plan proposal covering market insight, business strategy, operational model, budget planning, and profitability analysis.',
+        output: 'Business Proposal',
+        mainAnalysis: 'Profitability Analysis',
+        scopes: ['Market Insight', 'Business Strategy', 'Operations', 'Profitability'],
+        components: ['Proposal', 'Business Strategy', 'Budget Planning', 'Profitability Analysis'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    },
+    {
+        id: 20,
+        title: 'BMC Competition Gebyar Kopma Unnes 42nd 2024',
+        shortTitle: 'Kopma Unnes',
+        type: 'Business Plan',
+        award: '3rd Winner',
+        organizer: 'Semarang State University',
+        desc: 'Business model canvas proposal covering customer segment, channels, cost structure, revenue stream, and key activities.',
+        output: 'BMC Proposal',
+        mainAnalysis: 'Cost Structure',
+        scopes: ['BMC', 'Customer Segment', 'Cost Structure', 'Revenue Stream'],
+        components: ['Business Model Canvas', 'Cost Structure', 'Revenue Stream', 'Pitch Deck'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    },
+    {
+        id: 21,
+        title: 'AFC Business Plan Competition 2024',
+        shortTitle: 'AFC BPC',
+        type: 'Business Plan',
+        award: '3rd Winner',
+        organizer: 'Universitas Airlangga',
+        desc: 'Business plan proposal focused on innovation, target market, growth strategy, financial planning, and business implementation.',
+        output: 'Business Plan',
+        mainAnalysis: 'Growth Strategy',
+        scopes: ['Innovation', 'Target Market', 'Growth Strategy', 'Financial Planning'],
+        components: ['Proposal', 'Growth Strategy', 'Financial Planning', 'Implementation Plan'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    },
+    {
+        id: 22,
+        title: 'Action Fest Business Plan Competition 2024',
+        shortTitle: 'Action Fest',
+        type: 'Business Plan',
+        award: '3rd Winner',
+        organizer: 'UPNVY',
+        desc: 'Business proposal containing action-oriented business model, market strategy, execution plan, budget allocation, and revenue estimation.',
+        output: 'Business Proposal',
+        mainAnalysis: 'Execution Plan',
+        scopes: ['Business Model', 'Market Strategy', 'Execution', 'Budget Allocation'],
+        components: ['Proposal', 'Execution Plan', 'Budgeting', 'Revenue Estimation'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    },
+    {
+        id: 23,
+        title: 'NCC Business Plan Competition 2024',
+        shortTitle: 'NCC BPC',
+        type: 'Business Plan',
+        award: '3rd Winner',
+        organizer: 'Yogyakarta State University',
+        desc: 'Business plan proposal covering problem framing, product solution, marketing plan, budgeting, and financial projection.',
+        output: 'Business Plan',
+        mainAnalysis: 'Problem Framing',
+        scopes: ['Problem Framing', 'Product Solution', 'Marketing Plan', 'Budgeting'],
+        components: ['Proposal', 'Marketing Plan', 'Budgeting', 'Financial Projection'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    },
+
+    {
+        id: 24,
+        title: 'Business Case Competition Dies Natalis Kopma Dr.Angka 43rd',
+        shortTitle: 'Kopma ITS',
+        type: 'Business Case',
+        award: 'Best Team 1',
+        organizer: 'ITS',
+        desc: 'Business case proposal covering case diagnosis, stakeholder analysis, recommendation framework, implementation roadmap, and presentation material.',
+        output: 'Case Deck',
+        mainAnalysis: 'Recommendation Framework',
+        scopes: ['Case Diagnosis', 'Stakeholder Analysis', 'Framework', 'Roadmap'],
+        components: ['Case Deck', 'Framework', 'Implementation Roadmap', 'Presentation'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    },
+    {
+        id: 25,
+        title: 'Lomba Inovasi Kewirausahaan Mahasiswa Indonesia 2024',
+        shortTitle: 'LIKMI 2024',
+        type: 'Business Plan',
+        award: 'Finalist Top 4',
+        organizer: 'Yogyakarta State University',
+        desc: 'Innovation business proposal presenting entrepreneurship idea, product innovation, implementation plan, financial logic, and pitching material.',
+        output: 'Innovation Proposal',
+        mainAnalysis: 'Product Innovation',
+        scopes: ['Innovation', 'Entrepreneurship', 'Implementation', 'Financial Logic'],
+        components: ['Proposal', 'Innovation Plan', 'Financial Logic', 'Pitch Deck'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    },
+    {
+        id: 26,
+        title: 'Economics Creative Business Case Competition 2024',
+        shortTitle: 'Creative BCC',
+        type: 'Business Case',
+        award: 'Finalist Top 5',
+        organizer: 'National Level',
+        desc: 'Creative business case proposal with problem breakdown, market insight, strategic options, financial implication, and recommendation.',
+        output: 'Case Proposal',
+        mainAnalysis: 'Strategic Options',
+        scopes: ['Problem Breakdown', 'Market Insight', 'Strategy', 'Financial Implication'],
+        components: ['Case Deck', 'Market Insight', 'Strategic Options', 'Financial Implication'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    },
+    {
+        id: 27,
+        title: 'Business Plan Competition LENSA #10',
+        shortTitle: 'LENSA #10',
+        type: 'Business Plan',
+        award: 'Honorable Mention 1',
+        organizer: 'Yogyakarta State University',
+        desc: 'Business plan proposal covering opportunity mapping, business concept, target customer, budgeting, and financial analysis.',
+        output: 'Business Plan',
+        mainAnalysis: 'Opportunity Mapping',
+        scopes: ['Opportunity Mapping', 'Business Concept', 'Target Customer', 'Finance'],
+        components: ['Proposal', 'Opportunity Mapping', 'Budgeting', 'Financial Analysis'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    },
+    {
+        id: 28,
+        title: 'National Level Business Plan AGRICOMPT #2',
+        shortTitle: 'AGRICOMPT #2',
+        type: 'Business Plan',
+        award: 'Honorable Mention 2',
+        organizer: 'POLBANGTAN Malang',
+        desc: 'Agribusiness plan proposal covering agricultural market opportunity, product concept, operational process, budgeting, and profitability plan.',
+        output: 'Agribusiness Proposal',
+        mainAnalysis: 'Profitability Plan',
+        scopes: ['Agribusiness', 'Market Opportunity', 'Operations', 'Profitability'],
+        components: ['Proposal', 'Operational Process', 'Budgeting', 'Profitability Plan'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    },
+    {
+        id: 29,
+        title: 'Business Plan Competition Youth Innovation 2024',
+        shortTitle: 'Youth Innovation',
+        type: 'Business Plan',
+        award: 'Honorable Mention 3',
+        organizer: 'Purwokerto UIN University',
+        desc: 'Youth innovation business proposal presenting product idea, social impact, target market, cost planning, and implementation strategy.',
+        output: 'Innovation Proposal',
+        mainAnalysis: 'Social Impact',
+        scopes: ['Product Idea', 'Social Impact', 'Target Market', 'Cost Planning'],
+        components: ['Proposal', 'Impact Analysis', 'Cost Planning', 'Implementation Strategy'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    },
+    {
+        id: 30,
+        title: 'Business Plan Competition Youth Innovation 2024',
+        shortTitle: 'Youth Innovation',
+        type: 'Business Plan',
+        award: 'Honorable Mention',
+        organizer: 'Surabaya UIN University',
+        desc: 'Business plan proposal focused on youth innovation, market validation, business model, budgeting, and financial projection.',
+        output: 'Business Proposal',
+        mainAnalysis: 'Market Validation',
+        scopes: ['Youth Innovation', 'Market Validation', 'Business Model', 'Financial Projection'],
+        components: ['Proposal', 'Market Validation', 'Business Model', 'Financial Projection'],
+        files: { detail: '#', proposal: '#', deck: '#', financial: '#', budgeting: '#' }
+    }
+],
+                systems: [
+                    {
+                        title: 'Idea to Market',
+                        desc: 'Mengubah ide awal menjadi produk, layanan, atau sistem bisnis yang bisa diuji ke pasar.',
+                        icon: 'fa-solid fa-lightbulb'
+                    },
+                    {
+                        title: 'Creative to Revenue',
+                        desc: 'Menerjemahkan kreativitas menjadi pricing, sales, margin, dan financial output.',
+                        icon: 'fa-solid fa-coins'
+                    },
+                    {
+                        title: 'Execution to Learning',
+                        desc: 'Mengeksekusi bisnis kecil, membaca hasil, lalu melakukan evaluasi untuk improvement.',
+                        icon: 'fa-solid fa-rotate'
+                    }
+                ],
+                creativeWorks: [
+    {
+        title: "Simulasi Chain",
+        url: "https://blockchainedu.iceiy.com/?i=2",
+        desc: "Platform edukasi interaktif untuk memahami dasar-dasar teknologi Web3 & Blockchain.",
+        keywords: "blockchain, web3, crypto, edukasi, teknologi"
+    },
+    {
+        title: "Life Ways",
+        url: "https://life-ways.vercel.app/#",
+        desc: "Sistem manajemen aktivitas cerdas untuk meningkatkan produktivitas dan keteraturan hidup.",
+        keywords: "produktivitas, manajemen, tools, planning, aktivitas"
+    },
+    {
+        title: "Our Project dan Vision",
+        url: "https://nabiledu.iceiy.com/?i=2",
+        desc: "Eksplorasi visi masa depan dan berbagai proyek inovatif yang sedang dikembangkan.",
+        keywords: "visi, misi, masa depan, project, rencana"
+    },
+    {
+        title: "Skill Flow Project",
+        url: "https://skillflow.iceiy.com/?i=2",
+        desc: "Wadah edukasi dan pengembangan skill kompetisi untuk mencetak generasi juara.",
+        keywords: "lomba, kompetisi, edukasi, prestasi, pelatihan"
+    },
+    {
+        title: "Skill Arena Project",
+        url: "https://skilflow.iceiy.com/?i=2",
+        desc: "Pusat pengembangan karir dan sarana asah kemampuan profesional untuk masa depan.",
+        keywords: "karir, kerja, skill, pelatihan, profesional"
+    },
+    {
+        title: "Nexus Workspace",
+        url: "https://nexusproject-amber.vercel.app/",
+        desc: "Solusi manajemen proyek terpadu dan kolaboratif untuk efisiensi kerja tim.",
+        keywords: "project management, tools, kerja, kolaborasi, tim"
+    },
+    {
+        title: "Strigo Ride Hailing",
+        url: "https://strigo.vercel.app/",
+        desc: "Inovasi transportasi online terdesentralisasi berbasis teknologi Blockchain yang transparan.",
+        keywords: "blockchain, transportasi, ride hailing, online, web3"
+    },
+    {
+        title: "Book Mart Project",
+        url: "https://book-mart-fawn.vercel.app/",
+        desc: "Marketplace buku digital untuk memenuhi kebutuhan literasi secara digital.",
+        keywords: "buku, ebook, literasi, baca, digital"
+    },
+    {
+        title: "Sky Climb Project",
+        url: "https://sky-climb.vercel.app/",
+        desc: "Toko online perlengkapan mendaki gunung berkualitas tinggi untuk para petualang.",
+        keywords: "gunung, hiking, outdoor, petualang, camping"
+    },
+    {
+        title: "Private Linktree",
+        url: "https://nabil-creative.vercel.app/",
+        desc: "Portal akses khusus untuk mengelola tautan dan sumber daya pribadi dengan aman.",
+        keywords: "private, link, admin, manajemen, personal"
+    },
+    {
+        title: "My LinkedIn",
+        url: "https://id.linkedin.com/in/nabil-abror-222245249",
+        desc: "Profil profesional untuk memperluas jejaring bisnis dan koneksi karier.",
+        keywords: "linkedin, profesional, karir, network, jejaring"
+    },
+    {
+        title: "Cincau Lite",
+        url: "https://cincaulite.iceiy.com/?i=1",
+        desc: "Platform e-commerce modern yang menghadirkan kesegaran cincau otentik langsung ke pelanggan.",
+        keywords: "cincau, minuman, segar, e-commerce, fnb, jualan"
+    },
+    {
+        title: "Aethel Core",
+        url: "https://aethelcore.iceiy.com/?i=1",
+        desc: "Eksplorasi teknologi Artificial Intelligence untuk solusi otomatisasi dan masa depan digital.",
+        keywords: "ai, artificial intelligence, teknologi, robot, coding, masa depan"
+    },
+    {
+        title: "Nala Alam",
+        url: "https://nalaalam.iceiy.com/?i=1",
+        desc: "Platform edukasi interaktif yang didedikasikan untuk pelestarian lingkungan dan kesadaran alam.",
+        keywords: "alam, lingkungan, edukasi, hijau, bumi, nature"
+    },
+    {
+        title: "Ruang Finansial",
+        url: "https://ruangfinansial.iceiy.com/?i=1",
+        desc: "Platform edukasi dan tools untuk membantu pengelolaan keuangan individu dan UMKM.",
+        keywords: "finance, keuangan, edukasi, umkm, tools"
+    },
+    {
+        title: "Pomo Focus",
+        url: "https://pomo-focus-ten.vercel.app/",
+        desc: "Aplikasi produktivitas berbasis Pomodoro Timer untuk membantu pengguna lebih fokus bekerja.",
+        keywords: "pomodoro, timer, produktivitas, fokus, kerja"
+    },
+    {
+        title: "Life Study",
+        url: "https://life-study.vercel.app/",
+        desc: "Platform belajar interaktif untuk menunjang kebutuhan studi dan pengembangan diri.",
+        keywords: "belajar, studi, edukasi, sekolah, buku"
+    },
+    {
+        title: "Snippet Manager",
+        url: "https://snippet-manager-chi.vercel.app/",
+        desc: "Tools untuk mengelola dan menyimpan potongan kode agar mudah diakses kembali.",
+        keywords: "coding, snippet, developer, tools, programming"
+    },
+    {
+        title: "Lumina Pearl",
+        url: "https://lumina-pearl-seven.vercel.app/",
+        desc: "Konsep toko digital untuk koleksi perhiasan dan aksesoris elegan.",
+        keywords: "fashion, perhiasan, aksesoris, gaya, belanja"
+    },
+    {
+        title: "Chroma Luxe",
+        url: "https://chroma-luxe.vercel.app/",
+        desc: "Eksplorasi visual dan palet warna premium untuk kebutuhan desain digital.",
+        keywords: "visual, warna, desain, premium, creative"
+    },
+    {
+        title: "99 Asmaul Husna",
+        url: "https://99-asmaul-husna-wine.vercel.app/",
+        desc: "Platform untuk mempelajari dan menghayati 99 Nama Indah Allah dengan tampilan estetis.",
+        keywords: "asmaul husna, nama allah, dzikir, 99 nama, religi"
+    },
+    {
+        title: "Asmaul Husna v2",
+        url: "https://asmaul-husna-seven.vercel.app/",
+        desc: "Eksplorasi makna Asmaul Husna dengan desain visual modern dan responsif.",
+        keywords: "asmaul husna, belajar, islam, doa, web app"
+    },
+    {
+        title: "Rayyan Calendar",
+        url: "https://rayyan-calendar.vercel.app/",
+        desc: "Kalender Hijriah digital untuk mengatur jadwal puasa sunnah dan agenda ibadah.",
+        keywords: "kalender, hijriah, puasa, ramadhan, jadwal"
+    },
+    {
+        title: "Adzan Digital",
+        url: "https://adzan-digital.vercel.app/",
+        desc: "Pengingat waktu sholat dengan fitur jadwal dan notifikasi adzan digital.",
+        keywords: "adzan, sholat, jadwal, waktu, muslim"
+    },
+    {
+        title: "Sunnah Quest",
+        url: "https://sunnah-quest.vercel.app/",
+        desc: "Platform gamifikasi edukatif untuk membuat pengalaman belajar sunnah lebih menarik.",
+        keywords: "sunnah, game, edukasi, quest, belajar islam"
+    },
+    {
+        title: "Sajadah App",
+        url: "https://sajadah.vercel.app/",
+        desc: "Kompanion digital untuk menunjang kebutuhan ibadah harian.",
+        keywords: "sajadah, sholat, kiblat, tools, ibadah"
+    },
+    {
+        title: "Prophetic Timeline",
+        url: "https://prophetic-timeline.vercel.app/",
+        desc: "Visualisasi garis waktu sejarah para Nabi dan Rasul secara interaktif.",
+        keywords: "nabi, sejarah, sirah, timeline, prophets"
+    },
+    {
+        title: "Smart Jobs Portal",
+        url: "https://smartjobs.infinityfree.me/?i=1",
+        desc: "Platform pencarian kerja cerdas untuk menghubungkan talenta dengan peluang kerja.",
+        keywords: "job, career, portal, kerja, talent"
+    }
+],
+
+creativeCategory(keywords) {
+    const key = keywords.toLowerCase();
+
+    if (key.includes('blockchain') || key.includes('web3') || key.includes('ai') || key.includes('coding') || key.includes('developer')) return 'Technology Lab';
+    if (key.includes('produktif') || key.includes('planning') || key.includes('pomodoro') || key.includes('manajemen')) return 'Productivity Tools';
+    if (key.includes('edukasi') || key.includes('belajar') || key.includes('studi') || key.includes('lomba')) return 'Education Lab';
+    if (key.includes('karir') || key.includes('linkedin') || key.includes('job') || key.includes('kerja')) return 'Career Lab';
+    if (key.includes('e-commerce') || key.includes('jual') || key.includes('belanja') || key.includes('fashion')) return 'Commerce Concept';
+    if (key.includes('islam') || key.includes('sholat') || key.includes('adzan') || key.includes('sunnah') || key.includes('hijriah')) return 'Islamic Digital';
+    if (key.includes('alam') || key.includes('lingkungan') || key.includes('nature')) return 'Impact & Nature';
+    return 'Creative Project';
+},
+
+creativeCategoryClass(keywords) {
+    const category = this.creativeCategory(keywords);
+
+    if (category === 'Technology Lab') return 'text-cyan-300';
+    if (category === 'Productivity Tools') return 'text-emerald-300';
+    if (category === 'Education Lab') return 'text-yellow-300';
+    if (category === 'Career Lab') return 'text-blue-300';
+    if (category === 'Commerce Concept') return 'text-pink-300';
+    if (category === 'Islamic Digital') return 'text-violet-300';
+    if (category === 'Impact & Nature') return 'text-green-300';
+
+    return 'text-brand-light';
+},
+
+creativeIcon(keywords) {
+    const category = this.creativeCategory(keywords);
+    const key = keywords.toLowerCase();
+
+    if (category === 'Technology Lab') return 'fa-solid fa-microchip';
+    if (category === 'Productivity Tools') return 'fa-solid fa-bolt';
+    if (category === 'Education Lab') return 'fa-solid fa-graduation-cap';
+    if (category === 'Career Lab') return 'fa-solid fa-briefcase';
+    if (category === 'Commerce Concept') return 'fa-solid fa-cart-shopping';
+    if (category === 'Islamic Digital') return 'fa-solid fa-moon';
+    if (category === 'Impact & Nature') return 'fa-solid fa-leaf';
+
+    if (key.includes('buku') || key.includes('literasi') || key.includes('ebook')) return 'fa-solid fa-book-open';
+    if (key.includes('gunung') || key.includes('hiking') || key.includes('outdoor')) return 'fa-solid fa-mountain';
+    if (key.includes('visual') || key.includes('warna') || key.includes('desain')) return 'fa-solid fa-palette';
+    if (key.includes('visi') || key.includes('misi') || key.includes('masa depan')) return 'fa-solid fa-rocket';
+    if (key.includes('finance') || key.includes('keuangan')) return 'fa-solid fa-coins';
+
+    return 'fa-solid fa-cube';
+},
+
+                skills: [
+                    {
+                        title: 'Business Creation',
+                        desc: 'Membangun bisnis dari ide awal, value proposition, model bisnis, dan eksekusi pasar.',
+                        icon: 'fa-solid fa-rocket'
+                    },
+                    {
+                        title: 'Creative Branding',
+                        desc: 'Membuat konsep brand, positioning, visual identity, packaging, dan storytelling.',
+                        icon: 'fa-solid fa-palette'
+                    },
+                    {
+                        title: 'Financial Control',
+                        desc: 'Mengelola COGS, margin, laporan keuangan, cash flow, dan budget planning.',
+                        icon: 'fa-solid fa-file-invoice-dollar'
+                    },
+                    {
+                        title: 'Client Delivery',
+                        desc: 'Mengelola kebutuhan klien, timeline, revisi, output jasa, dan kepuasan pelanggan.',
+                        icon: 'fa-solid fa-handshake'
+                    }
+                ],
+countProposalType(type) {
+    return this.proposalArchive.filter(item => item.type === type).length;
+},
+                workflowDescription(step) {
+                    const desc = {
+                        'Product Ideation': 'Mencari ide produk dan menentukan value yang ingin ditawarkan.',
+                        'Branding': 'Membangun nama, positioning, visual, dan persepsi brand.',
+                        'COGS Calculation': 'Menghitung biaya produksi dan struktur biaya utama.',
+                        'Pricing Strategy': 'Menentukan harga berdasarkan biaya, margin, dan daya beli pasar.',
+                        'Sales Execution': 'Menjual produk melalui jaringan personal dan channel online.',
+                        'Profit Review': 'Mengevaluasi penjualan, margin, dan profit bisnis.',
+                        'Transaction Recording': 'Mencatat transaksi masuk dan keluar secara rapi.',
+                        'Financial Statement': 'Menyusun laporan laba rugi, cash flow, dan balance sheet.',
+                        'Cash Flow Monitoring': 'Memantau arus kas harian dan bulanan.',
+                        'Budget Planning': 'Menyusun rencana keuangan dan alokasi dana.',
+                        'Margin Analysis': 'Menganalisis margin dan peluang efisiensi biaya.',
+                        'Bookkeeping System': 'Membuat sistem pencatatan keuangan sederhana.',
+                        'Client Discovery': 'Menggali kebutuhan klien dan tujuan digital mereka.',
+                        'Requirement Mapping': 'Menerjemahkan kebutuhan klien menjadi scope project.',
+                        'UI/UX Direction': 'Menyusun arah desain dan pengalaman pengguna.',
+                        'Website Development': 'Membangun website responsif sesuai kebutuhan bisnis.',
+                        'Delivery': 'Menyerahkan output final kepada klien.',
+                        'Revision & Referral': 'Mengelola revisi dan menjaga peluang referral.'
+                    };
+
+                    return desc[step] || 'Tahapan dalam proses creative business execution.';
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>

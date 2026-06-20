@@ -257,12 +257,161 @@
             right: 1.2rem;
         }
     }
+    /* RESPONSIVE SPLASH SCREEN */
+    .hero-principle {
+        width: 100%;
+        max-width: 1100px;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        z-index: 10;
+    }
+
+    .hero-principle-title {
+        font-size: clamp(3.8rem, 9vw, 8rem);
+        line-height: 0.98;
+        font-weight: 700;
+    }
+
+    .principle-icon-box {
+        width: 96px;
+        height: 96px;
+        margin: 0 auto;
+        border-radius: 1.8rem;
+        border: 1px solid rgba(255,255,255,0.14);
+        background: rgba(255,255,255,0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+
+    .principle-point {
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.12);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+
+    .corner-dots {
+        position: fixed;
+        top: 2rem;
+        right: 2rem;
+        z-index: 30;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            overflow-y: auto;
+        }
+
+        .corner-dots {
+            top: 1.15rem;
+            right: 1.15rem;
+        }
+
+        .hero-principle {
+            max-width: 100%;
+            padding-top: 4.6rem;
+            padding-bottom: 2.5rem;
+        }
+
+        .hero-principle-title {
+            font-size: clamp(3rem, 14vw, 4.4rem);
+            line-height: 0.95;
+            margin-bottom: 1rem;
+        }
+
+        .principle-icon-box {
+            width: 76px;
+            height: 76px;
+            border-radius: 1.4rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .principle-icon-box i {
+            font-size: 2rem !important;
+        }
+
+        .principle-badge {
+            padding: 0.6rem 0.85rem;
+            font-size: 9px;
+        }
+
+        .principle-point {
+            border-radius: 1.35rem;
+            padding: 1.15rem 1.2rem;
+            text-align: left;
+        }
+
+        .principle-point h3 {
+            font-size: 0.95rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .principle-point p {
+            font-size: 0.78rem;
+            line-height: 1.55;
+        }
+
+        .splash-description {
+            font-size: 0.92rem;
+            line-height: 1.6;
+            max-width: 92%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 1.7rem;
+        }
+
+        .splash-points-grid {
+            gap: 0.85rem;
+            margin-bottom: 1.6rem;
+        }
+
+        .splash-control {
+            transform: translateY(0);
+            padding-bottom: 1rem;
+        }
+
+        .splash-control button {
+            width: 100%;
+            max-width: 240px;
+        }
+    }
+
+    @media (max-width: 420px) {
+        .hero-principle {
+            padding-top: 4.2rem;
+        }
+
+        .hero-principle-title {
+            font-size: clamp(2.8rem, 13vw, 3.8rem);
+        }
+
+        .principle-icon-box {
+            width: 68px;
+            height: 68px;
+        }
+
+        .splash-description {
+            font-size: 0.85rem;
+        }
+
+        .principle-point {
+            padding: 1rem;
+        }
+    }
+    .splash-control button {
+    width: 100%;
+    max-width: 240px;
+}
 
     </style>
 </head>
 
 <body 
-    class="min-h-screen font-sans text-white overflow-hidden"
+    class="min-h-screen font-sans text-white overflow-x-hidden"
     x-data="splashApp()"
     x-init="loadVideo()">
 
@@ -294,7 +443,7 @@
     </div>
 
     <!-- MAIN SPLASH HERO -->
-   <main class="relative z-10 min-h-screen flex items-center justify-center px-6 md:px-10 lg:px-16">
+  <main class="relative z-10 min-h-screen flex items-center justify-center px-5 md:px-10 lg:px-16 py-6 md:py-0">
 
     <!-- DOTS -->
     <div class="corner-dots flex items-center gap-3">
@@ -315,7 +464,7 @@
         <div class="slide-animate">
 
             <!-- Badge -->
-            <div class="mb-8 flex items-center justify-center gap-4">
+        <div class="mb-6 md:mb-8 flex items-center justify-center gap-4">
                 <div 
                     class="principle-badge"
                     :class="slides[current].badgeClass">
@@ -341,10 +490,9 @@
             </h1>
 
             <!-- Desc -->
-            <p class="max-w-4xl mx-auto text-base md:text-2xl text-slate-100/90 leading-relaxed mb-12" x-text="slides[current].description"></p>
-
+           <p class="splash-description max-w-4xl mx-auto text-base md:text-2xl text-slate-100/90 leading-relaxed mb-8 md:mb-12" x-text="slides[current].description">
             <!-- Points -->
-         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto mb-14">
+       <div class="splash-points-grid grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto mb-7 md:mb-8">
             <template x-for="point in slides[current].points" :key="point.title">
     <div class="principle-point rounded-3xl p-6 md:p-7 text-left">
         <i class="fa-solid fa-check text-emerald-400 mb-4"></i>
@@ -358,22 +506,27 @@
 
             <!-- Bottom Controls -->
             <!-- Bottom Controls -->
-<div class="flex flex-col md:flex-row md:items-center md:justify-center gap-4 -translate-y-6 md:-translate-y-8">
+<!-- Bottom Controls -->
+<div class="splash-control flex flex-row items-center justify-center gap-3 md:gap-4 -translate-y-4 md:-translate-y-5">
+
     <button 
         type="button"
         x-show="current > 0"
+        x-transition
         @click="prevSlide()"
-        class="px-7 py-4 rounded-2xl bg-white/10 border border-white/10 text-white text-xs font-bold tracking-widest uppercase hover:bg-white/15 transition">
+        class="splash-nav-btn splash-back-btn px-6 py-4 rounded-2xl bg-white/10 border border-white/10 text-white text-xs font-bold tracking-widest uppercase hover:bg-white/15 transition">
         Back
     </button>
 
     <button 
         type="button"
         @click="nextSlide()"
-        class="px-8 py-4 rounded-2xl bg-gradient-to-r from-brand to-brand-accent text-white text-xs font-bold tracking-widest uppercase hover:shadow-[0_12px_28px_rgba(244,114,182,0.32)] transition-all">
+        :class="current > 0 ? 'splash-next-with-back' : 'splash-next-single'"
+        class="splash-nav-btn px-8 py-4 rounded-2xl bg-gradient-to-r from-brand to-brand-accent text-white text-xs font-bold tracking-widest uppercase hover:shadow-[0_12px_28px_rgba(244,114,182,0.32)] transition-all">
         <span x-text="current === slides.length - 1 ? 'Masuk ke Login' : 'Next'"></span>
         <i class="fa-solid fa-arrow-right ml-2"></i>
     </button>
+
 </div>
 
         </div>

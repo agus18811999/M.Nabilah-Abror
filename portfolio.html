@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -437,6 +437,204 @@
 
     </div>
 </section>
+<section 
+    id="my-blueprint" 
+    class="py-24 px-6 border-t border-white/5 bg-[#050814] relative overflow-hidden"
+    x-data="blueprintPortfolio()">
+
+    <!-- Background Premium Glow -->
+    <div class="absolute top-0 right-1/4 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[160px] pointer-events-none"></div>
+    <div class="absolute bottom-1/4 left-0 w-[500px] h-[500px] bg-fuchsia-600/10 rounded-full blur-[150px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+
+        <!-- Section Header -->
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-14 border-b border-white/10 pb-8">
+            <div>
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-400/30 bg-blue-500/10 text-blue-300 text-[10px] font-bold tracking-widest uppercase mb-5">
+                    <i class="fa-solid fa-code-branch"></i>
+                    Internal Tools & Automation
+                </div>
+
+                <h2 class="text-4xl md:text-6xl font-serif font-bold text-white leading-tight">
+                    My Operational <br>
+                    <span class="text-gradient">Blueprints.</span>
+                </h2>
+            </div>
+
+            <p class="text-slate-400 max-w-xl text-sm md:text-base leading-relaxed lg:text-right">
+                Kumpulan web app dan internal tools yang saya rancang dan bangun sendiri untuk meningkatkan efisiensi, mengotomatisasi pekerjaan repetitif, dan memperkuat struktur operasional tim selama bekerja dan magang.
+            </p>
+        </div>
+
+        <!-- Blueprint Bento Grid -->
+       <!-- Blueprint Premium Grid (2 Columns with Images) -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10">
+
+            <template x-for="app in blueprints" :key="app.title">
+                <article class="glass rounded-[2.5rem] border border-white/10 hover:border-white/20 transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_30px_60px_rgba(0,0,0,0.5)] flex flex-col h-full relative overflow-hidden group">
+                    
+                    <!-- Hover Ambient Glow -->
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 rounded-full blur-[100px] opacity-0 group-hover:opacity-20 transition-opacity duration-700 pointer-events-none" :class="app.glowColor"></div>
+
+                    <!-- Image Showcase Header -->
+                    <div class="relative h-64 sm:h-72 w-full overflow-hidden bg-[#02040a]">
+                        <!-- App Screenshot (Zoom effect on hover) -->
+                        <img :src="app.image" :alt="app.title" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-in-out">
+                        
+                        <!-- Smooth Gradient Overlay to blend with card body -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1d] via-[#0a0f1d]/40 to-transparent"></div>
+                        
+                        <!-- Floating Badge -->
+                        <div class="absolute top-6 left-6 z-20">
+                            <span class="px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-[10px] font-bold tracking-widest uppercase text-white shadow-lg" x-text="app.role"></span>
+                        </div>
+                    </div>
+
+                    <!-- Content Body -->
+                    <div class="p-8 md:p-10 flex-grow flex flex-col relative z-20 -mt-12">
+                        
+                        <!-- Floating Icon -->
+                        <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-2xl shrink-0 shadow-[0_10px_25px_rgba(0,0,0,0.5)] border backdrop-blur-xl mb-6 transform group-hover:-translate-y-2 transition-transform duration-500" :class="app.bgClass + ' ' + app.textColor">
+                            <i :class="app.icon"></i>
+                        </div>
+
+                        <!-- Title & Desc -->
+                        <div class="mb-8">
+                            <h3 class="text-3xl md:text-4xl font-serif font-bold text-white mb-4 group-hover:text-slate-200 transition-colors" x-text="app.title"></h3>
+                            <p class="text-sm md:text-base text-slate-400 leading-relaxed" x-text="app.desc"></p>
+                        </div>
+
+                        <!-- Context Box ("Why I Built This") - Sleek Callout Design -->
+                        <div class="rounded-2xl bg-white/[0.03] border border-white/5 p-6 mb-8 relative overflow-hidden flex-grow">
+                            <!-- Left Accent Line -->
+                            <div class="absolute left-0 top-0 bottom-0 w-1 opacity-70" :class="app.glowColor"></div>
+                            
+                            <p class="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-3 flex items-center gap-2">
+                                <i class="fa-solid fa-lightbulb" :class="app.textColor"></i> Logic & Context
+                            </p>
+                            <p class="text-xs md:text-sm text-slate-300 leading-relaxed font-medium" x-text="app.context"></p>
+                        </div>
+
+                        <!-- Action Button -->
+                        <div class="mt-auto pt-2">
+                            <a 
+                                :href="app.url" 
+                                target="_blank"
+                                class="w-full px-6 py-4 rounded-2xl bg-white/5 border border-white/10 text-white text-xs font-bold tracking-widest uppercase hover:text-slate-950 transition-all duration-500 flex items-center justify-center gap-3 overflow-hidden relative z-10 before:absolute before:inset-0 before:bg-gradient-to-r before:from-slate-100 before:to-white before:-z-10 before:translate-y-full hover:before:translate-y-0 before:transition-transform before:duration-500 group/btn">
+                                Open Platform 
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[11px] group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform"></i>
+                            </a>
+                        </div>
+
+                    </div>
+
+                </article>
+            </template>
+
+        </div>
+
+        <!-- Master CTA Box (Spreadsheet Link) -->
+        <div class="mt-14 relative overflow-hidden rounded-[2.5rem] glass border border-blue-500/20 p-8 md:p-12 shadow-[0_20px_60px_rgba(37,99,235,0.15)] group">
+            
+            <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-3xl pointer-events-none group-hover:bg-blue-500/20 transition-all duration-700"></div>
+
+            <div class="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+                <div class="lg:w-2/3">
+                    <p class="text-[10px] font-bold tracking-widest text-blue-400 uppercase mb-3">
+                        <i class="fa-solid fa-database mr-1"></i> System Architecture & Documentation
+                    </p>
+                    <h3 class="text-3xl md:text-4xl font-serif font-bold text-white mb-4">
+                        Master Blueprint Data.
+                    </h3>
+                    <p class="text-slate-400 text-sm md:text-base leading-relaxed max-w-2xl">
+                        Akses dokumentasi lengkap, pemetaan logika sistem, struktur integrasi data, dan rancangan dasar dari seluruh internal tools yang saya kembangkan di dalam satu Master Spreadsheet.
+                    </p>
+                </div>
+
+                <div class="lg:w-1/3 flex justify-start lg:justify-end shrink-0">
+                    <a 
+                        href="https://docs.google.com/spreadsheets/d/1l1tFJn3b9E8PYVGPCoEeJOs-VthwBIMSHj2hhjTCKYA/edit?gid=0#gid=0" 
+                        target="_blank"
+                        class="px-8 py-5 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-500 text-white text-xs md:text-sm font-bold tracking-widest uppercase hover:shadow-[0_10px_30px_rgba(37,99,235,0.4)] transition-all transform hover:-translate-y-1 flex items-center gap-3">
+                        <i class="fa-solid fa-table"></i>
+                        View Master Sheet
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<script>
+    
+    function blueprintPortfolio() {
+    return {
+        blueprints: [
+            {
+                title: "Flow Control",
+                url: "https://flow-control-six.vercel.app/index.html",
+                image: "https://plus.unsplash.com/premium_photo-1661274209157-118069b926f3?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHdvcmt8ZW58MHx8MHx8fDA%3D", // GANTI DENGAN SCREENSHOT ASLI
+                role: "PM / PO Utility",
+                icon: "fa-solid fa-timeline",
+                textColor: "text-blue-300",
+                bgClass: "bg-blue-500/10 border-blue-400/20",
+                glowColor: "bg-blue-500",
+                desc: "Sistem manajemen alur kerja (workflow) untuk memonitor status dan progres proyek secara real-time.",
+                context: "Dibangun untuk mempermudah saya mendelegasikan tugas staf, mengontrol operasional harian, dan menjaga timeline saat berperan sebagai Product Owner (PO) maupun Project Manager (PM)."
+            },
+            {
+                title: "Smart Approaching",
+                url: "https://smart-approaching.vercel.app/",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1000", // GANTI DENGAN SCREENSHOT ASLI
+                role: "Outreach Automation",
+                icon: "fa-solid fa-paper-plane",
+                textColor: "text-emerald-300",
+                bgClass: "bg-emerald-500/10 border-emerald-400/20",
+                glowColor: "bg-emerald-500",
+                desc: "Platform automasi strategi outreach yang mengelola draf pendekatan (pitching) ke calon klien.",
+                context: "Mempercepat proses approaching Business Development. Dengan sistem ini, saya bisa mem-blast pesan personalisasi via WhatsApp ke 50 prospek (leads) sekaligus hanya dengan satu kali klik."
+            },
+            {
+                title: "Apex Biz",
+                url: "https://apex-biz-seven.vercel.app/",
+                image: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=1000", // GANTI DENGAN SCREENSHOT ASLI
+                role: "BusDev Hub",
+                icon: "fa-solid fa-briefcase",
+                textColor: "text-amber-300",
+                bgClass: "bg-amber-500/10 border-amber-400/20",
+                glowColor: "bg-amber-500",
+                desc: "Super-app internal untuk mengelola seluruh fungsi operasional Business Development dalam satu ekosistem web.",
+                context: "Saya ciptakan agar tim BusDev yang saya pimpin bekerja jauh lebih terorganisir, tersentralisasi, dan memiliki alur koordinasi data yang sangat terstruktur antar anggota tim."
+            },
+            {
+                title: "Omni Flow",
+                url: "https://omni-flow-amber.vercel.app/oniflow",
+                image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHdvcmt8ZW58MHx8MHx8fDA%3D", // GANTI DENGAN SCREENSHOT ASLI
+                role: "Team Operations",
+                icon: "fa-solid fa-network-wired",
+                textColor: "text-fuchsia-300",
+                bgClass: "bg-fuchsia-500/10 border-fuchsia-400/20",
+                glowColor: "bg-fuchsia-500",
+                desc: "Platform manajemen dan sinkronisasi alur kerja tim untuk operasional berskala kecil hingga menengah.",
+                context: "Tools krusial yang membantu saya mengatur ritme dan struktur kerja tim saat menjabat sebagai Head of BusDev, serta sangat berguna untuk kelancaran tugas PM/PO."
+            },
+            {
+                title: "Busdev Scrapping",
+                url: "https://busdev-research-d45yatchifeohg8hx9cmsn.streamlit.app/",
+                image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&q=80&w=1000", // GANTI DENGAN SCREENSHOT ASLI
+                role: "Lead Generation",
+                icon: "fa-solid fa-spider",
+                textColor: "text-cyan-300",
+                bgClass: "bg-cyan-500/10 border-cyan-400/20",
+                glowColor: "bg-cyan-500",
+                desc: "Aplikasi ekstraksi data (scrapping) pintar untuk menarik database leads secara otomatis dari Google Maps.",
+                context: "Dibangun khusus untuk memangkas waktu riset secara drastis. Sangat mempermudah saya dalam proses listing ratusan prospek baru tanpa harus melakukan pencarian manual."
+            }
+        ]
+    }
+}
+</script>
 
         <!-- PLACEHOLDER SECTION UNTUK NANTI -->
        <!-- DIGITAL PORTFOLIO SECTION -->
@@ -941,49 +1139,43 @@
                 </div>
 
                 <!-- RIGHT: Evidence Buttons -->
-                <div class="xl:col-span-3">
-                    <div class="rounded-[1.5rem] bg-white/5 border border-white/10 p-5 h-full flex flex-col justify-between">
+              <!-- RIGHT: Spreadsheet Content & Action -->
+<div class="xl:col-span-3">
+    <div class="rounded-[1.5rem] bg-white/5 border border-white/10 p-5 h-full flex flex-col justify-between">
 
-                        <div>
-                            <p class="text-[10px] font-bold tracking-widest text-brand-light uppercase mb-3">
-                                Evidence Center
-                            </p>
+        <div>
+            <p class="text-[10px] font-bold tracking-widest text-brand-light uppercase mb-3">
+                Spreadsheet Contents
+            </p>
 
-                            <p class="text-xs text-slate-400 leading-relaxed mb-5">
-                                Akses bukti kerja seperti spreadsheet, approach LinkedIn, WhatsApp, report, dan meeting documentation.
-                            </p>
+            <p class="text-xs text-slate-400 leading-relaxed mb-5">
+                Rincian data, tracking pipeline, dan dokumentasi operasional yang dikelola di dalam Master Spreadsheet.
+            </p>
 
-                            <div class="space-y-3">
-                                <template x-for="btn in evidenceButtons" :key="btn.key">
-                                    <a 
-                                        :href="project.links && project.links[btn.key] ? project.links[btn.key] : '#'"
-                                        target="_blank"
-                                        @click="if (!project.links || !project.links[btn.key] || project.links[btn.key] === '#') $event.preventDefault()"
-                                        :class="project.links && project.links[btn.key] && project.links[btn.key] !== '#'
-                                            ? 'hover:bg-white/10 hover:border-pink-300/40 hover:text-white'
-                                            : 'opacity-45 cursor-not-allowed'"
-                                        class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-slate-300 text-xs font-bold transition-all flex items-center justify-between gap-3">
-                                        
-                                        <span class="flex items-center gap-2">
-                                            <i :class="btn.icon"></i>
-                                            <span x-text="btn.label"></span>
-                                        </span>
-
-                                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                                    </a>
-                                </template>
-                            </div>
-                        </div>
-
-                        <button 
-                            type="button"
-                            @click="selectedBD = project"
-                            class="w-full mt-6 px-5 py-3.5 rounded-2xl bg-gradient-to-r from-pink-500 to-brand text-white text-xs font-bold tracking-widest uppercase hover:shadow-[0_10px_25px_rgba(236,72,153,0.30)] transition-all">
-                            View Case Study
-                        </button>
-
+            <!-- List Statis (Mengambil data dari JS) -->
+            <div class="space-y-3">
+                <template x-for="item in project.spreadsheetContents" :key="item">
+                    <div class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-slate-300 text-xs font-medium flex items-start gap-3">
+                        <i class="fa-solid fa-file-excel text-emerald-400 mt-0.5"></i>
+                        <span x-text="item"></span>
                     </div>
-                </div>
+                </template>
+            </div>
+        </div>
+
+        <!-- Tombol View Spreadsheet (Menggantikan View Case Study) -->
+        <a 
+            :href="project.links && project.links.spreadsheet ? project.links.spreadsheet : '#'"
+            target="_blank"
+            @click="if (!project.links || !project.links.spreadsheet || project.links.spreadsheet === '#') $event.preventDefault()"
+            class="w-full mt-6 px-5 py-3.5 rounded-2xl bg-gradient-to-r from-pink-500 to-brand text-white text-xs font-bold tracking-widest uppercase hover:shadow-[0_10px_25px_rgba(236,72,153,0.30)] transition-all flex items-center justify-center gap-2"
+            :class="project.links && project.links.spreadsheet && project.links.spreadsheet !== '#' ? '' : 'opacity-50 cursor-not-allowed'">
+            <i class="fa-solid fa-table"></i>
+            View Spreadsheet
+        </a>
+
+    </div>
+</div>
 
             </div>
         </article>
@@ -1242,20 +1434,26 @@
                     evidence: ['Company and industry research database', 'LinkedIn-based prospect mapping', 'WhatsApp or direct outreach record', 'Pipeline status and follow-up notes'],
                     output: ['Potential client list', 'PIC and stakeholder mapping', 'Legal service opportunity status', 'Proposal and value proposition support'],
                     activities: ['Identified new market opportunities for legal consulting services', 'Reached out to potential clients and partners', 'Assisted proposal and partnership deck preparation', 'Maintained sales pipeline and follow-up tracking'],
-                    links: {
-    spreadsheet: 'https://docs.google.com/spreadsheets/d/xxxx',
-    linkedin: 'https://drive.google.com/file/d/xxxx',
-    whatsapp: 'https://drive.google.com/file/d/xxxx',
-    report: 'https://drive.google.com/file/d/xxxx',
-    meeting: 'https://drive.google.com/file/d/xxxx'
-}, 
-metrics: {
-    totalLeads: 100,
-    approvedLeads: 5
-}
-                    
-                },
-                {
+                   metrics: {
+        totalLeads: 340,
+        approvedLeads: 30
+    },
+    links: {
+        spreadsheet: 'https://docs.google.com/spreadsheets/d/1oaIjQohG-IIDIhnTFZG_OZBtMSDZ797ajHBS0lKdHGg/edit?usp=sharing', // <- Link spreadsheet taruh di sini
+        linkedin: 'https://drive.google.com/file/d/xxxx',
+        whatsapp: 'https://drive.google.com/file/d/xxxx',
+        report: 'https://drive.google.com/file/d/xxxx',
+        meeting: 'https://drive.google.com/file/d/xxxx'
+    },
+    // 👇 TAMBAHKAN BAGIAN INI DI SETIAP PROJECT 👇
+    spreadsheetContents: [
+        'Leads Management & Database',
+        'LinkedIn & WhatsApp Approach Tracker',
+        'Partnership Pipeline Status',
+        'Meeting Notes & Follow-up Report'
+    ]
+},
+  {
                     company: 'Growth House',
                     title: 'Growth Partnership & Executive Pipeline Research',
                     role: 'Vice President Business Development Intern',
@@ -1268,17 +1466,23 @@ metrics: {
                     evidence: ['Market and competitor research', 'Partnership pipeline tracker', 'Proposal or value proposition draft', 'Executive summary and follow-up report'],
                     output: ['Growth opportunity mapping', 'Potential partner database', 'Partnership status report', 'Strategic recommendation summary'],
                     activities: ['Led and supervised business development interns', 'Conducted market and competitor research', 'Reviewed business proposals and partnership decks', 'Prepared pipeline and strategic outcome reports'],
-                              links: {
-    spreadsheet: 'https://docs.google.com/spreadsheets/d/xxxx',
-    linkedin: 'https://drive.google.com/file/d/xxxx',
-    whatsapp: 'https://drive.google.com/file/d/xxxx',
-    report: 'https://drive.google.com/file/d/xxxx',
-    meeting: 'https://drive.google.com/file/d/xxxx'
-}, 
-metrics: {
-    totalLeads: 40,
-    approvedLeads: 6
-}
+                    links: {
+                        spreadsheet: 'https://docs.google.com/spreadsheets/d/1uWi2RxfxwBWfkuoo948KUMe8w1wR4pCRJOXyrUYuiuA/edit?usp=sharing',
+                        linkedin: 'https://drive.google.com/file/d/xxxx',
+                        whatsapp: 'https://drive.google.com/file/d/xxxx',
+                        report: 'https://drive.google.com/file/d/xxxx',
+                        meeting: 'https://drive.google.com/file/d/xxxx'
+                    }, 
+                    metrics: {
+                        totalLeads: 120,
+                        approvedLeads: 16
+                    },
+                    spreadsheetContents: [
+                        'Partnership Pipeline Tracker',
+                        'Market & Competitor Analysis Data',
+                        'Executive Summary Log',
+                        'Meeting & Follow-up Notes'
+                    ]
                 },
                 {
                     company: 'Jobfit',
@@ -1293,17 +1497,23 @@ metrics: {
                     evidence: ['Company listing database', 'Potential partnership mapping', 'LinkedIn research record', 'Pipeline progress report'],
                     output: ['Partner prospect list', 'Lead status tracking', 'Follow-up action notes', 'Strategic partnership summary'],
                     activities: ['Conducted market and competitor research', 'Developed and reviewed value propositions', 'Maintained communication with potential partners', 'Reported sales pipeline and partnership status'],
-                              links: {
-    spreadsheet: 'https://docs.google.com/spreadsheets/d/xxxx',
-    linkedin: 'https://drive.google.com/file/d/xxxx',
-    whatsapp: 'https://drive.google.com/file/d/xxxx',
-    report: 'https://drive.google.com/file/d/xxxx',
-    meeting: 'https://drive.google.com/file/d/xxxx'
-}, 
-metrics: {
-    totalLeads: 30,
-    approvedLeads: 2
-}
+                    links: {
+                        spreadsheet: 'https://docs.google.com/spreadsheets/d/xxxx',
+                        linkedin: 'https://drive.google.com/file/d/xxxx',
+                        whatsapp: 'https://drive.google.com/file/d/xxxx',
+                        report: 'https://drive.google.com/file/d/xxxx',
+                        meeting: 'https://drive.google.com/file/d/xxxx'
+                    }, 
+                    metrics: {
+                        totalLeads: 30,
+                        approvedLeads: 2
+                    },
+                    spreadsheetContents: [
+                        'Company Listing Database',
+                        'Partner Prospect List',
+                        'LinkedIn Approach Record',
+                        'Pipeline Progress Tracker'
+                    ]
                 },
                 {
                     company: 'Kokasia',
@@ -1318,17 +1528,23 @@ metrics: {
                     evidence: ['Client relationship database', 'Competitor and market research', 'Proposal or pitch deck material', 'Weekly sales pipeline notes'],
                     output: ['Potential client list', 'Lead conversion status', 'Partnership update report', 'Marketing material support'],
                     activities: ['Identified potential clients for digital marketing services', 'Conducted competitor analysis', 'Maintained client relationship database', 'Prepared performance reports on leads and partnership updates'],
-                              links: {
-    spreadsheet: 'https://docs.google.com/spreadsheets/d/xxxx',
-    linkedin: 'https://drive.google.com/file/d/xxxx',
-    whatsapp: 'https://drive.google.com/file/d/xxxx',
-    report: 'https://drive.google.com/file/d/xxxx',
-    meeting: 'https://drive.google.com/file/d/xxxx'
-}, 
-metrics: {
-    totalLeads: 400,
-    approvedLeads:20
-}
+                    links: {
+                        spreadsheet: 'https://docs.google.com/spreadsheets/d/1FZ6SwbGFWmPknvZ1rlxNaNrf-ei5sNfDIUhLPhw-V0s/edit?usp=sharing',
+                        linkedin: 'https://drive.google.com/file/d/xxxx',
+                        whatsapp: 'https://drive.google.com/file/d/xxxx',
+                        report: 'https://drive.google.com/file/d/xxxx',
+                        meeting: 'https://drive.google.com/file/d/xxxx'
+                    }, 
+                    metrics: {
+                        totalLeads: 540,
+                        approvedLeads: 13
+                    },
+                    spreadsheetContents: [
+                        'Client Relationship Database',
+                        'Competitor & Market Research',
+                        'Weekly Sales Pipeline',
+                        'Lead Conversion Status'
+                    ]
                 },
                 {
                     company: 'Soko Edu Financial',
@@ -1343,17 +1559,24 @@ metrics: {
                     evidence: ['Market and client prospect research', 'Client database spreadsheet', 'Outreach and follow-up notes', 'Partnership progress tracker'],
                     output: ['Financial education prospect list', 'Client needs mapping', 'Proposal support material', 'Pipeline and conversion report'],
                     activities: ['Identified potential clients and partners', 'Conducted market and competitor analysis', 'Prepared value propositions', 'Monitored leads, conversions, and partnership updates'],
-                              links: {
-    spreadsheet: 'https://docs.google.com/spreadsheets/d/xxxx',
-    linkedin: 'https://drive.google.com/file/d/xxxx',
-    whatsapp: 'https://drive.google.com/file/d/xxxx',
-    report: 'https://drive.google.com/file/d/xxxx',
-    meeting: 'https://drive.google.com/file/d/xxxx'
-}, 
-metrics: {
-    totalLeads: 450,
-    approvedLeads: 1
-}
+                    links: {
+                        spreadsheet: 'https://docs.google.com/spreadsheets/d/1QOvWRO4If0cxxAEMuoZM5DDbOFXkJ7U_okyTG64X56g/edit?usp=sharing',
+                        linkedin: 'https://drive.google.com/file/d/xxxx',
+                        whatsapp: 'https://drive.google.com/file/d/xxxx',
+                        report: 'https://drive.google.com/file/d/xxxx',
+                        meeting: 'https://drive.google.com/file/d/xxxx'
+                    }, 
+                    metrics: {
+                        totalLeads: 450,
+                        approvedLeads: 1
+                    },
+                    spreadsheetContents: [
+                        'Client Prospect Database',
+                        'Outreach & Follow-up Log',
+                        'Partnership Progress Tracker',
+                        'Conversion Report',
+                        'Pipeline Client'
+                    ]
                 },
                 {
                     company: 'Diet Partner',
@@ -1368,17 +1591,23 @@ metrics: {
                     evidence: ['Market and competitor analysis', 'Potential client database', 'Outreach tracking sheet', 'Partnership update report'],
                     output: ['Client prospect list', 'Industry opportunity mapping', 'Follow-up status', 'Lead conversion summary'],
                     activities: ['Approached potential clients for service collaboration', 'Supported proposal and value proposition creation', 'Maintained relationship databases', 'Prepared reports on leads and partnership updates'],
-                              links: {
-    spreadsheet: 'https://docs.google.com/spreadsheets/d/xxxx',
-    linkedin: 'https://drive.google.com/file/d/xxxx',
-    whatsapp: 'https://drive.google.com/file/d/xxxx',
-    report: 'https://drive.google.com/file/d/xxxx',
-    meeting: 'https://drive.google.com/file/d/xxxx'
-}, 
-metrics: {
-    totalLeads: 667,
-    approvedLeads: 35
-}
+                    links: {
+                        spreadsheet: 'https://docs.google.com/spreadsheets/d/1O2JxVOv0oWkMqXb2EBmrdB8m0wZcO8hbIiT3dvTFgTs/edit?gid=0#gid=0',
+                        linkedin: 'https://drive.google.com/file/d/xxxx',
+                        whatsapp: 'https://drive.google.com/file/d/xxxx',
+                        report: 'https://drive.google.com/file/d/xxxx',
+                        meeting: 'https://drive.google.com/file/d/xxxx'
+                    }, 
+                    metrics: {
+                        totalLeads: 667,
+                        approvedLeads: 35
+                    },
+                    spreadsheetContents: [
+                        'Potential Client Database',
+                        'Leads Management Analysis',
+                        'Leads Tracking Sheet',
+                        'Lead Conversion Summary'
+                    ]
                 },
                 {
                     company: 'Kunci Hukum',
@@ -1393,17 +1622,54 @@ metrics: {
                     evidence: ['Legal market prospect research', 'Company and PIC listing', 'LinkedIn or WhatsApp approach record', 'Pipeline and follow-up status'],
                     output: ['Legal service prospect database', 'Client opportunity status', 'Proposal support notes', 'Partnership update summary'],
                     activities: ['Conducted market and competitor analysis', 'Prepared value propositions', 'Maintained client relationship database', 'Supported weekly pipeline reporting'],
-                              links: {
-    spreadsheet: 'https://docs.google.com/spreadsheets/d/xxxx',
-    linkedin: 'https://drive.google.com/file/d/xxxx',
-    whatsapp: 'https://drive.google.com/file/d/xxxx',
-    report: 'https://drive.google.com/file/d/xxxx',
-    meeting: 'https://drive.google.com/file/d/xxxx'
-}, 
-metrics: {
-    totalLeads: 8,
-    approvedLeads: 0
-}
+                    links: {
+                        spreadsheet: 'https://docs.google.com/spreadsheets/d/1ilYueopw26AZqgZ6pJpb-VIfa7sDhw56mRfyGxIugQs/edit?usp=sharing',
+                        linkedin: 'https://drive.google.com/file/d/xxxx',
+                        whatsapp: 'https://drive.google.com/file/d/xxxx',
+                        report: 'https://drive.google.com/file/d/xxxx',
+                        meeting: 'https://drive.google.com/file/d/xxxx'
+                    }, 
+                    metrics: {
+                        totalLeads: 210,
+                        approvedLeads: 3
+                    },
+                    spreadsheetContents: [
+                        'Legal Market Prospect Research',
+                        'Company & PIC Listing',
+                        'LinkedIn/WhatsApp Approach Log',
+                        'Partnership Update Summary'
+                    ]
+                },
+                {
+                    company: 'Nexgrata',
+                    title: 'Digital Services & Subscription Sales Pipeline',
+                    role: 'Business Development Staff',
+                    period: 'January 2026 - Present',
+                    type: 'Digital Agency & Services',
+                    icon: 'fa-solid fa-layer-group',
+                    description: 'Driven client acquisition and sales growth for a versatile digital platform offering website development, academic assistance, and premium software subscriptions (ChatGPT, video streaming, etc.).',
+                    tools: ['Google Search', 'WhatsApp', 'Social Media', 'Google Spreadsheet', 'Service Catalog'],
+                    process: ['Market Research', 'Lead Generation', 'Approach & Pitching', 'Negotiation', 'Closing', 'Reporting'],
+                    evidence: ['Prospect client database', 'WhatsApp outreach & negotiation records', 'Subscription sales tracker', 'Weekly performance reports'],
+                    output: ['Converted client list', 'Revenue & subscription tracking', 'Service delivery coordination notes', 'Sales performance summary'],
+                    activities: ['Generated leads for web development and academic services', 'Pitched premium subscription packages to potential users', 'Maintained client relationship and subscription renewal database', 'Reported sales pipeline and conversion status to management'],
+                    links: {
+                        spreadsheet: 'https://docs.google.com/spreadsheets/d/1TAYONUefo9CI0_gvcy7qVLMIURbD2AWegLjr560kWLo/edit?usp=sharing',
+                        linkedin: 'https://drive.google.com/file/d/xxxx',
+                        whatsapp: 'https://drive.google.com/file/d/xxxx',
+                        report: 'https://drive.google.com/file/d/xxxx',
+                        meeting: 'https://drive.google.com/file/d/xxxx'
+                    }, 
+                    metrics: {
+                        totalLeads: 150,
+                        approvedLeads: 24
+                    },
+                    spreadsheetContents: [
+                        'Client Prospect Database',
+                        'Subscription & Renewal Tracker',
+                        'Web Dev & Assignment Leads',
+                        'Sales Conversion Report'
+                    ]
                 },
                 {
                     company: 'Job On Yours',
@@ -1418,19 +1684,24 @@ metrics: {
                     evidence: ['Job listing database', 'Company and PIC research', 'LinkedIn or WhatsApp approach evidence', 'Pipeline status and conversion tracking'],
                     output: ['Company list', 'PIC contact', 'Source validation', 'Deadline and opportunity status', 'Pipeline and performance report'],
                     activities: ['Led BD strategy and client acquisition initiatives', 'Identified new market opportunities', 'Designed business proposals and partnership decks', 'Tracked prospect status, conversion rates, and revenue potential'],
-                              links: {
-    spreadsheet: 'https://docs.google.com/spreadsheets/d/xxxx',
-    linkedin: 'https://drive.google.com/file/d/xxxx',
-    whatsapp: 'https://drive.google.com/file/d/xxxx',
-    report: 'https://drive.google.com/file/d/xxxx',
-    meeting: 'https://drive.google.com/file/d/xxxx'
-}, 
-metrics: {
-    totalLeads: 890,
-    approvedLeads: 8
-}
-                }
-                
+                    links: {
+                        spreadsheet: 'https://docs.google.com/spreadsheets/d/1G91gH7zcwEpIO6_yivGRY0qIcdpKXuSBwXN67UAF6wg/edit?usp=sharing',
+                        linkedin: 'https://drive.google.com/file/d/xxxx',
+                        whatsapp: 'https://drive.google.com/file/d/xxxx',
+                        report: 'https://drive.google.com/file/d/xxxx',
+                        meeting: 'https://drive.google.com/file/d/xxxx'
+                    }, 
+                    metrics: {
+                        totalLeads: 150,
+                        approvedLeads: 8
+                    },
+                    spreadsheetContents: [
+                        'Job Listing Database',
+                        'Company & PIC Research',
+                        'Pipeline & Conversion Tracker',
+                        'Performance Report'
+                    ]
+                }            
             ]
         }
     }
@@ -3308,6 +3579,9 @@ metrics: {
         }
     }
 </script>
+<!-- MY BLUEPRINT & AUTOMATION SECTION -->
+<!-- MY BLUEPRINT & AUTOMATION SECTION -->
+
 
     </main>
 

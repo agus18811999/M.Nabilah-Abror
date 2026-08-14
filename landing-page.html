@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script src="https://cdn.tailwindcss.com"></script>
-    
+  
+    <link rel="icon" type="image/svg+xml" href="favicon.svg?v=1.0">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <script>
@@ -50,127 +51,135 @@
         }
     </script>
 
-    <style>
-        /* Premium Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #1e1b4b; }
-        ::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #6366f1; }
+   <style>
+    /* Premium Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #1e1b4b; }
+    ::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #6366f1; }
 
-        /* Glassmorphism Utilities */
-        .glass {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-        }
-        
-        .glass-hover:hover {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(99, 102, 241, 0.3);
-            transform: translateY(-5px);
-            transition: all 0.4s ease;
-        }
+    /* Glassmorphism Utilities */
+    .glass {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Optimasi rendering kartu saat menerima hover transisi */
+    .glass-hover {
+        will-change: transform, box-shadow;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                    background 0.4s ease, 
+                    border-color 0.4s ease, 
+                    box-shadow 0.4s ease;
+    }
+    .glass-hover:hover {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px 0 rgba(99, 102, 241, 0.3);
+        transform: translateY(-5px);
+    }
 
-        .text-gradient {
-            background: linear-gradient(to right, #a5b4fc, #f472b6, #a5b4fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 200% auto;
-            animation: gradientMove 3s linear infinite;
-        }
+    .text-gradient {
+        background: linear-gradient(to right, #a5b4fc, #f472b6, #a5b4fc);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 200% auto;
+        animation: gradientMove 3s linear infinite;
+    }
 
-        @keyframes gradientMove {
-            0% { background-position: 0% center; }
-            100% { background-position: 200% center; }
-        }
+    @keyframes gradientMove {
+        0% { background-position: 0% center; }
+        100% { background-position: 200% center; }
+    }
 
-        .bg-gradient-premium {
-            /* No plain black or white. Deep premium cosmic gradient */
-            background: linear-gradient(145deg, #0f172a 0%, #1e1b4b 50%, #2e1065 100%);
-        }
-        /* ========================================== */
-        /* ANIMASI HEWAN MENGEMBARA (ETHEREAL ANIMALS)*/
-        /* ========================================== */
-        /* ========================================== */
-        /* REALISTIC GEOSPHERE ANIMATIONS (OSN)       */
-        /* ========================================== */
-        
-        /* Hujan Deras Realistis (Motion Blur + Cepat) */
-        @keyframes realRain {
-            0% { transform: translateY(-50px) translateX(30px) rotate(15deg); opacity: 0; }
-            20% { opacity: 0.6; }
-            80% { opacity: 0.6; }
-            100% { transform: translateY(400px) translateX(-50px) rotate(15deg); opacity: 0; }
-        }
+    .bg-gradient-premium {
+        background: linear-gradient(145deg, #0f172a 0%, #1e1b4b 50%, #2e1065 100%);
+    }
 
-        /* Badai Salju Realistis (Melayang lambat) */
-        @keyframes realSnow {
-            0% { transform: translateY(-50px) translateX(0) rotate(0deg); opacity: 0; }
-            50% { opacity: 0.9; transform: translateY(150px) translateX(20px) rotate(180deg); }
-            100% { transform: translateY(350px) translateX(-20px) rotate(360deg); opacity: 0; }
-        }
+    /* ========================================== */
+    /* REALISTIC GEOSPHERE ANIMATIONS (OSN)       */
+    /* ========================================== */
+    
+    /* Menggunakan translate3d untuk memaksa browser menggunakan GPU (Hardware Compositor) */
+    @keyframes realRain {
+        0% { transform: translate3d(30px, -50px, 0) rotate(15deg); opacity: 0; }
+        20% { opacity: 0.6; }
+        80% { opacity: 0.6; }
+        100% { transform: translate3d(-50px, 400px, 0) rotate(15deg); opacity: 0; }
+    }
 
-        /* Erupsi Magma Nyata */
-        @keyframes realEruption {
-            0% { transform: scale(1) translateY(0); opacity: 0.7; filter: hue-rotate(0deg) brightness(1); }
-            50% { transform: scale(1.2) translateY(-20px); opacity: 1; filter: hue-rotate(15deg) brightness(1.5) drop-shadow(0 0 30px #f97316); }
-            100% { transform: scale(1) translateY(0); opacity: 0.7; filter: hue-rotate(0deg) brightness(1); }
-        }
+    @keyframes realSnow {
+        0% { transform: translate3d(0, -50px, 0) rotate(0deg); opacity: 0; }
+        50% { opacity: 0.9; transform: translate3d(20px, 150px, 0) rotate(180deg); }
+        100% { transform: translate3d(-20px, 350px, 0) rotate(360deg); opacity: 0; }
+    }
 
-        /* Tsunami Realistis (Bergerak membesar) */
-        @keyframes realTsunami {
-            0% { transform: translateX(10%) scale(1.1); opacity: 0.6; }
-            50% { transform: translateX(-10%) scale(1.3); opacity: 0.9; filter: brightness(1.2); }
-            100% { transform: translateX(10%) scale(1.1); opacity: 0.6; }
-        }
+    @keyframes realEruption {
+        0% { transform: scale(1) translate3d(0, 0, 0); opacity: 0.7; filter: hue-rotate(0deg) brightness(1); }
+        50% { transform: scale(1.2) translate3d(0, -20px, 0); opacity: 1; filter: hue-rotate(15deg) brightness(1.5) drop-shadow(0 0 15px #f97316); }
+        100% { transform: scale(1) translate3d(0, 0, 0); opacity: 0.7; filter: hue-rotate(0deg) brightness(1); }
+    }
 
-        /* Kabut / Asap Vulkanik */
-        @keyframes smokeDrift {
-            0% { transform: translateX(-20px) scale(1); opacity: 0.2; }
-            50% { transform: translateX(20px) scale(1.5); opacity: 0.5; }
-            100% { transform: translateX(-20px) scale(1); opacity: 0.2; }
+    @keyframes realTsunami {
+        0% { transform: translate3d(10%, 0, 0) scale(1.1); opacity: 0.6; }
+        50% { transform: translate3d(-10%, 0, 0) scale(1.3); opacity: 0.9; filter: brightness(1.2); }
+        100% { transform: translate3d(10%, 0, 0) scale(1.1); opacity: 0.6; }
+    }
+
+    @keyframes smokeDrift {
+        0% { transform: translate3d(-20px, 0, 0) scale(1); opacity: 0.2; }
+        50% { transform: translate3d(20px, 0, 0) scale(1.5); opacity: 0.5; }
+        100% { transform: translate3d(-20px, 0, 0) scale(1); opacity: 0.2; }
+    }
+
+    /* ========================================== */
+    /* DYNAMIC ETHEREAL ECOSYSTEM (OPTIMIZED)     */
+    /* ========================================== */
+    
+    /* Elemen diletakkan secara statis berdasarkan letak start awal untuk menghindari Layout Reflow */
+    .ecosystem-animal {
+        position: absolute;
+        top: var(--startY);
+        left: var(--startX);
+        will-change: transform, opacity;
+        pointer-events: none;
+    }
+
+    /* Perpindahan rute sepenuhnya didelegasikan pada properti transform agar sangat ringan */
+    @keyframes wanderDynamic {
+        0% { 
+            transform: translate3d(0, 0, 0) scale(var(--scale)) rotate(var(--rot1)); 
+            opacity: 0; 
         }
-       /* ========================================== */
-        /* DYNAMIC ETHEREAL ECOSYSTEM (50 ANIMALS)    */
-        /* ========================================== */
-        
-        /* 1 Animasi cerdas yang bisa dikendalikan oleh Alpine.js */
-        @keyframes wanderDynamic {
-            0% { 
-                top: var(--startY); left: var(--startX); 
-                transform: scale(var(--scale)) rotate(var(--rot1)); 
-                opacity: 0; 
-            }
-            15% { opacity: var(--maxOpacity); }
-            50% { 
-                top: var(--midY); left: var(--midX); 
-                transform: scale(calc(var(--scale) * 1.3)) rotate(var(--rot2)); 
-            }
-            85% { opacity: var(--maxOpacity); }
-            100% { 
-                top: var(--endY); left: var(--endX); 
-                transform: scale(var(--scale)) rotate(var(--rot3)); 
-                opacity: 0; 
-            }
+        15% { opacity: var(--maxOpacity); }
+        50% { 
+            transform: translate3d(var(--moveX), var(--moveY), 0) scale(calc(var(--scale) * 1.25)) rotate(var(--rot2)); 
         }
-        
-        /* Efek Pendaran Cahaya Premium */
-        .animal-glow-1 {
-            filter: drop-shadow(0 0 15px rgba(99, 102, 241, 0.6)) drop-shadow(0 0 30px rgba(99, 102, 241, 0.3));
+        85% { opacity: var(--maxOpacity); }
+        100% { 
+            transform: translate3d(var(--endMoveX), var(--endMoveY), 0) scale(var(--scale)) rotate(var(--rot3)); 
+            opacity: 0; 
         }
-        .animal-glow-2 {
-            filter: drop-shadow(0 0 15px rgba(236, 72, 153, 0.6)) drop-shadow(0 0 30px rgba(236, 72, 153, 0.3));
-        }
-        .animal-glow-3 {
-            filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.6)) drop-shadow(0 0 30px rgba(6, 182, 212, 0.3));
-        }
-        
-    </style>
+    }
+    
+    /* Mengurangi penumpukan drop-shadow tebal menjadi satu lapis bayangan halus */
+    .animal-glow-1 {
+        filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.45));
+    }
+    .animal-glow-2 {
+        filter: drop-shadow(0 0 10px rgba(236, 72, 153, 0.45));
+    }
+    .animal-glow-3 {
+        filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.45));
+    }
+    
+</style>
 </head>
-<body class="bg-gradient-premium text-slate-300 font-sans antialiased relative overflow-x-hidden" x-data="portfolioApp()" @scroll.window="scrolled = (window.pageYOffset > 50)">
+
+<body class="bg-gradient-premium text-slate-300 font-sans antialiased relative overflow-x-hidden" x-data="portfolioApp()" @scroll.window.passive="scrolled = (window.pageYOffset > 50)">
     <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
         <div class="absolute top-0 left-1/4 w-96 h-96 bg-indigo-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-50 animate-blob"></div>
         <div class="absolute top-0 right-1/4 w-96 h-96 bg-fuchsia-600/20 rounded-full mix-blend-screen filter blur-3xl opacity-50 animate-blob animation-delay-2000"></div>
@@ -348,7 +357,7 @@
 <div class="absolute top-[100vh] bottom-0 left-0 right-0 pointer-events-none z-0 overflow-hidden" x-init="generateEcosystem()">
             
             <template x-for="animal in ecosystem" :key="animal.id">
-                <div class="absolute flex items-center justify-center" :class="animal.colorClass" :style="animal.style">
+               <div class="ecosystem-animal flex items-center justify-center" :class="animal.colorClass" :style="animal.style"></div>
                     
                     <template x-if="animal.type === 'bird'">
                         <svg viewBox="0 0 24 24" fill="currentColor" class="w-12 h-12 opacity-70"><path d="M21.5 3.5l-19 9 5 2.5 9-6-6 7.5v5l3.5-4 6-14z"/></svg>
@@ -1097,63 +1106,61 @@
                 // ==============================================
                 ecosystem: [],
                 
-                generateEcosystem() {
-                    let items = [];
-                    let totalAnimals = 265; // Ditingkatkan sedikit agar ekosistem lebih hidup
-                    
-                    // Daftar 12 Entitas (2 Lama + 10 Baru)
-                    const animalTypes = [
-                        'bird', 'butterfly', 'dragon', 'dove', 'fish', 
-                        'cat', 'crow', 'horse', 'frog', 'spider', 
-                        'firefly', 'feather'
-                    ];
-                    
-                    for (let i = 0; i < totalAnimals; i++) {
-                        // Pilih 1 dari 12 hewan secara acak
-                        let randomType = animalTypes[Math.floor(Math.random() * animalTypes.length)];
-                        let goingDown = Math.random() > 0.5; // Arah terbang
-                        
-                        // Posisi Acak
-                        let startX = (Math.random() * 120 - 10) + '%'; 
-                        let midX = (Math.random() * 120 - 10) + '%';
-                        let endX = (Math.random() * 120 - 10) + '%';
-                        
-                        let startY = goingDown ? '-5%' : '105%';
-                        let midY = (Math.random() * 60 + 20) + '%'; 
-                        let endY = goingDown ? '105%' : '-5%';
+              generateEcosystem() {
+    let items = [];
+    // Kurangi jumlah total hewan dari 265 menjadi 35 untuk mengurangi beban DOM
+    let totalAnimals = 35; 
+    
+    const animalTypes = [
+        'bird', 'butterfly', 'dragon', 'dove', 'fish', 
+        'cat', 'crow', 'horse', 'frog', 'spider', 
+        'firefly', 'feather'
+    ];
+    
+    for (let i = 0; i < totalAnimals; i++) {
+        let randomType = animalTypes[Math.floor(Math.random() * animalTypes.length)];
+        let goingDown = Math.random() > 0.5; 
+        
+        // Posisikan koordinat awal secara statis (layout sekali saja)
+        let startX = Math.random() * 100; // %
+        let startY = goingDown ? -10 : 110; // %
+        
+        // Hitung jarak pergeseran animasi secara relatif menggunakan koordinat viewport (vw/vh)
+        let moveX = (Math.random() * 60 - 30); 
+        let moveY = goingDown ? (Math.random() * 50 + 20) : -(Math.random() * 50 + 20); 
+        
+        let endMoveX = (Math.random() * 100 - 50); 
+        let endMoveY = goingDown ? 120 : -120; 
 
-                        // Rotasi Acak
-                        let rot1 = (Math.random() * 90 - 45) + 'deg';
-                        let rot2 = (Math.random() * 90 - 45) + 'deg';
-                        let rot3 = (Math.random() * 90 - 45) + 'deg';
-                        
-                        // Fisik Acak
-                        let scale = (Math.random() * 0.8 + 0.3).toFixed(2); 
-                        let maxOpacity = (Math.random() * 0.4 + 0.2).toFixed(2); 
-                        
-                        // Durasi lambat & Delay 
-                        let duration = Math.floor(Math.random() * 50) + 30; 
-                        let delay = Math.floor(Math.random() * 40); 
-                        
-                        // Warna Glow Acak
-                        let colors = ['animal-glow-1 text-brand-light', 'animal-glow-2 text-pink-300', 'animal-glow-3 text-cyan-300'];
-                        let colorClass = colors[Math.floor(Math.random() * colors.length)];
+        let rot1 = (Math.random() * 90 - 45) + 'deg';
+        let rot2 = (Math.random() * 90 - 45) + 'deg';
+        let rot3 = (Math.random() * 90 - 45) + 'deg';
+        
+        let scale = (Math.random() * 0.7 + 0.3).toFixed(2); 
+        let maxOpacity = (Math.random() * 0.35 + 0.15).toFixed(2); 
+        
+        let duration = Math.floor(Math.random() * 40) + 25; 
+        let delay = Math.floor(Math.random() * 25); 
+        
+        let colors = ['animal-glow-1 text-brand-light', 'animal-glow-2 text-pink-300', 'animal-glow-3 text-cyan-300'];
+        let colorClass = colors[Math.floor(Math.random() * colors.length)];
 
-                        items.push({
-                            id: i,
-                            type: randomType,
-                            colorClass: colorClass,
-                            style: `
-                                --startX: ${startX}; --midX: ${midX}; --endX: ${endX};
-                                --startY: ${startY}; --midY: ${midY}; --endY: ${endY};
-                                --rot1: ${rot1}; --rot2: ${rot2}; --rot3: ${rot3};
-                                --scale: ${scale}; --maxOpacity: ${maxOpacity};
-                                animation: wanderDynamic ${duration}s ease-in-out infinite ${delay}s;
-                            `
-                        });
-                    }
-                    this.ecosystem = items;
-                },
+        items.push({
+            id: i,
+            type: randomType,
+            colorClass: colorClass,
+            style: `
+                --startX: ${startX}%; --startY: ${startY}%;
+                --moveX: ${moveX}vw; --moveY: ${moveY}vh;
+                --endMoveX: ${endMoveX}vw; --endMoveY: ${endMoveY}vh;
+                --rot1: ${rot1}; --rot2: ${rot2}; --rot3: ${rot3};
+                --scale: ${scale}; --maxOpacity: ${maxOpacity};
+                animation: wanderDynamic ${duration}s ease-in-out infinite ${delay}s;
+            `
+        });
+    }
+    this.ecosystem = items;
+}, 
                 // ORGANIZATIONS & LEADERSHIP DATABASE
                 // ==============================================
                 filterOrg: 'all',

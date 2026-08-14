@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+      <link rel="icon" type="image/svg+xml" href="favicon.svg?v=1.0">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -30,17 +30,19 @@
         /* ==========================================
            1. BACKGROUND GRADASI PREMIUM (TANPA PUTIH/HITAM)
            ========================================== */
-        body {
+     body {
             background: linear-gradient(-45deg, #e0c3fc, #8ec5fc, #ffc3a0, #ffafbd);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
             font-family: 'Plus Jakarta Sans', sans-serif;
             min-height: 100vh;
             display: flex;
+            flex-direction: column; /* Ditambahkan agar fleksibel */
             align-items: center;
             justify-content: center;
-            padding: 1.5rem;
-            overflow: hidden;
+            /* Padding atas diubah jadi 6rem agar tidak tertutup header */
+            padding: 6rem 1.5rem 2rem 1.5rem; 
+            overflow-x: hidden; /* HAPUS 'overflow: hidden' mutlak agar HP tidak terpotong */
         }
 
         @keyframes gradientBG {
@@ -140,9 +142,10 @@
     <div class="orb-1"></div>
     <div class="orb-2"></div>
 
-    <main class="glass-panel w-full max-w-5xl flex flex-col md:flex-row relative z-10 min-h-[600px] shadow-2xl">
+     <main class="glass-panel w-full max-w-5xl flex flex-col md:flex-row relative z-10 min-h-[450px] md:min-h-[600px] shadow-2xl">
         
-        <div class="hidden md:flex md:w-1/2 relative p-12 flex-col justify-between overflow-hidden bg-gradient-to-br from-brand/20 to-brand-accent/20">
+             <div class="hidden md:flex md:w-1/2 relative p-12 flex-col justify-between overflow-hidden bg-gradient-to-br from-brand/20 to-brand-accent/20">
+
             <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay opacity-40"></div>
             
             <div class="relative z-10">
@@ -165,10 +168,8 @@
             <div class="absolute -bottom-20 -left-20 w-64 h-64 border border-white/30 rounded-full animate-[spin_20s_linear_infinite]"></div>
         </div>
 
-        <div class="w-full md:w-1/2 p-8 md:p-12 relative flex items-center justify-center">
-            
+            <div class="w-full md:w-1/2 p-6 sm:p-8 md:p-12 py-10 relative flex flex-1 items-center justify-center">            
             <div class="w-full max-w-sm relative">
-
                 <div x-show="view === 'login'" 
                      x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-x-8" x-transition:enter-end="opacity-100 translate-x-0"
                      x-transition:leave="transition ease-in duration-300 absolute inset-0" x-transition:leave-start="opacity-100 translate-x-0" x-transition:leave-end="opacity-0 -translate-x-8">
@@ -205,9 +206,27 @@
                         </button>
                     </form>
 
-                    <p class="text-center mt-8 text-sm text-slate-600 font-medium">
-                        Belum punya akun? <button @click="view = 'register'" class="font-bold text-brand hover:underline">Daftar Sekarang</button>
+                  <p class="text-center mt-8 text-sm text-slate-600 font-medium">
+                        Belum punya akun? <button type="button" @click="view = 'register'" class="font-bold text-brand hover:underline">Daftar Sekarang</button>
                     </p>
+
+                    <!-- Tambahan Info Akun Visitor -->
+                    <div class="mt-6 p-4 rounded-2xl bg-gradient-to-br from-brand/5 to-brand-accent/5 border border-brand/20 backdrop-blur-sm shadow-sm">
+                        <div class="flex items-center justify-center gap-2 mb-3">
+                            <i class="fa-solid fa-users text-brand text-xs"></i>
+                            <p class="text-[10px] font-bold tracking-widest text-brand uppercase">Akses Cepat Pengunjung</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center bg-white/50 px-3 py-2.5 rounded-xl border border-white/60 transition-colors hover:bg-white/70">
+                                <span class="text-[11px] font-semibold text-slate-500 mb-0.5 sm:mb-0">Email:</span>
+                                <span class="text-xs font-bold text-slate-800 tracking-wide select-all cursor-copy">Visitorporto@gmail.com</span>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center bg-white/50 px-3 py-2.5 rounded-xl border border-white/60 transition-colors hover:bg-white/70">
+                                <span class="text-[11px] font-semibold text-slate-500 mb-0.5 sm:mb-0">Password:</span>
+                                <span class="text-xs font-bold text-slate-800 tracking-wide select-all cursor-copy">Visitorporto2026</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div x-show="view === 'register'" style="display: none;"
